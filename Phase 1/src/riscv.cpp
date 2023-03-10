@@ -21,9 +21,16 @@ Date:
 #include <stdlib.h>
 #include <stdio.h>
 
+
+
+
+
+
+
+
 /* NOTE: Contents uptil "till here" to be shifted into components.cpp and components.h */
 //Register file
-static unsigned int X[32];
+// static unsigned int X[32];
 //flags
 //memory
 static unsigned char MEM[4000];
@@ -37,6 +44,9 @@ static unsigned int operand2;
 
 
 void run_riscvsim() {
+
+  alu.input(1,2, 3);
+
   while(1) {
     fetch();
     decode();
