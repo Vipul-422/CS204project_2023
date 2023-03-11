@@ -38,9 +38,10 @@ class Regfile {
     string rd, rs1, rs2;
 
     public:
+        bool rfwrite;
         Regfile();
         void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd={0,0,0,0,0});
-        void write(int data, bool rfwrite=0);
+        void write(int data);
         int op1();
         int op2();
 
@@ -50,12 +51,14 @@ Regfile regs;
 //instruction memory start
 class Memory
 {
-    bool iswrite; //0 for memory read and 1 for memory write
-    int address;
-    static unsigned int mem[100000];
+    unsigned int address;
+    int op2;
+    static unsigned char mem[100000];
     public:
-        void input(int _address, bool _iswrite=0, int data=0);
-        int read(int _address);
+        bool iswrite; //0 for memory read and 1 for memory write
+        int sltype; //0 for b, 1 for h, 2 for w
+        void mem_addr(int _address);
+        void data_write(int _op2);
         int output();
 };
 
@@ -101,6 +104,7 @@ class Sign_ext
         void input(vector<int> num);
         int output();
 };
+Sign_ext immB, immJ, imm, immS, immU;
 //sign ext ends
 
 

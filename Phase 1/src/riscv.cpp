@@ -15,6 +15,8 @@ Date:
    Purpose of this file: implementation file for myRISCVSim
 */
 
+// int PC = 0;
+
 #include "../include/riscv.h"
 #include "../include/functions.h"
 #include "../include/components.h"
@@ -45,13 +47,12 @@ static unsigned int operand2;
 
 void run_riscvsim() {
 
-  alu.input(1,2, 3);
 
   while(1) {
-    fetch();
-    decode();
+    vector<int> inst = fetch();
+    decode(inst);
     execute();
-    mem();
+    memory_op();
     write_back();
   }
 }

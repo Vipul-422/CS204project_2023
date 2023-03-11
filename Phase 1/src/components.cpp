@@ -1,6 +1,7 @@
 // contains classes variable that represent various units like alu, memory, register file, etc
 
 #include "components.h"
+#include <bitset>
 
 
 // ALU start
@@ -91,7 +92,7 @@ void Regfile::input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd={0,0,0,0
     rs2 = to_string(irs2);
 }
 
-void Regfile::write(int data, bool rfwrite=0) {
+void Regfile::write(int data) {
     if(rfwrite && rd!="x0") {
         regs[rd] = data;
     }
@@ -120,16 +121,68 @@ int Mux::output() //function declaration of output for mux
 //mux end
 
 //memory start
-void Memory::input(int _address, bool _iswrite, int data=0){
-    mem[address]=data;
-    address=_address;
-    iswrite=_iswrite;
+void Memory::mem_addr(int _address) {
+    address = (unsigned)_address - 268435456;
 }
-int Memory::read(int _address){
-    return mem[_address];
+void Memory::data_write(int _op2) {
+    op2 = _op2;
+
+    if (iswrite) {
+
+        bitset<32> b_op2(op2);
+
+        bitset<8> b1, b2, b3, b4;    // b1 contains least significant part, b4 contains most significant part
+        // for ex: if number is 0x12345678 then
+        // b1: 78
+        // b2: 56
+        // b3: 34
+        // b4: 12
+
+        if (sltype == 0) {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+        }
+        else if (sltype == 1) {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
+        }
+        else {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
+            for(int i=16; i<24; i++) {b3[i-16] = b_op2[i];}
+            for(int i=24; i<32; i++) {b4[i-24] = b_op2[i];}
+        }
+
+        mem[address] = (char)b1.to_ulong();
+        mem[address+1] = (char)b2.to_ulong();
+        mem[address+2] = (char)b3.to_ulong();
+        mem[address+3] = (char)b4.to_ulong();
+
+    }
+
 }
-int Memory::output(){
-    return mem[address];
+int Memory::output() {
+
+    bitset<32> output;
+
+    bitset<8> b1(mem[address]), b2(mem[address+1]), b3(mem[address+2]), b4(mem[address+3]);
+
+    if (sltype == 0) {
+        for(int i=0; i<8; i++) {output[i] = b1[i];}
+    }
+    else if (sltype == 1) {
+        for(int i=0; i<8; i++) {output[i] = b1[i];}
+        for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+    }
+    else {
+        for(int i=0; i<8; i++) {output[i] = b1[i];}
+        for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+        for(int i=16; i<24; i++) {output[i] = b3[i-16];}
+        for(int i=24; i<32; i++) {output[i] = b4[i-24];}
+    }
+
+    int out = (int)output.to_ulong();
+    return out;
+
 }
 //memory end
 
