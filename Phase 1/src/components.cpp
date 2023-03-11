@@ -2,6 +2,12 @@
 
 #include "../include/components.h"
 #include <bitset>
+#include <string>
+#include <map>
+#include <vector>
+
+
+
 
 
 // ALU start
@@ -214,3 +220,17 @@ int Sign_ext::output(){
     return num;
 }
 //sign ext ends
+
+/* DON'T TOUCH */
+
+int PC; //global PC(program counter)
+map <int, string> inst_mem;
+ALU alu;
+Regfile regs;
+Memory mem;
+Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
+Adder adder_pc, adder_branch;
+Sign_ext immB, immJ, imm, immS, immU;
+
+
+/* DON'T TOUCH ENDS */

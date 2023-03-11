@@ -1,3 +1,7 @@
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
+
 #include "../include/components.h"
 #include <iostream>
 #include <vector>
@@ -16,3 +20,5 @@ void execute();
 void memory_op();
 //writes the results back to register file
 void write_back();
+
+#endif

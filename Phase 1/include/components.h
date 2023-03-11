@@ -1,3 +1,6 @@
+#ifndef COMPONENTS_H
+#define COMPONENTS_H
+
 // .h file for components.cpp
 
 #include <string>
@@ -15,12 +18,6 @@ using namespace std;
 7) Adder
 */
 
-#ifndef COMPONENTS_H
-#define COMPONENTS_H
-
-int PC=0; //global PC(program counter)
-
-map <int, string> inst_mem;
 
 class ALU {
 
@@ -33,7 +30,6 @@ class ALU {
         int output();
 
 };
-ALU alu;
 
 
 class Regfile {
@@ -50,14 +46,13 @@ class Regfile {
         int op2();
 
 };
-Regfile regs;
 
 //instruction memory start
 class Memory
 {
     unsigned int address;
     int op2;
-    static unsigned char mem[100000];
+    char mem[100000];
     public:
         bool iswrite; //0 for memory read and 1 for memory write
         int sltype; //0 for b, 1 for h, 2 for w
@@ -66,7 +61,6 @@ class Memory
         int output();
 };
 
-Memory mem;
 //instruction memory ends
 
 
@@ -80,10 +74,7 @@ class Mux
         int output(); //mux_name.output() will directly give us value of input
 };
 
-Mux mux_op2select;
-Mux mux_resultselect;
-Mux mux_branchTargetSel;
-Mux mux_isbranch;
+
 //mux ends
 
 //adder start
@@ -96,8 +87,6 @@ class Adder
         int output();
 };
 
-Adder adder_pc;
-Adder adder_branch;
 //adder ends
 
 //sign ext starts
@@ -108,7 +97,6 @@ class Sign_ext
         void input(vector<int> num);
         int output();
 };
-Sign_ext immB, immJ, imm, immS, immU;
 //sign ext ends
 
 

@@ -1,6 +1,26 @@
+/* DON'T TOUCH */
+
+
 #include "../include/riscv.h"
 #include "../include/functions.h"
 #include <bitset>
+#include "../include/components.h"
+#include <iostream>
+#include <vector>
+#include <string>
+
+
+extern int PC; //global PC(program counter)
+extern map <int, string> inst_mem;
+extern ALU alu;
+extern Regfile regs;
+extern Memory mem;
+extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
+extern Adder adder_pc, adder_branch;
+extern Sign_ext immB, immJ, imm, immS, immU;
+
+/* DON'T TOUCH ENDS */
+
 
 //reads from the instruction memory and updates the instruction register
 vector<int> fetch() {
@@ -12,6 +32,7 @@ vector<int> fetch() {
     for(int i=0;i<32;i++){
         bin_string.push_back(binary_form[i]);
     }
+
     return bin_string;
 }
 

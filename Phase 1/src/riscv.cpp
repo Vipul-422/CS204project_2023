@@ -15,7 +15,8 @@ Date:
    Purpose of this file: implementation file for myRISCVSim
 */
 
-// int PC = 0;
+
+/* DON'T TOUCH */
 
 #include "../include/riscv.h"
 #include "../include/functions.h"
@@ -26,43 +27,38 @@ Date:
 #include <sstream>
 
 
+extern int PC; //global PC(program counter)
+extern map <int, string> inst_mem;
+extern ALU alu;
+extern Regfile regs;
+extern Memory mem;
+extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
+extern Adder adder_pc, adder_branch;
+extern Sign_ext immB, immJ, imm, immS, immU;
 
+/* DON'T TOUCH ENDS */
 
-
-
-
-
-/* NOTE: Contents uptil "till here" to be shifted into components.cpp and components.h */
-//Register file
-// static unsigned int X[32];
-//flags
-//memory
-static unsigned char MEM[4000];
-
-//intermediate datapath and control path signals
-static unsigned int instruction_word;
-static unsigned int operand1;
-static unsigned int operand2;
-
-/*till here*/
 
 
 void run_riscvsim() {
-
-
-  while(1) {
     vector<int> inst = fetch();
     decode(inst);
-    execute();
-    memory_op();
-    write_back();
-  }
+
+
+  // while(1) {
+  //   vector<int> inst = fetch();
+  //   decode(inst);
+  //   execute();
+  //   memory_op();
+  //   write_back();
+  // }
+  return;
 }
 
 // it is used to set the reset values
 //reset all registers and memory content to 0
 void reset_proc() {
-
+  return;
 }
 
 //load_program_memory reads the input memory, and pupulates the instruction 
@@ -76,7 +72,7 @@ void load_program_memory() {
   //   j++;
   // }
   fstream fileptr, filewrite;
-  fileptr.open("../.mc files/input.mc", ios::in);
+  fileptr.open("../../.mc files/input.mc", ios::in);
   filewrite.open("input.txt", ios::out);
   int count=0; //temporary PC.
   while(!fileptr.eof()){
@@ -96,35 +92,11 @@ void load_program_memory() {
 
 //writes the data memory in "data_out.mem" file
 void write_data_memory() {
-  FILE *fp;
-  unsigned int i;
-  fp = fopen("data_out.mem", "w");
-  if(fp == NULL) {
-    printf("Error opening dataout.mem file for writing\n");
-    return;
-  }
-  
-  for(i=0; i < 4000; i = i+4){
-    fprintf(fp, "%x %x\n", i, read_word(MEM, i));
-  }
-  fclose(fp);
+  return;
 }
 
 //should be called when instruction is swi_exit
 void swi_exit() {
   write_data_memory();
   exit(0);
-}
-
-
-int read_word(unsigned char *mem, unsigned int address) {
-  int *data;
-  data =  (int*) (mem + address);
-  return *data;
-}
-
-void write_word(unsigned char *mem, unsigned int address, unsigned int data) {
-  int *data_p;
-  data_p = (int*) (mem + address);
-  *data_p = data;
 }

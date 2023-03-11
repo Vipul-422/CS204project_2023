@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char** argv) {
-  char* prog_mem_file; 
-  if(argc < 2) {
-    printf("Incorrect number of arguments. Please invoke the simulator \n\t./myRISCVSim <input mem file> \n");
-    exit(1);
-  }
+int main() {
+  // char* prog_mem_file; 
+  // if(argc < 2) {
+  //   printf("Incorrect number of arguments. Please invoke the simulator \n\t./myRISCVSim <input mem file> \n");
+  //   exit(1);
+  // }
   
   //reset the processor
   reset_proc();
