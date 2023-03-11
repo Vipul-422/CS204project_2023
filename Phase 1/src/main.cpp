@@ -1,5 +1,5 @@
 // To test the running use:
-// gcc ./src/main.cpp ./src/riscvSimulator.cpp ./src/function.cpp ./src/components.cpp ./include/risv.h ./include/functions.h ./include/components.h
+// g++ ./src/main.cpp ./src/riscv.cpp ./src/functions.cpp ./src/components.cpp ./include/riscv.h ./include/functions.h ./include/components.h
 
 #include "../include/riscv.h"
 #include <stdio.h>
@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
   //reset the processor
   reset_proc();
   //load the program memory
-  load_program_memory(argv[1]);
+  load_program_memory();
   //run the simulator
   run_riscvsim();
 

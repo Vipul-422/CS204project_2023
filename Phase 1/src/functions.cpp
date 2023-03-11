@@ -1,8 +1,18 @@
-#include <riscv.h>
-#include "functions.h"
+#include "../include/riscv.h"
+#include "../include/functions.h"
+#include <bitset>
 
 //reads from the instruction memory and updates the instruction register
 vector<int> fetch() {
+    string hex_string=inst_mem[PC];
+    vector<int> bin_string; //lsb at bin_string[0]
+    char *p;
+    long n = strtoul( hex_string.c_str(), & p, 16 );
+    bitset<32> binary_form(n);
+    for(int i=0;i<32;i++){
+        bin_string.push_back(binary_form[i]);
+    }
+    return bin_string;
 }
 
 

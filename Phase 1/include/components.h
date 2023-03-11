@@ -18,6 +18,10 @@ using namespace std;
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
 
+int PC=0; //global PC(program counter)
+
+map <int, string> inst_mem;
+
 class ALU {
 
     int op1, op2;
@@ -40,7 +44,7 @@ class Regfile {
     public:
         bool rfwrite;
         Regfile();
-        void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd={0,0,0,0,0});
+        void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rde);
         void write(int data);
         int op1();
         int op2();

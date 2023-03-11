@@ -22,6 +22,8 @@ Date:
 #include "../include/components.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <fstream>
+#include <sstream>
 
 
 
@@ -65,18 +67,31 @@ void reset_proc() {
 
 //load_program_memory reads the input memory, and pupulates the instruction 
 // memory
-void load_program_memory(char *file_name) {
-  FILE *fp;
-  unsigned int address, instruction;
-  fp = fopen(file_name, "r");
-  if(fp == NULL) {
-    printf("Error opening input mem file\n");
-    exit(1);
+void load_program_memory() {
+  //converting user .mc file to input.txt file as per our instruction memory update part needs.
+  // string file_name="../.mcfile/";
+  // int j=0;
+  // while(_file_name[j]!='\0'){
+  //   file_name.push_back(_file_name[j]);
+  //   j++;
+  // }
+  fstream fileptr, filewrite;
+  fileptr.open("../.mc files/input.mc", ios::in);
+  filewrite.open("input.txt", ios::out);
+  int count=0; //temporary PC.
+  while(!fileptr.eof()){
+    string s;
+    getline(fileptr, s);
+    inst_mem[count]=s;
+    s="0x"+s;
+    ostringstream ss;
+    ss<<hex<<count;
+    s="0x"+ss.str()+" "+s;
+    filewrite<<s;
+    filewrite<<"\n";
+    count+=4;
   }
-  while(fscanf(fp, "%x %x", &address, &instruction) != EOF) {
-    write_word(MEM, address, instruction);
-  }
-  fclose(fp);
+  //conversion done
 }
 
 //writes the data memory in "data_out.mem" file

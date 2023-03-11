@@ -1,6 +1,6 @@
 // contains classes variable that represent various units like alu, memory, register file, etc
 
-#include "components.h"
+#include "../include/components.h"
 #include <bitset>
 
 
@@ -79,7 +79,7 @@ Regfile::Regfile() {
     }
 }
 
-void Regfile::input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd={0,0,0,0,0}) {
+void Regfile::input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd) {
     
     int ird=0, irs1=0, irs2=0;
     for(int i=0; i<_rd.size(); i--) {
