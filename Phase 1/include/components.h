@@ -34,13 +34,14 @@ class ALU {
 
 class Regfile {
 
-    map<string, int> regs;
+    
     string rd, rs1, rs2;
 
     public:
+        map<string, int> regs;
         bool rfwrite;
         Regfile();
-        void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rde);
+        void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd);
         void write(int data);
         int op1();
         int op2();

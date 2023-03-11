@@ -16,7 +16,7 @@ extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
 extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
-extern Adder adder_pc, adder_branch;
+extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 
 /* DON'T TOUCH ENDS */
@@ -224,8 +224,24 @@ void decode(vector<int> inst) {
 void execute() {
 }
 //perform the memory operation
-void memory_op() {
+void memory_access() {
 }
 //writes the results back to register file
 void write_back() {
+    //updating input vector
+    vector<int> _input_lines;
+    _input_lines.push_back(PC+4);
+    _input_lines.push_back(immU.output());
+    _input_lines.push_back(mem.output());
+    _input_lines.push_back(alu.output());
+    adder_wb.input(PC, immU.output());
+    _input_lines.push_back(adder_wb.output());
+    mux_resultselect.input(_input_lines);
+    //updated input vector
+
+    //main part
+    if(regs.rfwrite){
+        regs.write(mux_resultselect.output());
+    }
+    //function end
 }

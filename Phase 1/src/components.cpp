@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <iostream>
 
 
 
@@ -88,14 +89,19 @@ Regfile::Regfile() {
 void Regfile::input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd) {
     
     int ird=0, irs1=0, irs2=0;
-    for(int i=0; i<_rd.size(); i--) {
-        ird = ird*2 + _rd[i];
-        irs1 = irs1*2 + _rs1[i];
-        irs2 = ird*2 + _rs2[i];
-    }
-    rd = to_string(ird);
-    rs1 = to_string(irs1);
-    rs2 = to_string(irs2);
+    bitset<5> bits;
+    
+    for(int i=0; i<5; i++) {bits[i] = _rd[4-i];}
+    ird = (int)bits.to_ulong();
+    rd = "x"+to_string(ird);
+
+    for(int i=0; i<5; i++) {bits[i] = _rs1[4-i];}
+    irs1 = (int)bits.to_ulong();
+    rs1 = "x"+to_string(irs1);
+
+    for(int i=0; i<5; i++) {bits[i] = _rs2[4-i];}
+    irs2 = (int)bits.to_ulong();
+    rs2 = "x"+to_string(irs2);
 }
 
 void Regfile::write(int data) {
@@ -204,17 +210,21 @@ int Adder::output(){
 
 //sign ext start
 void Sign_ext::input(vector<int> _num){
-    int k=_num.size()-1;
-    num=0;
-    for(int i=0;i<k;i++){
-        if(i==0){
-            num-=_num[i]*(1<<k);
-        }
-        else{
-            num+=_num[i]*(1<<k);
-        }
-        k--;
+
+    int k=_num.size();
+    bitset<32> bits;
+
+    for(int i=31; i>=0; i--) {
+
+        bits[i] = _num[0];
     }
+    for(int i=0; i<k; i++) {
+        bits[i] = _num[k-i-1];
+    }
+
+    num = (int)bits.to_ulong();
+
+
 }
 int Sign_ext::output(){
     return num;
@@ -229,7 +239,7 @@ ALU alu;
 Regfile regs;
 Memory mem;
 Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
-Adder adder_pc, adder_branch;
+Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;
 
 

@@ -33,7 +33,7 @@ extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
 extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
-extern Adder adder_pc, adder_branch;
+extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 
 /* DON'T TOUCH ENDS */
@@ -43,7 +43,7 @@ extern Sign_ext immB, immJ, imm, immS, immU;
 void run_riscvsim() {
     vector<int> inst = fetch();
     decode(inst);
-
+    write_back();
 
   // while(1) {
   //   vector<int> inst = fetch();
