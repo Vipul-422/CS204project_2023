@@ -17,7 +17,7 @@ void decode(vector<int> inst);
 //executes the ALU operation based on ALUop
 void execute();
 //perform the memory operation
-void memory_op();
+void memory_access();
 //writes the results back to register file
 void write_back();
 

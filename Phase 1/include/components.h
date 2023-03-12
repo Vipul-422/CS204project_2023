@@ -21,12 +21,12 @@ using namespace std;
 
 class ALU {
 
-    int op1, op2;
-    int process();
+    int op1, op2, out;
 
     public:
         int operation;
         void input(int _op1, int _op2);
+        void process();
         int output();
 
 };
@@ -99,6 +99,15 @@ class Sign_ext
         int output();
 };
 //sign ext ends
+
+class BranchControl
+{
+    int func3;
+    int out;
+    public:
+        void input(int _func3);
+        int output();
+};
 
 
 #endif

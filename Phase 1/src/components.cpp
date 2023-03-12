@@ -17,8 +17,7 @@ void ALU::input(int _op1, int _op2) {
     op2 = _op2;
 }
 
-int ALU::process() {
-    int out;
+void ALU::process() {
 
     switch(operation) {
         case 1: {
@@ -68,12 +67,11 @@ int ALU::process() {
         }
     }
 
-    return out;
 
 }
 
 int ALU::output() {
-    return process();
+    return out;
 }
 // ALU end
 
@@ -231,6 +229,51 @@ int Sign_ext::output(){
 }
 //sign ext ends
 
+
+//BranchControl unit starts
+void BranchControl::input(int _func3){
+    func3=_func3;
+}
+
+int BranchControl::output(){
+    out = 2;
+    switch (func3) {
+    case 0: {
+        //beq
+        if(alu.output()==0){
+            out = 1;
+        }
+        break;
+    }
+
+    case 1: {
+        //bne
+        if(alu.output()!=0){
+            out = 1;
+        }
+        break;
+    }
+    
+    case 4: {
+        //blt
+        if(alu.output()<0){
+            out = 1;
+        }
+    }
+
+    case 5: {
+        //bge
+        if(alu.output()>=0){
+            out = 1;
+        }
+    }
+    default:
+        break;
+    }
+    return out;
+}
+//BranchControl unit ends
+
 /* DON'T TOUCH */
 
 int PC; //global PC(program counter)
@@ -241,6 +284,7 @@ Memory mem;
 Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;
+BranchControl bcu;
 
 
 /* DON'T TOUCH ENDS */

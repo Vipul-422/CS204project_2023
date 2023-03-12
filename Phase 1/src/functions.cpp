@@ -18,6 +18,7 @@ extern Memory mem;
 extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
+extern BranchControl bcu;
 
 /* DON'T TOUCH ENDS */
 
@@ -32,6 +33,10 @@ vector<int> fetch() {
     for(int i=0;i<32;i++){
         bin_string.push_back(binary_form[i]);
     }
+
+    //updating PC adder
+    adder_pc.input(PC, 4);
+    //done with adder
 
     return bin_string;
 }
@@ -183,9 +188,7 @@ void decode(vector<int> inst) {
         mux_op2select.select_line = 0;
         mux_branchTargetSel.select_line = 0;
         alu.operation = 2;
-        // !! NOTE - BRANCH SELECTION SELECTION TO BE DONE AFTER EXECUTION !!
-        // mux_isbranch.select_line = 1    if condition is true
-        // mux_isbranch.select_line = 2    else
+        bcu.input(func3);
     }
     else if (opcode == "0110111") {
         // lui
@@ -214,34 +217,42 @@ void decode(vector<int> inst) {
         // cout << "Wrong instruction at " << PC << endl;
     }
 
+    
+    //populating mux_branchTargetSel.
+    vector<int> _input_lines;
+    _input_lines.push_back(immB.output());
+    _input_lines.push_back(immJ.output());
+    mux_branchTargetSel.input(_input_lines);
+    //done with mux
+
+    //populating mux_op2select
+    _input_lines.clear();
+    _input_lines.push_back(regs.op2());
+    _input_lines.push_back(imm.output());
+    _input_lines.push_back(immS.output());
+    mux_op2select.input(_input_lines);
+    //done with mux
+
+    //updating branch adder
+    adder_branch.input(PC, mux_branchTargetSel.output());
+    //updated branch adder
+
+    //updating wb adder
+    adder_wb.input(PC, immU.output());
+    //updated wb adder
 
 }
-
-
-
 
 //executes the ALU operation based on ALUop
 void execute() {
 }
+
+
 //perform the memory operation
 void memory_access() {
 }
+
+
 //writes the results back to register file
 void write_back() {
-    //updating input vector
-    vector<int> _input_lines;
-    _input_lines.push_back(PC+4);
-    _input_lines.push_back(immU.output());
-    _input_lines.push_back(mem.output());
-    _input_lines.push_back(alu.output());
-    adder_wb.input(PC, immU.output());
-    _input_lines.push_back(adder_wb.output());
-    mux_resultselect.input(_input_lines);
-    //updated input vector
-
-    //main part
-    if(regs.rfwrite){
-        regs.write(mux_resultselect.output());
-    }
-    //function end
 }
