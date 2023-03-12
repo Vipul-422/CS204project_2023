@@ -244,14 +244,55 @@ void decode(vector<int> inst) {
 
 }
 
+//executes the ALU operation based on ALUop
 void execute() {
+    //executing ALU unit
+    alu.input(regs.op1(), mux_op2select.output());
+    alu.process();
+    //execution done.
 
+    //using BranchControl unit
+    bcu.input(alu.output());
+    mux_isbranch.select_line = bcu.output();
+    //isBranch updated
+
+    //populating mux_isbranch
+    vector<int> _input_lines;
+    _input_lines.clear();
+    _input_lines.push_back(alu.output());
+    _input_lines.push_back(adder_branch.output());
+    _input_lines.push_back(adder_pc.output());
+    mux_isbranch.input(_input_lines);
+    //done with mux
 }
 
+//perform the memory operation
 void memory_access() {
+    mem.mem_addr(alu.output());
+    mem.data_write(regs.op2());
 
+
+    //updating mux_resultselect
+    vector<int> _input_lines;
+    _input_lines.push_back(PC+4);
+    _input_lines.push_back(immU.output());
+    _input_lines.push_back(mem.output());
+    _input_lines.push_back(alu.output());
+    _input_lines.push_back(adder_wb.output());
+    mux_resultselect.input(_input_lines);
+    //updated mux
 }
 
+//writes the results back to register file
 void write_back() {
     
+    //start
+    if(regs.rfwrite){
+        regs.write(mux_resultselect.output());
+    }
+    //end
+
+    //updating PC for next cycle
+    PC=mux_isbranch.output();
+    //updated PC.
 }
