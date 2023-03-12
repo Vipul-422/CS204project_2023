@@ -43,12 +43,12 @@ extern BranchControl bcu;
 
 void run_riscvsim() {
 
+
     vector<int> inst = fetch();
     decode(inst);
     execute();
     memory_access();
     write_back();
-
 
   // while(1) {
   //   vector<int> inst = fetch();

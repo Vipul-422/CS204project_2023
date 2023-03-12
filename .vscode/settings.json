@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "fstream": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "sstream": "cpp",
+        "xlocale": "cpp",
+        "xlocnum": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "bitset": "cpp"
+    }
+}

@@ -51,12 +51,13 @@ class Regfile {
 //instruction memory start
 class Memory
 {
-    unsigned int address;
+    int address;
     int op2;
-    char mem[100000];
     public:
+        char mem[100000];
         bool iswrite; //0 for memory read and 1 for memory write
         int sltype; //0 for b, 1 for h, 2 for w
+        Memory();
         void mem_addr(int _address);
         void data_write(int _op2);
         int output();
@@ -103,9 +104,11 @@ class Sign_ext
 class BranchControl
 {
     int func3;
+    int alu_out;
     int out;
     public:
-        void input(int _func3);
+        void input_func3(int _func3);
+        void input(int _alu_out);
         int output();
 };
 

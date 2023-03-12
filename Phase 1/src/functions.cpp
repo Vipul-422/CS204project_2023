@@ -113,6 +113,7 @@ void decode(vector<int> inst) {
 
     for(int i=14; i>=12; i--) { func3 = func3*2 + inst[i]; }
     for(int i=31; i>=25; i--) { func7 = func7*2 + inst[i]; }
+    bcu.input_func3(func3);
 
 
     // Basic setup end
@@ -188,7 +189,7 @@ void decode(vector<int> inst) {
         mux_op2select.select_line = 0;
         mux_branchTargetSel.select_line = 0;
         alu.operation = 2;
-        bcu.input(func3);
+        bcu.input_func3(func3);
     }
     else if (opcode == "0110111") {
         // lui
@@ -243,16 +244,14 @@ void decode(vector<int> inst) {
 
 }
 
-//executes the ALU operation based on ALUop
 void execute() {
+
 }
 
-
-//perform the memory operation
 void memory_access() {
+
 }
 
-
-//writes the results back to register file
 void write_back() {
+    
 }

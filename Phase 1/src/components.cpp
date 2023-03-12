@@ -120,6 +120,7 @@ int Regfile::op2() {
 //mux start
 void Mux::input(vector<int> _input_lines) //function declaration of input for mux
 {
+    input_lines.clear();
     for(int i=0;i<_input_lines.size();i++){
         input_lines.push_back(_input_lines[i]);
     }
@@ -131,8 +132,13 @@ int Mux::output() //function declaration of output for mux
 //mux end
 
 //memory start
+Memory::Memory() {
+    for(int i=0; i<100000; i++) {
+        mem[i] = 0;
+    }
+}
 void Memory::mem_addr(int _address) {
-    address = (unsigned)_address - 268435456;
+    address = _address;
 }
 void Memory::data_write(int _op2) {
     op2 = _op2;
@@ -174,7 +180,7 @@ int Memory::output() {
 
     bitset<32> output;
 
-    bitset<8> b1(mem[address]), b2(mem[address+1]), b3(mem[address+2]), b4(mem[address+3]);
+    bitset<8> b1((int)mem[address]), b2((int)mem[address+1]), b3((int)mem[address+2]), b4((int)mem[address+3]);
 
     if (sltype == 0) {
         for(int i=0; i<8; i++) {output[i] = b1[i];}
@@ -231,8 +237,12 @@ int Sign_ext::output(){
 
 
 //BranchControl unit starts
-void BranchControl::input(int _func3){
-    func3=_func3;
+void BranchControl::input_func3(int _func3){
+    func3 = _func3;
+}
+
+void BranchControl::input(int _alu_out){
+    alu_out = _alu_out;
 }
 
 int BranchControl::output(){
@@ -240,7 +250,7 @@ int BranchControl::output(){
     switch (func3) {
     case 0: {
         //beq
-        if(alu.output()==0){
+        if(alu_out==0){
             out = 1;
         }
         break;
@@ -248,7 +258,7 @@ int BranchControl::output(){
 
     case 1: {
         //bne
-        if(alu.output()!=0){
+        if(alu_out!=0){
             out = 1;
         }
         break;
@@ -256,14 +266,14 @@ int BranchControl::output(){
     
     case 4: {
         //blt
-        if(alu.output()<0){
+        if(alu_out<0){
             out = 1;
         }
     }
 
     case 5: {
         //bge
-        if(alu.output()>=0){
+        if(alu_out>=0){
             out = 1;
         }
     }
