@@ -43,7 +43,7 @@ extern BranchControl bcu;
 
 void run_riscvsim() {
   while(1) {
-    if(inst_mem[PC]=="~") break;
+    if(inst_mem[PC]=="") break;
     vector<int> inst = fetch();
     decode(inst);
     execute();
