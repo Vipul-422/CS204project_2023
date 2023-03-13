@@ -153,7 +153,7 @@ void Memory::data_write(int _op2) {
         // b2: 56
         // b3: 34
         // b4: 12
-
+        
         if (sltype == 0) {
             for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
         }

@@ -42,23 +42,17 @@ extern BranchControl bcu;
 
 
 void run_riscvsim() {
-
-
+  while(1) {
+    if(inst_mem[PC]=="~") break;
     vector<int> inst = fetch();
     decode(inst);
     execute();
     memory_access();
     write_back();
-
-  // while(1) {
-  //   vector<int> inst = fetch();
-  //   decode(inst);
-  //   execute();
-  //   memory_access();
-  //   write_back();
-  //   PC=mux_isbranch.output();
-  // }
+    cout<<alu.output()<<" "<<(int)mem.mem[4]<<"\n";
+  }
   return;
+
 }
 
 // it is used to set the reset values
