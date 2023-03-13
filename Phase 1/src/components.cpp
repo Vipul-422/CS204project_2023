@@ -78,7 +78,8 @@ int ALU::output() {
 
 // regfile start
 Regfile::Regfile() {
-    for(int i=0; i<32; i++) {
+    regs["x0"] = 0;
+    for(int i=1; i<32; i++) {
         string temp = "x" + to_string(i);
         regs[temp] = 0;
     }
@@ -138,10 +139,11 @@ Memory::Memory() {
     }
 }
 void Memory::mem_addr(int _address) {
-    address = _address;
+    address = _address-4096;
 }
 void Memory::data_write(int _op2) {
     op2 = _op2;
+    
 
     if (iswrite) {
 
@@ -178,26 +180,35 @@ void Memory::data_write(int _op2) {
 }
 int Memory::output() {
 
-    bitset<32> output;
-
-    bitset<8> b1((int)mem[address]), b2((int)mem[address+1]), b3((int)mem[address+2]), b4((int)mem[address+3]);
-
-    if (sltype == 0) {
-        for(int i=0; i<8; i++) {output[i] = b1[i];}
+    if(address < 0) {
+        return -1;
     }
-    else if (sltype == 1) {
-        for(int i=0; i<8; i++) {output[i] = b1[i];}
-        for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+    else if (address >= 100000) {
+        return -1;
     }
     else {
-        for(int i=0; i<8; i++) {output[i] = b1[i];}
-        for(int i=8; i<16; i++) {output[i] = b2[i-8];}
-        for(int i=16; i<24; i++) {output[i] = b3[i-16];}
-        for(int i=24; i<32; i++) {output[i] = b4[i-24];}
-    }
 
-    int out = (int)output.to_ulong();
-    return out;
+        bitset<32> output;
+
+        bitset<8> b1((int)mem[address]), b2((int)mem[address+1]), b3((int)mem[address+2]), b4((int)mem[address+3]);
+
+        if (sltype == 0) {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+        }
+        else if (sltype == 1) {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+            for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+        }
+        else {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+            for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+            for(int i=16; i<24; i++) {output[i] = b3[i-16];}
+            for(int i=24; i<32; i++) {output[i] = b4[i-24];}
+        }
+
+        out = (int)output.to_ulong();
+        return out;
+    }
 
 }
 //memory end
@@ -245,6 +256,11 @@ void BranchControl::input(int _alu_out){
     alu_out = _alu_out;
 }
 
+void BranchControl::input_ops(int _op1, int _op2){
+    op1 = _op1;
+    op2 = _op2;
+}
+
 int BranchControl::output(){
     out = 2;
     switch (func3) {
@@ -266,16 +282,34 @@ int BranchControl::output(){
     
     case 4: {
         //blt
-        if(alu_out<0){
+        if (op1>0 && op2<0) {
+            out = 2;
+            break;
+        }
+        else if (op1<0 && op2>0) {
+            out = 1;
+            break;
+        }
+        else if(alu_out<0){
             out = 1;
         }
+        break;
     }
 
     case 5: {
         //bge
-        if(alu_out>=0){
+        if (op1<0 && op2>0) {
+            out = 2;
+            break;
+        }
+        else if (op1>0 && op2<0) {
+            out = 1;
+            break;
+        }
+        else if(alu_out>=0){
             out = 1;
         }
+        break;
     }
     default:
         break;

@@ -11,8 +11,8 @@ Date:
 */
 
 
-/* myRISCVSim.cpp
-   Purpose of this file: implementation file for myRISCVSim
+/* riscv.cpp
+   Purpose of this file: implementation file for riscv simulator
 */
 
 
@@ -42,61 +42,69 @@ extern BranchControl bcu;
 
 
 void run_riscvsim() {
-  while(1) {
-    if(inst_mem[PC]=="") break;
-    vector<int> inst = fetch();
-    decode(inst);
-    execute();
-    memory_access();
-    write_back();
-    cout<<alu.output()<<" "<<(int)mem.mem[4]<<"\n";
-  }
-  return;
+  
+	vector<int> inst;
 
+	while(1) {
+
+		if(inst_mem[PC] == "") {break;}
+		inst = fetch();
+		decode(inst);
+		execute();
+		memory_access();
+		write_back();
+
+	}
+
+	return;
 }
 
 // it is used to set the reset values
 //reset all registers and memory content to 0
 void reset_proc() {
-  return;
+
+	PC = 0;
+	regs.regs["x2"] = 100000;
+
+	return;
 }
 
 //load_program_memory reads the input memory, and pupulates the instruction 
 // memory
 void load_program_memory() {
-  //converting user .mc file to input.txt file as per our instruction memory update part needs.
-  // string file_name="../.mcfile/";
-  // int j=0;
-  // while(_file_name[j]!='\0'){
-  //   file_name.push_back(_file_name[j]);
-  //   j++;
-  // }
-  fstream fileptr, filewrite;
-  fileptr.open("../../.mc files/input.mc", ios::in);
-  filewrite.open("input.txt", ios::out);
-  int count=0; //temporary PC.
-  while(!fileptr.eof()){
-    string s;
-    getline(fileptr, s);
-    inst_mem[count]=s;
-    s="0x"+s;
-    ostringstream ss;
-    ss<<hex<<count;
-    s="0x"+ss.str()+" "+s;
-    filewrite<<s;
-    filewrite<<"\n";
-    count+=4;
-  }
-  //conversion done
+	//converting user .mc file to input.txt file as per our instruction memory update part needs.
+	// string file_name="../.mcfile/";
+	// int j=0;
+	// while(_file_name[j]!='\0'){
+	//   file_name.push_back(_file_name[j]);
+	//   j++;
+	// }
+	fstream fileptr, filewrite;
+	fileptr.open("../../.mc files/input.mc", ios::in);
+	filewrite.open("input.txt", ios::out);
+	int count=0; //temporary PC.
+	while(!fileptr.eof()){
+		string s;
+		getline(fileptr, s);
+		inst_mem[count]=s;
+		s="0x"+s;
+		ostringstream ss;
+		ss<<hex<<count;
+		s="0x"+ss.str()+" "+s;
+		filewrite<<s;
+		filewrite<<"\n";
+		count+=4;
+	}
+	//conversion done
 }
 
 //writes the data memory in "data_out.mem" file
 void write_data_memory() {
-  return;
+	return;
 }
 
 //should be called when instruction is swi_exit
 void swi_exit() {
-  write_data_memory();
-  exit(0);
+	write_data_memory();
+	exit(0);
 }

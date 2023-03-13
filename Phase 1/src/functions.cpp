@@ -19,6 +19,7 @@ extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
+int isBranchInst = 0;
 
 /* DON'T TOUCH ENDS */
 
@@ -57,6 +58,9 @@ void decode(vector<int> inst) {
     regs.rfwrite = false;
     mem.sltype = 2;
 
+    isBranchInst = 0;
+    
+    
     // Basic setup for decode
     string opcode="";
     for(int i=6; i>=0; i--) {
@@ -69,14 +73,15 @@ void decode(vector<int> inst) {
     vector<int> immb = {inst[31], inst[7]};
     for(int i=30; i>=25; i--) { immb.push_back(inst[i]); }
     for(int i=11; i>=8; i--) { immb.push_back(inst[i]); }
-    immb.push_back(inst[0]);
+    immb.push_back(0);
     immB.input(immb);  // immB is now live
 
-    vector<int> immj = {inst[31]};
-    for(int i=19; i>=12; i--) { immj.push_back(inst[i]); }
-    immj.push_back(inst[20]);
-    for(int i=30; i>=21; i--) { immj.push_back(inst[i]); }
-    immj.push_back(inst[0]);
+    vector<int> immj(21, 0);
+    immj[0] = inst[31];
+    for(int i=30, j=0; i>=21; i--) { immj[10+j] = inst[i]; j++; }
+    immj[9] = inst[20];
+    for(int i=19, j=1; i>=12; i--) { immj[j] = inst[i]; j++; }
+    immj[20] = 0;
     immJ.input(immj);  // immJ is now live
 
     vector<int> immvec;
@@ -150,8 +155,18 @@ void decode(vector<int> inst) {
         regs.rfwrite = true;
         switch(func3) {
             case 0: {alu.operation = 1; break;}
+            case 4: {alu.operation = 9; break;}
             case 6: {alu.operation = 4; break;}
             case 7: {alu.operation = 3; break;}
+            case 1: {alu.operation = 5; break;}
+            case 5: {
+                if(func7 == 0)
+                    alu.operation = 8;
+                else
+                    alu.operation = 7;
+                break;
+            }
+            case 2: {alu.operation = 6; break;}
         }
         mux_op2select.select_line = 1;
         mux_resultselect.select_line = 3;
@@ -184,6 +199,7 @@ void decode(vector<int> inst) {
     }
     else if (opcode == "1100011") {
         // branching
+        isBranchInst = 1;
         regs.rfwrite = false;
         mem.iswrite = false;
         mux_op2select.select_line = 0;
@@ -213,9 +229,6 @@ void decode(vector<int> inst) {
         mux_resultselect.select_line = 0;
         mux_branchTargetSel.select_line = 1;
         mux_isbranch.select_line = 1;
-    }
-    else {
-        // cout << "Wrong instruction at " << PC << endl;
     }
 
     
@@ -251,10 +264,13 @@ void execute() {
     alu.process();
     //execution done.
 
-    //using BranchControl unit
-    bcu.input(alu.output());
-    mux_isbranch.select_line = bcu.output();
-    //isBranch updated
+    if (isBranchInst == 1) {
+        //using BranchControl unit
+        bcu.input(alu.output());
+        bcu.input_ops(regs.op1(), regs.op2());
+        mux_isbranch.select_line = bcu.output();
+        //isBranch updated
+    }
 
     //populating mux_isbranch
     vector<int> _input_lines;

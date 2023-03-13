@@ -54,6 +54,7 @@ class Memory
     int address;
     int op2;
     public:
+        int out;
         char mem[100000];
         bool iswrite; //0 for memory read and 1 for memory write
         int sltype; //0 for b, 1 for h, 2 for w
@@ -105,9 +106,11 @@ class BranchControl
 {
     int func3;
     int alu_out;
+    int op1, op2;
     int out;
     public:
         void input_func3(int _func3);
+        void input_ops(int _op1, int _op2);
         void input(int _alu_out);
         int output();
 };
