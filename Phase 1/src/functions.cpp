@@ -20,6 +20,7 @@ extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
 int isBranchInst = 0;
+string inst_type;
 
 /* DON'T TOUCH ENDS */
 
@@ -128,24 +129,32 @@ void decode(vector<int> inst) {
         regs.rfwrite = true;
         switch(func3) {
             case 0: {
-                if(func7 == 0)
+                if(func7 == 0){
                     alu.operation = 1;
-                else
+                    inst_type="ADD";
+                }
+                else{
                     alu.operation = 2;
+                    inst_type="SUB";
+                }
                 break;
             }
-            case 4: {alu.operation = 9; break;}
-            case 6: {alu.operation = 4; break;}
-            case 7: {alu.operation = 3; break;}
-            case 1: {alu.operation = 5; break;}
+            case 4: {alu.operation = 9; inst_type="XOR"; break;}
+            case 6: {alu.operation = 4; inst_type="OR"; break;}
+            case 7: {alu.operation = 3; inst_type="AND"; break;}
+            case 1: {alu.operation = 5; inst_type="SLL"; break;}
             case 5: {
-                if(func7 == 0)
+                if(func7 == 0){
                     alu.operation = 8;
-                else
+                    inst_type="SRL";
+                }
+                else{
                     alu.operation = 7;
+                    inst_type="SRA";
+                }
                 break;
             }
-            case 2: {alu.operation = 6; break;}
+            case 2: {alu.operation = 6; inst_type="SLT"; break;}
         }
         mux_op2select.select_line = 0;
         mux_resultselect.select_line = 3;
@@ -154,19 +163,23 @@ void decode(vector<int> inst) {
         // arithmetic immediate
         regs.rfwrite = true;
         switch(func3) {
-            case 0: {alu.operation = 1; break;}
-            case 4: {alu.operation = 9; break;}
-            case 6: {alu.operation = 4; break;}
-            case 7: {alu.operation = 3; break;}
-            case 1: {alu.operation = 5; break;}
+            case 0: {alu.operation = 1; inst_type="ADDI"; break;}
+            case 4: {alu.operation = 9; inst_type="XORI"; break;}
+            case 6: {alu.operation = 4; inst_type="ORI"; break;}
+            case 7: {alu.operation = 3; inst_type="ANDI"; break;}
+            case 1: {alu.operation = 5; inst_type="SLLI"; break;}
             case 5: {
-                if(func7 == 0)
+                if(func7 == 0){
                     alu.operation = 8;
-                else
+                    inst_type="SRLI";
+                }
+                else{
                     alu.operation = 7;
+                    inst_type="SRAI";
+                }
                 break;
             }
-            case 2: {alu.operation = 6; break;}
+            case 2: {alu.operation = 6; inst_type="SLTI"; break;}
         }
         mux_op2select.select_line = 1;
         mux_resultselect.select_line = 3;
@@ -179,6 +192,15 @@ void decode(vector<int> inst) {
         alu.operation = 1;
         mux_resultselect.select_line = 2;
         mem.sltype = func3;   // 0 for b, 1 for h, 2 for w 
+        if(mem.sltype==0){
+            inst_type="LB";
+        }
+        else if(mem.sltype==1){
+            inst_type="LH";
+        }
+        else if(mem.sltype==2){
+            inst_type="LW";
+        }
     }
     else if (opcode == "1100111") {
         // jalr
@@ -188,6 +210,7 @@ void decode(vector<int> inst) {
         alu.operation = 1;
         mux_resultselect.select_line = 3;
         mux_isbranch.select_line = 0;
+        inst_type="JALR";
     }
     else if (opcode == "0100011") {
         // sb, sh, sw
@@ -196,6 +219,15 @@ void decode(vector<int> inst) {
         alu.operation = 1;
         mux_op2select.select_line = 2;
         mem.sltype = func3;
+        if(mem.sltype==0){
+            inst_type="SB";
+        }
+        else if(mem.sltype==1){
+            inst_type="SH";
+        }
+        else if(mem.sltype==2){
+            inst_type="SW";
+        }
     }
     else if (opcode == "1100011") {
         // branching
@@ -206,6 +238,18 @@ void decode(vector<int> inst) {
         mux_branchTargetSel.select_line = 0;
         alu.operation = 2;
         bcu.input_func3(func3);
+        if(func3==0) {
+            inst_type="BEQ";
+        }
+        else if(func3==1) {
+            inst_type="BNE";
+        }
+        else if(func3==4) {
+            inst_type="BLT";
+        }
+        else if(func3==5) {
+            inst_type="BGE";
+        }
     }
     else if (opcode == "0110111") {
         // lui
@@ -213,6 +257,7 @@ void decode(vector<int> inst) {
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_resultselect.select_line = 1;
+        inst_type="LUI";
     }
     else if (opcode == "0010111") {
         // auipc
@@ -220,7 +265,7 @@ void decode(vector<int> inst) {
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_resultselect.select_line = 4;
-
+        inst_type="AUIPC";
     }
     else if (opcode == "1101111") {
         // jal
@@ -229,9 +274,15 @@ void decode(vector<int> inst) {
         mux_resultselect.select_line = 0;
         mux_branchTargetSel.select_line = 1;
         mux_isbranch.select_line = 1;
+        inst_type="JAL";
     }
-
+    else {
+        //for any wrong instruction
+        cout<<"Wrong instruction!!! instruction: "<<inst_mem[PC]<<" at PC = "<<PC<<"\n";
+        exit(1);
+    }
     
+
     //populating mux_branchTargetSel.
     vector<int> _input_lines;
     _input_lines.push_back(immB.output());

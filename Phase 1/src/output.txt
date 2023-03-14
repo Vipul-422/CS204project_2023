@@ -1,0 +1,605 @@
+Value of PC is: 0
+Fetch: Instruction fetched is00a00193
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 4
+Fetch: Instruction fetched is00001437
+Decode: Instruction's mneomic: LUI
+
+
+Value of PC is: 8
+Fetch: Instruction fetched is00000293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 12
+Fetch: Instruction fetched is00000313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 20
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 24
+Fetch: Instruction fetched is00542023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 28
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+
+Value of PC is: 32
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 36
+Fetch: Instruction fetched is00430313
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 40
+Fetch: Instruction fetched isfe0004e3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 16
+Fetch: Instruction fetched is0032de63
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 44
+Fetch: Instruction fetched is00000293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 48
+Fetch: Instruction fetched is00000393
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 56
+Fetch: Instruction fetched is005383b3
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 60
+Fetch: Instruction fetched is00128293
+Decode: Instruction's mneomic: ADDI
+
+
+Value of PC is: 64
+Fetch: Instruction fetched isfe000ae3
+Decode: Instruction's mneomic: BEQ
+
+
+Value of PC is: 52
+Fetch: Instruction fetched is0032d863
+Decode: Instruction's mneomic: BGE
+
+
+Value of PC is: 68
+Fetch: Instruction fetched is00640433
+Decode: Instruction's mneomic: ADD
+
+
+Value of PC is: 72
+Fetch: Instruction fetched is00742023
+Decode: Instruction's mneomic: SW
+
+
+Value of PC is: 76
+Fetch: Instruction fetched is40640433
+Decode: Instruction's mneomic: SUB
+
+

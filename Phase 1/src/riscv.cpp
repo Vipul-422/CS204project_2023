@@ -36,6 +36,7 @@ extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
+extern string inst_type;
 
 /* DON'T TOUCH ENDS */
 
@@ -44,18 +45,27 @@ extern BranchControl bcu;
 void run_riscvsim() {
   
 	vector<int> inst;
+	fstream fp;
+	fp.open("output.txt", ios::out);
 
 	while(1) {
 
 		if(inst_mem[PC] == "") {break;}
+		fp << "Value of PC is: " << PC << "\n";
 		inst = fetch();
+		fp << "Fetch:- Instruction fetched is - " << inst_mem[PC] << "\n";
 		decode(inst);
+		fp << "Decode:- Instruction's mneomic - "<< inst_type << "\n";
 		execute();
 		memory_access();
 		write_back();
+		fp << "\n\n";
 
 	}
 
+	for(int i=0;i<41;i+=4){
+		cout<<(int)mem.mem[i]<<" "<<(int)mem.mem[i+1]<<" "<<(int)mem.mem[i+2]<<" "<<(int)mem.mem[i+3]<<"\n";
+	}
 	return;
 }
 
