@@ -182,6 +182,9 @@ void run_riscvsim() {
 		fp << "\n\n";
 
 	}
+
+	swi_exit();
+
 	return;
 }
 
@@ -207,11 +210,35 @@ void load_program_memory(char* filename) {
 		inst_mem[count]=s;
 		count+=4;
 	}
+	fileptr.close();
 	//conversion done
 }
 
 //writes the data memory in "data_out.mem" file
 void write_data_memory() {
+
+	fstream registerfile, memoryfile;
+
+	registerfile.open("../Registers and Memory/registers.txt", ios::out);
+	for(int i=0; i<32; i++) {
+		string temp = "x"+to_string(i);
+		registerfile << temp << "\t: " << regs.regs[temp] << "\n";
+	}
+	registerfile.close();
+
+	memoryfile.open("../Registers and Memory/memory.txt", ios::out);
+
+	for(int i=4096; i<104096; i+=4) {
+		int temp = i - 4096;
+
+		memoryfile << i << "\t: ";
+
+		memoryfile << (int)mem.mem[temp] << " " << (int)mem.mem[temp+1] << " " << (int)mem.mem[temp+2] << " " << (int)mem.mem[temp+3] << "\n";
+
+	}
+	memoryfile.close();
+
+
 	return;
 }
 

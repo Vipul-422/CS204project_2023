@@ -281,7 +281,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8192X
+Memory_access:- Storing data from x9 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -551,7 +551,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x9 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -821,7 +821,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8200, imms = 0
 Execute:- ALU output = 8200 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8200
+Memory_access:- Storing data from x9 8200AÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -1091,7 +1091,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8204, imms = 0
 Execute:- ALU output = 8204 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8204
+Memory_access:- Storing data from x9 8204
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -1361,8 +1361,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8208, imms = 0
 Execute:- ALU output = 8208 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8208ï¿½B
-Nï¿½
+Memory_access:- Storing data from x9 8208
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -1632,7 +1631,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8212Nï¿½
+Memory_access:- Storing data from x9 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -1902,7 +1901,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8216
+Memory_access:- Storing data from x9 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -2172,7 +2171,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8220, imms = 0
 Execute:- ALU output = 8220 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8220
+Memory_access:- Storing data from x9 8220|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -2442,7 +2441,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8224, imms = 0
 Execute:- ALU output = 8224 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8224x
+Memory_access:- Storing data from x9 8224ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -2712,7 +2711,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8228, imms = 0
 Execute:- ALU output = 8228 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8228ï¿½ï¿½ï¿½ï¿½.
+Memory_access:- Storing data from x9 8228ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -2982,7 +2981,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8232.
+Memory_access:- Storing data from x9 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -3252,7 +3251,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8236
+Memory_access:- Storing data from x9 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -3522,8 +3521,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8240, imms = 0
 Execute:- ALU output = 8240 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8240ï¿½B
-jï¿½
+Memory_access:- Storing data from x9 8240TÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -3793,7 +3791,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8244, imms = 0
 Execute:- ALU output = 8244 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8244jï¿½
+Memory_access:- Storing data from x9 8244
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -4063,7 +4061,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8248, imms = 0
 Execute:- ALU output = 8248 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8248
+Memory_access:- Storing data from x9 8248
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -4333,7 +4331,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8252
+Memory_access:- Storing data from x9 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -4603,7 +4601,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8256ï¿½
+Memory_access:- Storing data from x9 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -4874,7 +4872,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8260, imms = 0
 Execute:- ALU output = 8260 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8260ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x9 8260
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -5145,7 +5143,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8264, imms = 0
 Execute:- ALU output = 8264 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8264
+Memory_access:- Storing data from x9 82648
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -5416,7 +5414,7 @@ Value of PC is: 72
 Fetch:- Instruction fetched is - 00a4a023
 Decode:- Instruction's mnemonic - SW, x9 = rs1 = 8268, imms = 0
 Execute:- ALU output = 8268 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x9 8268
+Memory_access:- Storing data from x9 8268OÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 76
 
@@ -6523,8 +6521,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -6659,7 +6656,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -6830,7 +6827,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8192X
+Memory_access:- Storing data from x17 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -6920,7 +6917,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -7424,8 +7421,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -7488,7 +7484,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -7623,7 +7619,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -7794,7 +7790,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8192X
+Memory_access:- Storing data from x17 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -7893,7 +7889,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -7983,7 +7979,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8200, imms = 0
 Execute:- ALU output = 8200 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8200
+Memory_access:- Storing data from x17 8200AÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -8748,8 +8744,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -8884,7 +8879,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -9055,7 +9050,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8204, imms = 0
 Execute:- ALU output = 8204 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8204
+Memory_access:- Storing data from x17 8204
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -9145,8 +9140,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8208, imms = 0
 Execute:- ALU output = 8208 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8208ï¿½B
-Nï¿½
+Memory_access:- Storing data from x17 8208
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -9506,8 +9500,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -9570,7 +9563,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -9633,7 +9626,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -9768,7 +9761,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -9831,7 +9824,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -10002,7 +9995,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8192X
+Memory_access:- Storing data from x17 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -10101,7 +10094,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -10200,7 +10193,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8200, imms = 0
 Execute:- ALU output = 8200 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8200
+Memory_access:- Storing data from x17 8200AÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -10290,7 +10283,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8204, imms = 0
 Execute:- ALU output = 8204 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8204
+Memory_access:- Storing data from x17 8204
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -10353,8 +10346,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8208, imms = 0
 Execute:- ALU output = 8208 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8208ï¿½B
-Nï¿½
+Memory_access:- Storing data from x17 8208
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -11353,8 +11345,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -11489,7 +11480,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -11660,7 +11651,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8212Nï¿½
+Memory_access:- Storing data from x17 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -11750,7 +11741,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8216
+Memory_access:- Storing data from x17 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -12254,8 +12245,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -12318,7 +12308,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -12453,7 +12443,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -12624,7 +12614,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8212Nï¿½
+Memory_access:- Storing data from x17 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -12723,7 +12713,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8216
+Memory_access:- Storing data from x17 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -12804,7 +12794,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8220, imms = 0
 Execute:- ALU output = 8220 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8220
+Memory_access:- Storing data from x17 8220|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -13578,8 +13568,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -13714,7 +13703,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -13885,7 +13874,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8224, imms = 0
 Execute:- ALU output = 8224 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8224x
+Memory_access:- Storing data from x17 8224ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -13966,7 +13955,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8228, imms = 0
 Execute:- ALU output = 8228 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8228ï¿½ï¿½ï¿½ï¿½.
+Memory_access:- Storing data from x17 8228ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -14335,8 +14324,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -14399,7 +14387,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -14462,7 +14450,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -14597,7 +14585,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -14660,7 +14648,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -14831,7 +14819,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8212Nï¿½
+Memory_access:- Storing data from x17 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -14921,7 +14909,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8216
+Memory_access:- Storing data from x17 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -15020,7 +15008,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8220, imms = 0
 Execute:- ALU output = 8220 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8220
+Memory_access:- Storing data from x17 8220|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -15101,7 +15089,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8224, imms = 0
 Execute:- ALU output = 8224 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8224x
+Memory_access:- Storing data from x17 8224ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -15164,7 +15152,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8228, imms = 0
 Execute:- ALU output = 8228 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8228ï¿½ï¿½ï¿½ï¿½.
+Memory_access:- Storing data from x17 8228ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -15533,8 +15521,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -15597,7 +15584,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -15660,7 +15647,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -15723,7 +15710,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12300, imms = 0
 Execute:- ALU output = 12300 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12300
+Memory_access:- Storing data from x30 12300RÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -15786,7 +15773,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12304, imms = 0
 Execute:- ALU output = 12304 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12304
+Memory_access:- Storing data from x30 12304
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -15921,7 +15908,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -15984,7 +15971,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -16047,7 +16034,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16392, imms = 0
 Execute:- ALU output = 16392 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16392ï¿½
+Memory_access:- Storing data from x30 16392
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -16110,7 +16097,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16396, imms = 0
 Execute:- ALU output = 16396 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16396ï¿½
+Memory_access:- Storing data from x30 16396
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -16173,7 +16160,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16400, imms = 0
 Execute:- ALU output = 16400 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16400
+Memory_access:- Storing data from x30 16400
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -16344,7 +16331,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8192X
+Memory_access:- Storing data from x17 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -16434,7 +16421,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -16533,7 +16520,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8200, imms = 0
 Execute:- ALU output = 8200 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8200
+Memory_access:- Storing data from x17 8200AÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -16632,7 +16619,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8204, imms = 0
 Execute:- ALU output = 8204 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8204
+Memory_access:- Storing data from x17 8204
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -16722,8 +16709,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8208, imms = 0
 Execute:- ALU output = 8208 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8208ï¿½B
-Nï¿½
+Memory_access:- Storing data from x17 8208
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -16822,7 +16808,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8212Nï¿½
+Memory_access:- Storing data from x17 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -16912,7 +16898,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8216
+Memory_access:- Storing data from x17 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -17011,7 +16997,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8220, imms = 0
 Execute:- ALU output = 8220 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8220
+Memory_access:- Storing data from x17 8220|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -17101,7 +17087,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8224, imms = 0
 Execute:- ALU output = 8224 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8224x
+Memory_access:- Storing data from x17 8224ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -17164,7 +17150,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8228, imms = 0
 Execute:- ALU output = 8228 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8228ï¿½ï¿½ï¿½ï¿½.
+Memory_access:- Storing data from x17 8228ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -18280,8 +18266,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -18416,7 +18401,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -18587,7 +18572,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8232.
+Memory_access:- Storing data from x17 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -18677,7 +18662,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8236
+Memory_access:- Storing data from x17 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -19181,8 +19166,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -19245,7 +19229,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -19380,7 +19364,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -19551,7 +19535,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8232.
+Memory_access:- Storing data from x17 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -19650,7 +19634,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8236
+Memory_access:- Storing data from x17 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -19731,8 +19715,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8240, imms = 0
 Execute:- ALU output = 8240 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8240ï¿½B
-jï¿½
+Memory_access:- Storing data from x17 8240TÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -20506,8 +20489,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -20642,7 +20624,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -20813,7 +20795,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8244, imms = 0
 Execute:- ALU output = 8244 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8244jï¿½
+Memory_access:- Storing data from x17 8244
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -20903,7 +20885,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8248, imms = 0
 Execute:- ALU output = 8248 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8248
+Memory_access:- Storing data from x17 8248
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -21263,8 +21245,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -21327,7 +21308,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -21390,7 +21371,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -21525,7 +21506,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -21588,7 +21569,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -21759,7 +21740,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8232.
+Memory_access:- Storing data from x17 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -21858,7 +21839,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8236
+Memory_access:- Storing data from x17 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -21957,8 +21938,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8240, imms = 0
 Execute:- ALU output = 8240 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8240ï¿½B
-jï¿½
+Memory_access:- Storing data from x17 8240TÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -22048,7 +22028,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8244, imms = 0
 Execute:- ALU output = 8244 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8244jï¿½
+Memory_access:- Storing data from x17 8244
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -22138,7 +22118,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8248, imms = 0
 Execute:- ALU output = 8248 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8248
+Memory_access:- Storing data from x17 8248
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -23137,8 +23117,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -23273,7 +23252,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -23444,7 +23423,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8252
+Memory_access:- Storing data from x17 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -23525,7 +23504,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8256ï¿½
+Memory_access:- Storing data from x17 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -24038,8 +24017,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -24102,7 +24080,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -24237,7 +24215,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -24408,7 +24386,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8252
+Memory_access:- Storing data from x17 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -24507,7 +24485,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8256ï¿½
+Memory_access:- Storing data from x17 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -24588,7 +24566,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8260, imms = 0
 Execute:- ALU output = 8260 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8260ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8260
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -25362,8 +25340,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -25498,7 +25475,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -25669,7 +25646,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8264, imms = 0
 Execute:- ALU output = 8264 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8264
+Memory_access:- Storing data from x17 82648
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -25750,7 +25727,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8268, imms = 0
 Execute:- ALU output = 8268 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8268
+Memory_access:- Storing data from x17 8268OÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -26119,8 +26096,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -26183,7 +26159,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -26246,7 +26222,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -26381,7 +26357,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -26444,7 +26420,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -26615,7 +26591,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8252
+Memory_access:- Storing data from x17 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -26705,7 +26681,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8256ï¿½
+Memory_access:- Storing data from x17 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -26786,7 +26762,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8260, imms = 0
 Execute:- ALU output = 8260 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8260ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8260
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -26849,7 +26825,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8264, imms = 0
 Execute:- ALU output = 8264 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8264
+Memory_access:- Storing data from x17 82648
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -26912,7 +26888,7 @@ Value of PC is: 392
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8268, imms = 0
 Execute:- ALU output = 8268 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8268
+Memory_access:- Storing data from x17 8268OÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 396
 
@@ -27281,8 +27257,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -27345,7 +27320,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -27408,7 +27383,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -27471,7 +27446,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12300, imms = 0
 Execute:- ALU output = 12300 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12300
+Memory_access:- Storing data from x30 12300RÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -27534,7 +27509,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12304, imms = 0
 Execute:- ALU output = 12304 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12304
+Memory_access:- Storing data from x30 12304
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -27669,7 +27644,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -27732,7 +27707,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -27795,7 +27770,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16392, imms = 0
 Execute:- ALU output = 16392 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16392ï¿½
+Memory_access:- Storing data from x30 16392
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -27858,7 +27833,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16396, imms = 0
 Execute:- ALU output = 16396 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16396ï¿½
+Memory_access:- Storing data from x30 16396
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -27921,7 +27896,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16400, imms = 0
 Execute:- ALU output = 16400 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16400
+Memory_access:- Storing data from x30 16400
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -28092,7 +28067,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8232.
+Memory_access:- Storing data from x17 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -28182,7 +28157,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8236
+Memory_access:- Storing data from x17 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -28272,8 +28247,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8240, imms = 0
 Execute:- ALU output = 8240 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8240ï¿½B
-jï¿½
+Memory_access:- Storing data from x17 8240TÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -28372,7 +28346,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8244, imms = 0
 Execute:- ALU output = 8244 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8244jï¿½
+Memory_access:- Storing data from x17 8244
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -28462,7 +28436,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8248, imms = 0
 Execute:- ALU output = 8248 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8248
+Memory_access:- Storing data from x17 8248
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -28561,7 +28535,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8252
+Memory_access:- Storing data from x17 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -28660,7 +28634,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8256ï¿½
+Memory_access:- Storing data from x17 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -28759,7 +28733,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8260, imms = 0
 Execute:- ALU output = 8260 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8260ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8260
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -28849,7 +28823,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8264, imms = 0
 Execute:- ALU output = 8264 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8264
+Memory_access:- Storing data from x17 82648
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -28912,7 +28886,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8268, imms = 0
 Execute:- ALU output = 8268 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8268
+Memory_access:- Storing data from x17 8268OÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -29272,8 +29246,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12288, imms = 0
 Execute:- ALU output = 12288 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12288ï¿½B
-oï¿½
+Memory_access:- Storing data from x30 12288
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29336,7 +29309,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12292, imms = 0
 Execute:- ALU output = 12292 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12292oï¿½
+Memory_access:- Storing data from x30 12292
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29399,7 +29372,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12296, imms = 0
 Execute:- ALU output = 12296 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12296
+Memory_access:- Storing data from x30 12296…BRÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29462,7 +29435,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12300, imms = 0
 Execute:- ALU output = 12300 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12300
+Memory_access:- Storing data from x30 12300RÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29525,7 +29498,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12304, imms = 0
 Execute:- ALU output = 12304 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12304
+Memory_access:- Storing data from x30 12304
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29588,7 +29561,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12308, imms = 0
 Execute:- ALU output = 12308 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12308zR
+Memory_access:- Storing data from x30 12308
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29651,7 +29624,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12312, imms = 0
 Execute:- ALU output = 12312 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12312|ï¿½
+Memory_access:- Storing data from x30 12312
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29714,7 +29687,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12316, imms = 0
 Execute:- ALU output = 12316 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12316ï¿½
+Memory_access:- Storing data from x30 12316zR
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29777,7 +29750,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12320, imms = 0
 Execute:- ALU output = 12320 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12320ï¿½
+Memory_access:- Storing data from x30 12320|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29840,7 +29813,7 @@ Value of PC is: 220
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 12324, imms = 0
 Execute:- ALU output = 12324 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 12324
+Memory_access:- Storing data from x30 12324ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 224
 
@@ -29975,7 +29948,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16384, imms = 0
 Execute:- ALU output = 16384 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16384zR
+Memory_access:- Storing data from x30 16384…BJÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30038,7 +30011,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16388, imms = 0
 Execute:- ALU output = 16388 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16388|ï¿½
+Memory_access:- Storing data from x30 16388JÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30101,7 +30074,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16392, imms = 0
 Execute:- ALU output = 16392 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16392ï¿½
+Memory_access:- Storing data from x30 16392
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30164,7 +30137,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16396, imms = 0
 Execute:- ALU output = 16396 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16396ï¿½
+Memory_access:- Storing data from x30 16396
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30227,7 +30200,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16400, imms = 0
 Execute:- ALU output = 16400 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16400
+Memory_access:- Storing data from x30 16400
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30290,7 +30263,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16404, imms = 0
 Execute:- ALU output = 16404 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16404
+Memory_access:- Storing data from x30 16404zPLR
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30353,7 +30326,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16408, imms = 0
 Execute:- ALU output = 16408 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16408ï¿½eï¿½ï¿½
+Memory_access:- Storing data from x30 16408R
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30416,7 +30389,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16412, imms = 0
 Execute:- ALU output = 16412 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16412
+Memory_access:- Storing data from x30 16412
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30479,7 +30452,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16416, imms = 0
 Execute:- ALU output = 16416 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16416
+Memory_access:- Storing data from x30 16416T@
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30542,8 +30515,7 @@ Value of PC is: 276
 Fetch:- Instruction fetched is - 00ff2023
 Decode:- Instruction's mnemonic - SW, x30 = rs1 = 16420, imms = 0
 Execute:- ALU output = 16420 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x30 16420ï¿½B
-Hï¿½
+Memory_access:- Storing data from x30 16420ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 280
 
@@ -30714,7 +30686,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8192, imms = 0
 Execute:- ALU output = 8192 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8192X
+Memory_access:- Storing data from x17 8192¨ÃAÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -30813,7 +30785,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8196, imms = 0
 Execute:- ALU output = 8196 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8196ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8196AÆAÇAÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -30903,7 +30875,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8200, imms = 0
 Execute:- ALU output = 8200 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8200
+Memory_access:- Storing data from x17 8200AÅ
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -30993,7 +30965,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8204, imms = 0
 Execute:- ALU output = 8204 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8204
+Memory_access:- Storing data from x17 8204
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -31083,8 +31055,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8208, imms = 0
 Execute:- ALU output = 8208 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8208ï¿½B
-Nï¿½
+Memory_access:- Storing data from x17 8208
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -31174,7 +31145,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8212, imms = 0
 Execute:- ALU output = 8212 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8212Nï¿½
+Memory_access:- Storing data from x17 8212
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31273,7 +31244,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8216, imms = 0
 Execute:- ALU output = 8216 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8216
+Memory_access:- Storing data from x17 8216zR
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31372,7 +31343,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8220, imms = 0
 Execute:- ALU output = 8220 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8220
+Memory_access:- Storing data from x17 8220|ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31471,7 +31442,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8224, imms = 0
 Execute:- ALU output = 8224 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8224x
+Memory_access:- Storing data from x17 8224ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31570,7 +31541,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8228, imms = 0
 Execute:- ALU output = 8228 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8228ï¿½ï¿½ï¿½ï¿½.
+Memory_access:- Storing data from x17 8228ˆ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31669,7 +31640,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8232, imms = 0
 Execute:- ALU output = 8232 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8232.
+Memory_access:- Storing data from x17 8232
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -31759,7 +31730,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8236, imms = 0
 Execute:- ALU output = 8236 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8236
+Memory_access:- Storing data from x17 8236
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31858,8 +31829,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8240, imms = 0
 Execute:- ALU output = 8240 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8240ï¿½B
-jï¿½
+Memory_access:- Storing data from x17 8240TÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -31958,7 +31928,7 @@ Value of PC is: 364
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8244, imms = 0
 Execute:- ALU output = 8244 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8244jï¿½
+Memory_access:- Storing data from x17 8244
 Write_back:- Nothing changed after write_back!
 PC changed to 368
 
@@ -32048,7 +32018,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8248, imms = 0
 Execute:- ALU output = 8248 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8248
+Memory_access:- Storing data from x17 8248
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -32147,7 +32117,7 @@ Value of PC is: 348
 Fetch:- Instruction fetched is - 0198a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8252, imms = 0
 Execute:- ALU output = 8252 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8252
+Memory_access:- Storing data from x17 8252…B
 Write_back:- Nothing changed after write_back!
 PC changed to 352
 
@@ -32237,7 +32207,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8256, imms = 0
 Execute:- ALU output = 8256 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8256ï¿½
+Memory_access:- Storing data from x17 8256
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -32300,7 +32270,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8260, imms = 0
 Execute:- ALU output = 8260 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8260ï¿½ï¿½ï¿½ï¿½
+Memory_access:- Storing data from x17 8260
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -32363,7 +32333,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8264, imms = 0
 Execute:- ALU output = 8264 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8264
+Memory_access:- Storing data from x17 82648
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -32426,7 +32396,7 @@ Value of PC is: 420
 Fetch:- Instruction fetched is - 01a8a023
 Decode:- Instruction's mnemonic - SW, x17 = rs1 = 8268, imms = 0
 Execute:- ALU output = 8268 This address will be sent to memory unit to store data
-Memory_access:- Storing data from x17 8268
+Memory_access:- Storing data from x17 8268OÔþÿ
 Write_back:- Nothing changed after write_back!
 PC changed to 424
 
@@ -32553,7 +32523,3 @@ Fetch:- Instruction fetched is - 1e000c63
 Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = 504
 Execute:- Branching condition is true. It will go to PC + imm.
 Memory_access:- Nothing changed after memory_access!
-Write_back:- Nothing changed after write_back!
-PC changed to 612
-
-
