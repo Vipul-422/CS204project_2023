@@ -34,10 +34,8 @@ class ALU {
 
 class Regfile {
 
-    
-    string rd, rs1, rs2;
-
     public:
+        string rd, rs1, rs2;
         map<string, int> regs;
         bool rfwrite;
         Regfile();
@@ -51,9 +49,9 @@ class Regfile {
 //instruction memory start
 class Memory
 {
-    int address;
     int op2;
     public:
+        int address;
         int out;
         char mem[100000];
         bool iswrite; //0 for memory read and 1 for memory write

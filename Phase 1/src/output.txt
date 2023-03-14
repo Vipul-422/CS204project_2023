@@ -1,605 +1,1089 @@
 Value of PC is: 0
-Fetch: Instruction fetched is00a00193
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00a00193
+Decode:- Instruction's mnemonic - ADDI, x0 = rs1 = 0, imm = 10
+Execute:- ALU output = 10
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x3 = 10
+PC changed to 4
 
 
 Value of PC is: 4
-Fetch: Instruction fetched is00001437
-Decode: Instruction's mneomic: LUI
+Fetch:- Instruction fetched is - 00001437
+Decode:- Instruction's mnemonic - LUI, immu = 4096
+Execute:- Nothing changed after execution!
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 8
 
 
 Value of PC is: 8
-Fetch: Instruction fetched is00000293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00000293
+Decode:- Instruction's mnemonic - ADDI, x0 = rs1 = 0, imm = 0
+Execute:- ALU output = 0
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 0
+PC changed to 12
 
 
 Value of PC is: 12
-Fetch: Instruction fetched is00000313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00000313
+Decode:- Instruction's mnemonic - ADDI, x0 = rs1 = 0, imm = 0
+Execute:- ALU output = 0
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 0
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 0, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 0
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4096, imms = 0
+Execute:- ALU output = 4096 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4096 to store at address 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4096, x6 = rs2 = 0
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 0, imm = 1
+Execute:- ALU output = 1
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 1
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 0, imm = 4
+Execute:- ALU output = 4
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 4
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 1, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 4
+Execute:- ALU output = 4100
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4100
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4100, imms = 0
+Execute:- ALU output = 4100 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4100store at address 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4100, x6 = rs2 = 4
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 1, imm = 1
+Execute:- ALU output = 2
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 2
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 4, imm = 4
+Execute:- ALU output = 8
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 8
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 2, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 8
+Execute:- ALU output = 4104
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4104
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4104, imms = 0
+Execute:- ALU output = 4104 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4104e at address 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4104, x6 = rs2 = 8
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 2, imm = 1
+Execute:- ALU output = 3
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 3
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 8, imm = 4
+Execute:- ALU output = 12
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 12
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 3, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 12
+Execute:- ALU output = 4108
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4108
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4108, imms = 0
+Execute:- ALU output = 4108 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4108 address 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4108, x6 = rs2 = 12
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 3, imm = 1
+Execute:- ALU output = 4
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 4
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 12, imm = 4
+Execute:- ALU output = 16
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 16
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 4, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 16
+Execute:- ALU output = 4112
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4112
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4112, imms = 0
+Execute:- ALU output = 4112 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4112ress 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4112, x6 = rs2 = 16
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 4, imm = 1
+Execute:- ALU output = 5
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 5
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 16, imm = 4
+Execute:- ALU output = 20
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 20
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 5, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 20
+Execute:- ALU output = 4116
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4116
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4116, imms = 0
+Execute:- ALU output = 4116 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4116 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4116, x6 = rs2 = 20
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 5, imm = 1
+Execute:- ALU output = 6
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 6
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 20, imm = 4
+Execute:- ALU output = 24
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 24
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 6, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 24
+Execute:- ALU output = 4120
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4120
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4120, imms = 0
+Execute:- ALU output = 4120 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4120oring data from 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4120, x6 = rs2 = 24
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 6, imm = 1
+Execute:- ALU output = 7
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 7
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 24, imm = 4
+Execute:- ALU output = 28
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 28
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 7, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 28
+Execute:- ALU output = 4124
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4124
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4124, imms = 0
+Execute:- ALU output = 4124 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4124g data from 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4124, x6 = rs2 = 28
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 7, imm = 1
+Execute:- ALU output = 8
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 8
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 28, imm = 4
+Execute:- ALU output = 32
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 32
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 8, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 32
+Execute:- ALU output = 4128
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4128
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4128, imms = 0
+Execute:- ALU output = 4128 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4128ta from 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4128, x6 = rs2 = 32
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 8, imm = 1
+Execute:- ALU output = 9
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 9
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 32, imm = 4
+Execute:- ALU output = 36
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 36
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 9, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 20
 
 
 Value of PC is: 20
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 36
+Execute:- ALU output = 4132
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4132
+PC changed to 24
 
 
 Value of PC is: 24
-Fetch: Instruction fetched is00542023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00542023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4132, imms = 0
+Execute:- ALU output = 4132 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4132rom 
+Write_back:- Nothing changed after write_back!
+PC changed to 28
 
 
 Value of PC is: 28
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4132, x6 = rs2 = 36
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 32
 
 
 Value of PC is: 32
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 9, imm = 1
+Execute:- ALU output = 10
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 10
+PC changed to 36
 
 
 Value of PC is: 36
-Fetch: Instruction fetched is00430313
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00430313
+Decode:- Instruction's mnemonic - ADDI, x6 = rs1 = 36, imm = 4
+Execute:- ALU output = 40
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x6 = 40
+PC changed to 40
 
 
 Value of PC is: 40
-Fetch: Instruction fetched isfe0004e3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe0004e3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -24
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 16
 
 
 Value of PC is: 16
-Fetch: Instruction fetched is0032de63
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032de63
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 10, x3 = rs2 = 10, immb = 28
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 44
 
 
 Value of PC is: 44
-Fetch: Instruction fetched is00000293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00000293
+Decode:- Instruction's mnemonic - ADDI, x0 = rs1 = 0, imm = 0
+Execute:- ALU output = 0
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 0
+PC changed to 48
 
 
 Value of PC is: 48
-Fetch: Instruction fetched is00000393
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00000393
+Decode:- Instruction's mnemonic - ADDI, x0 = rs1 = 0, imm = 0
+Execute:- ALU output = 0
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 0
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 0, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 0, x5 = rs2 = 0
+Execute:- ALU output = 0
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 0
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 0, imm = 1
+Execute:- ALU output = 1
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 1
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 1, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 0, x5 = rs2 = 1
+Execute:- ALU output = 1
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 1
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 1, imm = 1
+Execute:- ALU output = 2
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 2
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 2, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 1, x5 = rs2 = 2
+Execute:- ALU output = 3
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 3
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 2, imm = 1
+Execute:- ALU output = 3
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 3
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 3, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 3, x5 = rs2 = 3
+Execute:- ALU output = 6
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 6
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 3, imm = 1
+Execute:- ALU output = 4
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 4
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 4, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 6, x5 = rs2 = 4
+Execute:- ALU output = 10
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 10
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 4, imm = 1
+Execute:- ALU output = 5
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 5
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 5, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 10, x5 = rs2 = 5
+Execute:- ALU output = 15
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 15
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 5, imm = 1
+Execute:- ALU output = 6
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 6
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 6, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 15, x5 = rs2 = 6
+Execute:- ALU output = 21
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 21
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 6, imm = 1
+Execute:- ALU output = 7
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 7
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 7, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 21, x5 = rs2 = 7
+Execute:- ALU output = 28
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 28
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 7, imm = 1
+Execute:- ALU output = 8
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 8
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 8, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 28, x5 = rs2 = 8
+Execute:- ALU output = 36
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 36
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 8, imm = 1
+Execute:- ALU output = 9
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 9
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 9, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is false. It will go to PC + 4.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 56
 
 
 Value of PC is: 56
-Fetch: Instruction fetched is005383b3
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 005383b3
+Decode:- Instruction's mnemonic - ADD, x7 = rs1 = 36, x5 = rs2 = 9
+Execute:- ALU output = 45
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x7 = 45
+PC changed to 60
 
 
 Value of PC is: 60
-Fetch: Instruction fetched is00128293
-Decode: Instruction's mneomic: ADDI
+Fetch:- Instruction fetched is - 00128293
+Decode:- Instruction's mnemonic - ADDI, x5 = rs1 = 9, imm = 1
+Execute:- ALU output = 10
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x5 = 10
+PC changed to 64
 
 
 Value of PC is: 64
-Fetch: Instruction fetched isfe000ae3
-Decode: Instruction's mneomic: BEQ
+Fetch:- Instruction fetched is - fe000ae3
+Decode:- Instruction's mnemonic - BEQ, x0 = rs1 = 0, x0 = rs2 = 0, immb = -12
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 52
 
 
 Value of PC is: 52
-Fetch: Instruction fetched is0032d863
-Decode: Instruction's mneomic: BGE
+Fetch:- Instruction fetched is - 0032d863
+Decode:- Instruction's mnemonic - BGE, x5 = rs1 = 10, x3 = rs2 = 10, immb = 16
+Execute:- Branching condition is true. It will go to PC + imm.
+Memory_access:- Nothing changed after memory_access!
+Write_back:- Nothing changed after write_back!
+PC changed to 68
 
 
 Value of PC is: 68
-Fetch: Instruction fetched is00640433
-Decode: Instruction's mneomic: ADD
+Fetch:- Instruction fetched is - 00640433
+Decode:- Instruction's mnemonic - ADD, x8 = rs1 = 4096, x6 = rs2 = 40
+Execute:- ALU output = 4136
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4136
+PC changed to 72
 
 
 Value of PC is: 72
-Fetch: Instruction fetched is00742023
-Decode: Instruction's mneomic: SW
+Fetch:- Instruction fetched is - 00742023
+Decode:- Instruction's mnemonic - SW, x8 = rs1 = 4136, imms = 0
+Execute:- ALU output = 4136 This address will be sent to memory unit to store data
+Memory_access:- Storing data from x8 4136
+Write_back:- Nothing changed after write_back!
+PC changed to 76
 
 
 Value of PC is: 76
-Fetch: Instruction fetched is40640433
-Decode: Instruction's mneomic: SUB
+Fetch:- Instruction fetched is - 40640433
+Decode:- Instruction's mnemonic - SUB, x8 = rs1 = 4136, x6 = rs2 = 40
+Execute:- ALU output = 4096
+Memory_access:- Nothing changed after memory_access!
+Write_back:- rd = x8 = 4096
+PC changed to 80
 
 
