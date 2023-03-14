@@ -41,7 +41,7 @@ void run_riscvsim() {
   
 	vector<int> inst;
 	fstream fp;
-	fp.open("output.txt", ios::out);
+	fp.open("../output/output.txt", ios::out);
 
 	while(1) {
 
@@ -197,21 +197,14 @@ void reset_proc() {
 
 //load_program_memory reads the input memory, and pupulates the instruction 
 // memory
-void load_program_memory() {
-	fstream fileptr, filewrite;
-	fileptr.open("../../.mc files/input.mc", ios::in);
-	filewrite.open("input.txt", ios::out);
+void load_program_memory(char* filename) {
+	fstream fileptr;
+	fileptr.open(filename, ios::in);
 	int count=0; //temporary PC.
 	while(!fileptr.eof()){
 		string s;
 		getline(fileptr, s);
 		inst_mem[count]=s;
-		s="0x"+s;
-		ostringstream ss;
-		ss<<hex<<count;
-		s="0x"+ss.str()+" "+s;
-		filewrite<<s;
-		filewrite<<"\n";
 		count+=4;
 	}
 	//conversion done
