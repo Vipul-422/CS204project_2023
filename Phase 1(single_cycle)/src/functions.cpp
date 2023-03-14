@@ -82,7 +82,7 @@ void decode(vector<int> inst) {
     immj[0] = inst[31];
     for(int i=30, j=0; i>=21; i--) { immj[10+j] = inst[i]; j++; }
     immj[9] = inst[20];
-    for(int i=19, j=1; i>=12; i--)
+    for(int i=19, j=1; i>=12; i--) { immj[j] = inst[i]; j++;}
     immJ.input(immj);  // immJ is now live
 
     vector<int> immvec;
