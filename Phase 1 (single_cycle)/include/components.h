@@ -46,7 +46,6 @@ class Regfile {
 
 };
 
-//instruction memory start
 // Data Memory
 class Memory
 {
@@ -62,9 +61,7 @@ class Memory
         void data_write(int _op2);
         int output();
 };
-
-//instruction memory ends
-
+// Data memory ends
 
 //mux starts
 class Mux
