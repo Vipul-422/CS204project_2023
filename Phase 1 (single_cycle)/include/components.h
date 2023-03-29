@@ -47,6 +47,7 @@ class Regfile {
 };
 
 //instruction memory start
+// Data Memory
 class Memory
 {
     int op2;
