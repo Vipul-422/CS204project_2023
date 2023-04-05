@@ -318,6 +318,70 @@ int BranchControl::output(){
 }
 //BranchControl unit ends
 
+//Pipelined register fetch starts
+void Pipfetch::input(vector<int> _instruction, int _pc){
+    instruction.clear();
+    for(int i = 0; i < _instruction.size(); i++){
+        instruction.push_back(_instruction[i]);
+    }
+    pc = _pc;
+}
+vector<int> Pipfetch::output(){
+    return instruction;
+}
+int Pipfetch::output_pc(){
+    return pc;
+}
+//Pipelined register fetch ends
+
+//Pipelined register decode starts
+
+void Pipdecode::input(int _rs1, int _rs2, int _rd, int _pc, int _imm, int _immb, int _immj, int _imms, int _immu, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
+    rs1 = _rs1;
+    rs2 = _rs2;
+    rd = _rd;
+    pc = _pc;
+    imm = _imm;
+    immb = _immb;
+    immj = _immj;
+    imms = _imms;
+    immu = _immu;
+    ex = _ex;
+    m = _m;
+    wb = _wb;
+}
+
+//Pipelined register decode ends
+
+//Pipelined register execute starts
+
+void Pipexecute::input(int _rs2, int _rd, int _pc, int _imm, int _imms, int _aluout, map<string, int> _m, map<string, int> _wb){
+    rs2 = _rs2;
+    rd = _rd;
+    pc = _pc;
+    imm = _imm;
+    imms = _imms;
+    aluout = _aluout;
+    m = _m;
+    wb = _wb;
+}
+
+//Pipelined register execute ends
+
+
+//Pipelined register execute starts
+
+void Pipmemory::input(int _rd, int _pc, int _aluout, map<string, int> _wb){
+    rd = _rd;
+    pc = _pc;
+    aluout = _aluout;
+    wb = _wb;
+}
+
+//Pipelined register execute ends
+
+
+
 /* DON'T TOUCH */
 
 int PC; //global PC(program counter)

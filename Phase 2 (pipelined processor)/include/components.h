@@ -98,6 +98,8 @@ class Sign_ext
 };
 //sign ext ends
 
+//BranchControl starts
+
 class BranchControl
 {
     int func3;
@@ -110,6 +112,61 @@ class BranchControl
         void input(int _alu_out);
         int output();
 };
+
+//BranchControl ends
+
+
+//Pipelined register fetch starts
+
+class Pipfetch
+{
+    vector<int> instruction;
+    int pc;
+    public:
+        void input(vector<int> _instruction, int pc);
+        vector<int>  output();
+        int output_pc();
+};
+
+//Pipelined register fetch ends
+
+//Pipelined register decode starts
+
+class Pipdecode
+{
+    public:
+        int rs1 = 0, rs2 = 0, rd = 0, pc, imm = 0, immb = 0, imms = 0, immj = 0, immu = 0;
+        map<string, int> ex, wb, m;
+        void input(int _rs1, int _rs2, int _rd, int _pc, int _imm, int _immb, int _immj, int _imms, int _immu, map<string, int> _ex, map<string, int> _wb, map<string, int> _m);
+};
+
+//Pipelined register decode ends
+
+
+//Pipelined register execute starts
+
+class Pipexecute
+{
+    public:
+        int rs2 = 0, rd = 0, pc, imm = 0, imms = 0, aluout;
+        map<string, int> wb, m;
+        void input(int _rs2, int _rd, int _pc, int _imm, int _imms, int _aluout, map<string, int> _wb, map<string, int> _m);
+};
+
+//Pipelined register execute ends
+
+//Pipelined register execute starts
+
+class Pipmemory
+{
+    public:
+        int rd = 0, pc, aluout, memout;
+        map<string, int> wb;
+        void input(int _rd, int _pc, int _aluout, map<string, int> _wb);
+};
+
+//Pipelined register execute ends
+
 
 
 #endif
