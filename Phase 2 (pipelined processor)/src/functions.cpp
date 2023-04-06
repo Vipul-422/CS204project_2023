@@ -118,6 +118,7 @@ void decode() {
     regs.input(rs1vec, rs2vec, rdvec);  // register values are now live
 
 
+
     // func3, func7
     int func3=0, func7=0;
 
@@ -291,7 +292,7 @@ void decode() {
     }
     else {
         //for any wrong instruction
-        cout<<"Wrong instruction!!! instruction: "<<inst_mem[PC]<<" at PC = "<<PC<<"\n";
+        cout<<"Wrong instruction!!! instruction: "<<inst_mem[pipfetch.pc]<<" at PC = "<<pipfetch.pc<<"\n";
         exit(1);
     }
     
@@ -312,11 +313,11 @@ void decode() {
     //done with mux
 
     //updating branch adder
-    adder_branch.input(PC, mux_branchTargetSel.output());
+    adder_branch.input(pipfetch.pc, mux_branchTargetSel.output());
     //updated branch adder
 
     //updating wb adder
-    adder_wb.input(PC, immU.output());
+    adder_wb.input(pipfetch.pc, immU.output());
     //updated wb adder
 
 }
