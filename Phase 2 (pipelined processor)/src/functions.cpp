@@ -324,27 +324,7 @@ void decode() {
 
 //executes the ALU operation based on ALUop
 void execute() {
-    //executing ALU unit
-    alu.input(regs.op1(), mux_op2select.output());
-    alu.process();
-    //execution done.
-
-    if (isBranchInst == 1) {
-        //using BranchControl unit
-        bcu.input(alu.output());
-        bcu.input_ops(regs.op1(), regs.op2());
-        mux_isbranch.select_line = bcu.output();
-        //isBranch updated
-    }
-
-    //populating mux_isbranch
-    vector<int> _input_lines;
-    _input_lines.clear();
-    _input_lines.push_back(alu.output());
-    _input_lines.push_back(adder_branch.output());
-    _input_lines.push_back(adder_pc.output());
-    mux_isbranch.input(_input_lines);
-    //done with mux
+    
 }
 
 //perform the memory operation
