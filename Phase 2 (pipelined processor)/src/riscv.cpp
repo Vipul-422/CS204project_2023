@@ -68,7 +68,7 @@ void run_riscvsim() {
 		if(!pipfetch.isEmpty) {
 			decode();
 			pipdecode.isEmpty = false;
-			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output());
+			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
 			map<string, int> ex, m, wb;
 			ex["AluOperation"] = alu.operation;
 			ex["isBranch"] = mux_isbranch.select_line;
