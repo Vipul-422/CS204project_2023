@@ -344,11 +344,10 @@ void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, 
     m = _m;
     wb = _wb;
 }
-
 //Pipelined register decode ends
 
-//Pipelined register execute starts
 
+//Pipelined register execute starts
 void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out, map<string, int> _m, map<string, int> _wb){
     rs2 = _rs2;
     rd = _rd;

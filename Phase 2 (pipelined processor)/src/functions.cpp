@@ -332,7 +332,7 @@ void execute() {
     if (isBranchInst == 1) {
         //using BranchControl unit
         bcu.input(alu.output());
-        bcu.input_ops(regs.op1(), regs.op2());
+        bcu.input_ops(mux_alu_input1.output(), mux_alu_input2.output());
         mux_isbranch.select_line = bcu.output();
         //isBranch updated
     }
@@ -341,12 +341,10 @@ void execute() {
     vector<int> _input_lines;
     _input_lines.clear();
     _input_lines.push_back(alu.output());
-    _input_lines.push_back(adder_branch.output());
-    _input_lines.push_back(adder_pc.output());
+    _input_lines.push_back(pipdecode.branchadder_out);
+    _input_lines.push_back(pipdecode.pc);
     mux_isbranch.input(_input_lines);
     //done with mux
-
-    
 }
 
 //perform the memory operation
