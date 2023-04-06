@@ -49,6 +49,25 @@ void run_riscvsim() {
 
 	while(1) {
 		
+		if(!pipmemory.isEmpty){
+			write_back();
+		}
+		if(!pipexecute.isEmpty) {
+			memory_access();
+			// pipmemory.input();
+		}
+		if(!pipdecode.isEmpty) {
+			execute();
+			// pipexecute.input();
+		}
+		if(!pipfetch.isEmpty) {
+			decode();
+			// pipdecode.input();
+		}
+		// Fetch();
+		vector<int> temp = fetch();
+		pipfetch.input(temp, PC);
+
 	}
 
 	swi_exit();
