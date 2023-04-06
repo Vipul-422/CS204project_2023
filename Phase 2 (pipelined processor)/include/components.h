@@ -136,9 +136,9 @@ class Pipdecode
     public:
         bool isEmpty = true;
         string rs1, rs2, rd;
-        int RS1 = 0, OP2 = 0, RD = 0, pc, op2select = 0, branc_adder = 0;
+        int RS1, OP2, RD, pc, op2mux_out, branchadder_out;
         map<string, int> ex, wb, m;
-        void input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branch_adder, map<string, int> _ex, map<string, int> _m, map<string, int> _wb);
+        void input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branchadder, map<string, int> _ex, map<string, int> _m, map<string, int> _wb);
 };
 
 //Pipelined register decode ends
@@ -151,10 +151,10 @@ class Pipexecute
     public:
         bool isEmpty = true;
         string rs2, rd;
-        int OP2, RD, pc, aluout;
+        int OP2, RD, pc, aluout, immu, wbadder_out;
         
         map<string, int> wb, m;
-        void input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, map<string, int> _m, map<string, int> _wb);
+        void input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out, map<string, int> _m, map<string, int> _wb);
 };
 
 //Pipelined register execute ends
@@ -166,9 +166,9 @@ class Pipmemory
     public:
         bool isEmpty = true;
         string rd;
-        int RD, pc, aluout, memout;
-        map<string, int> wb;
-        void input(string _rd, int _RD, int _pc, int _aluout, map<string, int> _wb);
+        int RD, pc, aluout, memout, isbranch_out, resultselectmux_out;
+        map<string, int> wb;    
+        void input(string _rd, int _RD, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout, map<string, int> _wb);
 };
 
 //Pipelined register execute ends

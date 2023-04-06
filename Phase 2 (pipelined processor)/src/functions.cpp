@@ -40,7 +40,6 @@ vector<int> fetch() {
     for(int i=0;i<32;i++){
         bin_string.push_back(binary_form[i]);
     }
-
     //updating PC adder
     adder_pc.input(PC, 4);
     //done with adder
@@ -349,17 +348,18 @@ void execute() {
 
 //perform the memory operation
 void memory_access() {
-    mem.mem_addr(alu.output());
-    mem.data_write(regs.op2());
+    mem.iswrite = pipexecute.m["MemOp"];
+    mem.mem_addr(pipexecute.aluout);
+    mem.data_write(pipexecute.OP2);
 
 
     //updating mux_resultselect
     vector<int> _input_lines;
-    _input_lines.push_back(PC+4);
-    _input_lines.push_back(immU.output());
+    _input_lines.push_back(pipexecute.pc + 4);
+    _input_lines.push_back(pipexecute.immu);
     _input_lines.push_back(mem.output());
-    _input_lines.push_back(alu.output());
-    _input_lines.push_back(adder_wb.output());
+    _input_lines.push_back(pipexecute.aluout);
+    _input_lines.push_back(pipexecute.wbadder_out);
     mux_resultselect.input(_input_lines);
     //updated mux
 }
@@ -367,13 +367,21 @@ void memory_access() {
 //writes the results back to register file
 void write_back() {
     
+    //taking input from pipeline registers
+
+    int pc = pipmemory.pc;
+    regs.rfwrite = pipmemory.wb["rfwrite"];
+
+    //done taking input from pipeline registers
+
+
     //start
     if(regs.rfwrite){
-        regs.write(mux_resultselect.output());
+        regs.write(pipmemory.resultselectmux_out);
     }
     //end
 
     //updating PC for next cycle
-    PC=mux_isbranch.output();
+    PC = pipmemory.isbranch_out;
     //updated PC.
 }
