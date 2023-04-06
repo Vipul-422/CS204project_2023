@@ -335,7 +335,7 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
 Pipdecode::Pipdecode() {
     isEmpty = true;
 }
-void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _pc, int _op2mux_out, int _branchadder_out){
+void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _pc, int _op2mux_out, int _branchadder_out, int _immu){
     rs1 = _rs1;             // rs1, rs2 and rd required for forwarding
     rs2 = _rs2;
     rd = _rd;
@@ -344,6 +344,7 @@ void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _
     pc = _pc;               
     op2mux_out = op2mux_out;                    // default input 2 for alu
     branchadder_out = _branchadder_out;
+    immu = _immu;
 }
 void Pipdecode::input_controls(map<string, int> _ex, map<string, int> _m, map<string, int> _wb) {
     ex = _ex;
@@ -351,6 +352,7 @@ void Pipdecode::input_controls(map<string, int> _ex, map<string, int> _m, map<st
     wb = _wb;
 }
 //Pipelined register decode ends
+
 
 //Pipelined register execute starts
 Pipexecute::Pipexecute() {
@@ -369,7 +371,6 @@ void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb) {
     m = _m;
     wb = _wb;
 }
-
 //Pipelined register execute ends
 
 
@@ -377,10 +378,10 @@ void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb) {
 Pipmemory::Pipmemory() {
     isEmpty = true;
 }
-void Pipmemory::input_vars(string _rd, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout){
+void Pipmemory::input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout){
     rd = _rd;
     pc = _pc;
-    isbranch_out = _isbranch_out;
+    isbranchmux_out = _isbranchmux_out;
     resultselectmux_out = _resultselectmux_out;
     aluout = _aluout;
     memout = mem.output();
@@ -388,7 +389,6 @@ void Pipmemory::input_vars(string _rd, int _pc, int _isbranch_out, int _resultse
 void Pipmemory::input_controls(map<string, int> _wb) {
     wb = _wb;
 }
-
 //Pipelined register memory ends
 
 

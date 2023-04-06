@@ -55,10 +55,14 @@ void run_riscvsim() {
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
+			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout);
+			pipmemory.input_controls(pipexecute.wb);
 			pipmemory.isEmpty = false;
 		}
 		if(!pipdecode.isEmpty) {
 			execute();
+			pipexecute.input_vars(pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
+			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 			pipexecute.isEmpty = false;
 		}
 		if(!pipfetch.isEmpty) {
