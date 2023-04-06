@@ -331,14 +331,14 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
 //Pipelined register decode starts
 
 void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2mux_out, int _branchadder_out, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
-    rs1 = _rs1;
+    rs1 = _rs1;             // rs1, rs2 and rd required for forwarding
     rs2 = _rs2;
     rd = _rd;
-    RS1 = _RS1;
-    OP2 = _OP2;
-    RD = _RD;
-    pc = _pc;
-    op2mux_out = op2mux_out;
+    RS1 = _RS1;             // default input 1 of alu
+    OP2 = _OP2;             // input for data write
+    RD = _RD;               // for forwarding
+    pc = _pc;               
+    op2mux_out = op2mux_out;                    // default input 2 for alu
     branchadder_out = _branchadder_out;
     ex = _ex;
     m = _m;
@@ -389,7 +389,7 @@ map <int, string> inst_mem;
 ALU alu;
 Regfile regs;
 Memory mem;
-Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
+Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux_alu_input1, mux_alu_input2;
 Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;
 BranchControl bcu;
