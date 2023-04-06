@@ -54,19 +54,20 @@ void run_riscvsim() {
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
-			// pipmemory.input();
+			pipmemory.isEmpty = false;
 		}
 		if(!pipdecode.isEmpty) {
 			execute();
-			// pipexecute.input();
+			pipexecute.isEmpty = false;
 		}
 		if(!pipfetch.isEmpty) {
 			decode();
-			// pipdecode.input();
+			pipdecode.isEmpty = false;
 		}
 		// Fetch();
 		vector<int> temp = fetch();
 		pipfetch.input(temp, PC);
+		pipfetch.isEmpty = false;
 
 	}
 
