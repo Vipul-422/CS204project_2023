@@ -330,7 +330,7 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
 
 //Pipelined register decode starts
 
-void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branch_adder, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
+void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2mux_out, int _branchadder_out, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
     rs1 = _rs1;
     rs2 = _rs2;
     rd = _rd;
@@ -338,8 +338,8 @@ void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, 
     OP2 = _OP2;
     RD = _RD;
     pc = _pc;
-    op2select = _op2select;
-    branc_adder = _branch_adder;
+    op2mux_out = op2mux_out;
+    branchadder_out = _branchadder_out;
     ex = _ex;
     m = _m;
     wb = _wb;
@@ -349,13 +349,15 @@ void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, 
 
 //Pipelined register execute starts
 
-void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, map<string, int> _m, map<string, int> _wb){
+void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out, map<string, int> _m, map<string, int> _wb){
     rs2 = _rs2;
     rd = _rd;
     OP2 = _OP2;
     RD = _RD;
     pc = _pc;
     aluout = _aluout;
+    immu = _immu;
+    wbadder_out = _wbadder_out;
     m = _m;
     wb = _wb;
 }
@@ -365,10 +367,12 @@ void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int 
 
 //Pipelined register execute starts
 
-void Pipmemory::input(string _rd, int _RD, int _pc, int _aluout, map<string, int> _wb){
+void Pipmemory::input(string _rd, int _RD, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout, map<string, int> _wb){
     rd = _rd;
     RD = _RD;
     pc = _pc;
+    isbranch_out = _isbranch_out;
+    resultselectmux_out = _resultselectmux_out;
     aluout = _aluout;
     wb = _wb;
     memout = mem.output();
