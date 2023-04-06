@@ -390,6 +390,6 @@ void write_back() {
     //end
 
     //updating PC for next cycle
-    PC = pipmemory.isbranch_out;
+    PC = pipmemory.isbranchmux_out;
     //updated PC.
 }

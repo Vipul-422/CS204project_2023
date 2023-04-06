@@ -138,9 +138,9 @@ class Pipdecode
         bool isEmpty;
         Pipdecode();
         string rs1, rs2, rd;
-        int RS1, OP2, RD, pc, op2mux_out, branchadder_out, immu, wbadder_out;
+        int RS1, OP2, pc, op2mux_out, branchadder_out, immu, wbadder_out, isBranchInst, func3;
         map<string, int> ex, wb, m;
-        void input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branchadder, int _immu);
+        void input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _pc, int _op2select, int _branchadder, int _immu);
         void input_controls(map<string, int> _ex, map<string, int> _m, map<string, int> _wb);
 };
 
@@ -172,7 +172,7 @@ class Pipmemory
         bool isEmpty;
         Pipmemory();
         string rd;
-        int RD, pc, aluout, memout, isbranch_out, resultselectmux_out;
+        int RD, pc, aluout, memout, isbranchmux_out, resultselectmux_out;
         map<string, int> wb;    
         void input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout);
         void Pipmemory::input_controls(map<string, int> _wb);
