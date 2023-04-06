@@ -24,6 +24,7 @@ extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
 extern string inst_type;
 extern int description; 
+extern int operation;
 
 /* DON'T TOUCH ENDS */
 
@@ -63,6 +64,15 @@ void run_riscvsim() {
 		if(!pipfetch.isEmpty) {
 			decode();
 			pipdecode.isEmpty = false;
+			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output());
+			map<string, int> ex, m, wb;
+			ex["AluOperation"] = alu.operation;
+			ex["isBranch"] = mux_isbranch.select_line;
+			ex["func3"] = pipdecode.func3;
+			m["MemOp"] = mem.iswrite;
+			m["sltype"] = mem.sltype;
+			m["ResultSelect"] = mux_resultselect.select_line;
+			wb["RFWrite"] = regs.rfwrite;
 		}
 		// Fetch();
 		vector<int> temp = fetch();

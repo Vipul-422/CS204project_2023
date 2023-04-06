@@ -23,7 +23,6 @@ extern Pipfetch pipfetch;
 extern Pipdecode pipdecode;
 extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
-int isBranchInst = 0;
 string inst_type;
 int description = 0;
 
@@ -64,7 +63,7 @@ void decode() {
     regs.rfwrite = false;
     mem.sltype = 2;
 
-    isBranchInst = 0;
+    int isBranchInst = 0;
     
     
     // Basic setup for decode
@@ -124,7 +123,6 @@ void decode() {
 
     for(int i=14; i>=12; i--) { func3 = func3*2 + inst[i]; }
     for(int i=31; i>=25; i--) { func7 = func7*2 + inst[i]; }
-    bcu.input_func3(func3);
 
 
     // Basic setup end
@@ -320,16 +318,23 @@ void decode() {
     adder_wb.input(pipfetch.pc, immU.output());
     //updated wb adder
 
+    pipdecode.isBranchInst = isBranchInst;
+    pipdecode.func3 = func3;
+
 }
 
 //executes the ALU operation based on ALUop
 void execute() {
     //executing ALU unit
+    alu.operation = pipdecode.ex["AluOperation"];
+    mux_isbranch.select_line = pipdecode.ex["isBranch"];
     alu.input(mux_alu_input1.output(), mux_alu_input2.output());
     alu.process();
     //execution done.
 
-    if (isBranchInst == 1) {
+    bcu.input_func3(pipdecode.ex["func3"]);
+
+    if (pipdecode.isBranchInst == 1) {
         //using BranchControl unit
         bcu.input(alu.output());
         bcu.input_ops(mux_alu_input1.output(), mux_alu_input2.output());
@@ -349,7 +354,9 @@ void execute() {
 
 //perform the memory operation
 void memory_access() {
+    mem.sltype = pipexecute.m["sltype"];
     mem.iswrite = pipexecute.m["MemOp"];
+    mux_resultselect.select_line = pipexecute.m["ResultSelect"];
     mem.mem_addr(pipexecute.aluout);
     mem.data_write(pipexecute.OP2);
 
@@ -371,7 +378,7 @@ void write_back() {
     //taking input from pipeline registers
 
     int pc = pipmemory.pc;
-    regs.rfwrite = pipmemory.wb["rfwrite"];
+    regs.rfwrite = pipmemory.wb["RFWrite"];
 
     //done taking input from pipeline registers
 

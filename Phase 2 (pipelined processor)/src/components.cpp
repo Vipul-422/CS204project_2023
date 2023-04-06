@@ -335,13 +335,12 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
 Pipdecode::Pipdecode() {
     isEmpty = true;
 }
-void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2mux_out, int _branchadder_out){
+void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _pc, int _op2mux_out, int _branchadder_out){
     rs1 = _rs1;             // rs1, rs2 and rd required for forwarding
     rs2 = _rs2;
     rd = _rd;
     RS1 = _RS1;             // default input 1 of alu
     OP2 = _OP2;             // input for data write
-    RD = _RD;               // for forwarding
     pc = _pc;               
     op2mux_out = op2mux_out;                    // default input 2 for alu
     branchadder_out = _branchadder_out;
@@ -357,11 +356,10 @@ void Pipdecode::input_controls(map<string, int> _ex, map<string, int> _m, map<st
 Pipexecute::Pipexecute() {
     isEmpty = true;
 }
-void Pipexecute::input_vars(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out){
+void Pipexecute::input_vars(string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out){
     rs2 = _rs2;
     rd = _rd;
     OP2 = _OP2;
-    RD = _RD;
     pc = _pc;
     aluout = _aluout;
     immu = _immu;
@@ -379,9 +377,8 @@ void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb) {
 Pipmemory::Pipmemory() {
     isEmpty = true;
 }
-void Pipmemory::input_vars(string _rd, int _RD, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout){
+void Pipmemory::input_vars(string _rd, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout){
     rd = _rd;
-    RD = _RD;
     pc = _pc;
     isbranch_out = _isbranch_out;
     resultselectmux_out = _resultselectmux_out;
