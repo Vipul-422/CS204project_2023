@@ -326,10 +326,15 @@ void decode() {
 //executes the ALU operation based on ALUop
 void execute() {
     //executing ALU unit
+
+    
+
     alu.operation = pipdecode.ex["AluOperation"];
     mux_isbranch.select_line = pipdecode.ex["isBranch"];
-    alu.input(mux_alu_input1.output(), mux_alu_input2.output());
+    alu.input(pipdecode.RS1, pipdecode.op2mux_out);
     alu.process();
+
+
     //execution done.
 
     bcu.input_func3(pipdecode.ex["func3"]);
@@ -337,7 +342,7 @@ void execute() {
     if (pipdecode.isBranchInst == 1) {
         //using BranchControl unit
         bcu.input(alu.output());
-        bcu.input_ops(mux_alu_input1.output(), mux_alu_input2.output());
+        bcu.input_ops(pipdecode.RS1, pipdecode.op2mux_out);
         mux_isbranch.select_line = bcu.output();
         //isBranch updated
     }
@@ -382,6 +387,7 @@ void write_back() {
 
     //done taking input from pipeline registers
 
+    regs.rd = pipmemory.rd;
 
     //start
     if(regs.rfwrite){
@@ -390,6 +396,6 @@ void write_back() {
     //end
 
     //updating PC for next cycle
-    PC = pipmemory.isbranchmux_out;
+    // PC = pipmemory.isbranchmux_out;
     //updated PC.
 }

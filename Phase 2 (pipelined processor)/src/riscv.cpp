@@ -43,27 +43,47 @@ description = 9 for jal instruction
 */
 
 void run_riscvsim() {
-  
-	vector<int> inst;
-	fstream fp;
-	fp.open("../output/output.txt", ios::out);
 
+	int cycle = 0;
 	while(1) {
+		++cycle;
+
 		
 		if(!pipmemory.isEmpty){
 			write_back();
+					
+			
+			if(pipexecute.isEmpty) {
+				pipmemory.isEmpty = true;
+				break;
+			}
+			// cout << cycle << " in writeback " << cycle << "\n";
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
 			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
 			pipmemory.input_controls(pipexecute.wb);
 			pipmemory.isEmpty = false;
+			
+			
+			
+			
+			if(pipdecode.isEmpty)
+				pipexecute.isEmpty = true;
+			// cout << cycle << " in memaces " << cycle << "\n";
 		}
 		if(!pipdecode.isEmpty) {
 			execute();
 			pipexecute.input_vars(pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 			pipexecute.isEmpty = false;
+			
+			
+			
+			
+			if(pipfetch.isEmpty)
+				pipdecode.isEmpty = true;
+			// cout << cycle << " in exe " << cycle << "\n";
 		}
 		if(!pipfetch.isEmpty) {
 			decode();
@@ -77,14 +97,47 @@ void run_riscvsim() {
 			m["sltype"] = mem.sltype;
 			m["ResultSelect"] = mux_resultselect.select_line;
 			wb["RFWrite"] = regs.rfwrite;
+			pipdecode.input_controls(ex, m, wb);
+			// cout << cycle << " in decode " << cycle << "\n";
 		}
 		// Fetch();
 		vector<int> temp = fetch();
 		pipfetch.input(temp, PC);
 		pipfetch.isEmpty = false;
+		PC += 4;
+			// cout << "fetched " << cycle << "\n";
+		
+		
+		int flag = 0;
+		for(int i=31; i>=0; i--) {
+			if(temp[i]!=0) {
+				flag = 1;
+				break;
+			}
+		}
+		if(flag==0) {
+			pipfetch.isEmpty = true;
+		}
+
+
 
 	}
 
+	
+	
+	
+	
+	// for(int i=0; i<32; i++) {
+	// 	string temp = "x"+to_string(i);
+	// 	cout << temp << "\t: " << regs.regs[temp] << "\n";
+	// }
+	// cout << "\n";
+	// cout << "\n\nended\n\n";
+
+	
+	
+	
+	
 	swi_exit();
 
 	return;

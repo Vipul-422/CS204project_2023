@@ -342,7 +342,7 @@ void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _
     RS1 = _RS1;             // default input 1 of alu
     OP2 = _OP2;             // input for data write
     pc = _pc;               
-    op2mux_out = op2mux_out;                    // default input 2 for alu
+    op2mux_out = _op2mux_out;                    // default input 2 for alu
     branchadder_out = _branchadder_out;
     immu = _immu;
 }
