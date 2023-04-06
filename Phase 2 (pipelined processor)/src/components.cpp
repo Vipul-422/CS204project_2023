@@ -319,6 +319,9 @@ int BranchControl::output(){
 //BranchControl unit ends
 
 //Pipelined register fetch starts
+Pipfetch::Pipfetch() {
+    isEmpty = true;
+}
 void Pipfetch::input(vector<int> _instruction, int _pc){
     instruction.clear();
     for(int i = 0; i < _instruction.size(); i++){
@@ -329,8 +332,10 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
 //Pipelined register fetch ends
 
 //Pipelined register decode starts
-
-void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2mux_out, int _branchadder_out, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
+Pipdecode::Pipdecode() {
+    isEmpty = true;
+}
+void Pipdecode::input_vars(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2mux_out, int _branchadder_out){
     rs1 = _rs1;             // rs1, rs2 and rd required for forwarding
     rs2 = _rs2;
     rd = _rd;
@@ -340,15 +345,19 @@ void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, 
     pc = _pc;               
     op2mux_out = op2mux_out;                    // default input 2 for alu
     branchadder_out = _branchadder_out;
+}
+void Pipdecode::input_controls(map<string, int> _ex, map<string, int> _m, map<string, int> _wb) {
     ex = _ex;
     m = _m;
     wb = _wb;
 }
 //Pipelined register decode ends
 
-
 //Pipelined register execute starts
-void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out, map<string, int> _m, map<string, int> _wb){
+Pipexecute::Pipexecute() {
+    isEmpty = true;
+}
+void Pipexecute::input_vars(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, int _immu, int _wbadder_out){
     rs2 = _rs2;
     rd = _rd;
     OP2 = _OP2;
@@ -357,6 +366,8 @@ void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int 
     aluout = _aluout;
     immu = _immu;
     wbadder_out = _wbadder_out;
+}
+void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb) {
     m = _m;
     wb = _wb;
 }
@@ -364,20 +375,24 @@ void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int 
 //Pipelined register execute ends
 
 
-//Pipelined register execute starts
-
-void Pipmemory::input(string _rd, int _RD, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout, map<string, int> _wb){
+//Pipelined register memory starts
+Pipmemory::Pipmemory() {
+    isEmpty = true;
+}
+void Pipmemory::input_vars(string _rd, int _RD, int _pc, int _isbranch_out, int _resultselectmux_out, int _aluout){
     rd = _rd;
     RD = _RD;
     pc = _pc;
     isbranch_out = _isbranch_out;
     resultselectmux_out = _resultselectmux_out;
     aluout = _aluout;
-    wb = _wb;
     memout = mem.output();
 }
+void Pipmemory::input_controls(map<string, int> _wb) {
+    wb = _wb;
+}
 
-//Pipelined register execute ends
+//Pipelined register memory ends
 
 
 
