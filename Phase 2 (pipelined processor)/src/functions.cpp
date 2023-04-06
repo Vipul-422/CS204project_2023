@@ -51,8 +51,9 @@ vector<int> fetch() {
 
 
 // reads the instruction register, reads operand1, operand2 from register file, decides the operation to be performed in execute stage
-void decode(vector<int> inst) {
+void decode() {
 
+    vector<int> inst = pipfetch.instruction;
 
     alu.operation = 1;
     mux_op2select.select_line = 0;
