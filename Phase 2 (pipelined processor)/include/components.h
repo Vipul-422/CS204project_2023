@@ -121,7 +121,7 @@ class BranchControl
 class Pipfetch
 {
     public:
-        bool isEmpty = 0;
+        bool isEmpty = true;
         vector<int> instruction;
         int pc;
         void input(vector<int> _instruction, int pc);
@@ -134,7 +134,7 @@ class Pipfetch
 class Pipdecode
 {
     public:
-        bool isEmpty = 0;
+        bool isEmpty = true;
         string rs1, rs2, rd;
         int RS1 = 0, OP2 = 0, RD = 0, pc, op2select = 0, branc_adder = 0;
         map<string, int> ex, wb, m;
@@ -149,7 +149,7 @@ class Pipdecode
 class Pipexecute
 {
     public:
-        bool isEmpty = 0;
+        bool isEmpty = true;
         string rs2, rd;
         int OP2, RD, pc, aluout;
         
@@ -164,7 +164,7 @@ class Pipexecute
 class Pipmemory
 {
     public:
-        bool isEmpty = 0;
+        bool isEmpty = true;
         string rd;
         int RD, pc, aluout, memout;
         map<string, int> wb;
