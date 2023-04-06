@@ -12,6 +12,7 @@
         "ostream": "cpp",
         "bitset": "cpp",
         "vector": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "map": "cpp"
     }
 }
