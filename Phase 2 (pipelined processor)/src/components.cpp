@@ -326,26 +326,20 @@ void Pipfetch::input(vector<int> _instruction, int _pc){
     }
     pc = _pc;
 }
-vector<int> Pipfetch::output(){
-    return instruction;
-}
-int Pipfetch::output_pc(){
-    return pc;
-}
 //Pipelined register fetch ends
 
 //Pipelined register decode starts
 
-void Pipdecode::input(int _rs1, int _rs2, int _rd, int _pc, int _imm, int _immb, int _immj, int _imms, int _immu, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
+void Pipdecode::input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branch_adder, map<string, int> _ex, map<string, int> _m, map<string, int> _wb){
     rs1 = _rs1;
     rs2 = _rs2;
     rd = _rd;
+    RS1 = _RS1;
+    OP2 = _OP2;
+    RD = _RD;
     pc = _pc;
-    imm = _imm;
-    immb = _immb;
-    immj = _immj;
-    imms = _imms;
-    immu = _immu;
+    op2select = _op2select;
+    branc_adder = _branch_adder;
     ex = _ex;
     m = _m;
     wb = _wb;
@@ -355,12 +349,12 @@ void Pipdecode::input(int _rs1, int _rs2, int _rd, int _pc, int _imm, int _immb,
 
 //Pipelined register execute starts
 
-void Pipexecute::input(int _rs2, int _rd, int _pc, int _imm, int _imms, int _aluout, map<string, int> _m, map<string, int> _wb){
+void Pipexecute::input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, map<string, int> _m, map<string, int> _wb){
     rs2 = _rs2;
     rd = _rd;
+    OP2 = _OP2;
+    RD = _RD;
     pc = _pc;
-    imm = _imm;
-    imms = _imms;
     aluout = _aluout;
     m = _m;
     wb = _wb;
@@ -371,11 +365,13 @@ void Pipexecute::input(int _rs2, int _rd, int _pc, int _imm, int _imms, int _alu
 
 //Pipelined register execute starts
 
-void Pipmemory::input(int _rd, int _pc, int _aluout, map<string, int> _wb){
+void Pipmemory::input(string _rd, int _RD, int _pc, int _aluout, map<string, int> _wb){
     rd = _rd;
+    RD = _RD;
     pc = _pc;
     aluout = _aluout;
     wb = _wb;
+    memout = mem.output();
 }
 
 //Pipelined register execute ends
@@ -393,6 +389,9 @@ Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;
 BranchControl bcu;
-
+Pipfetch pipfetch;
+Pipdecode pipdecode;
+Pipexecute pipexecute;
+Pipmemory pipmemory;
 
 /* DON'T TOUCH ENDS */

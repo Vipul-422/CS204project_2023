@@ -120,12 +120,10 @@ class BranchControl
 
 class Pipfetch
 {
-    vector<int> instruction;
-    int pc;
     public:
+        vector<int> instruction;
+        int pc;
         void input(vector<int> _instruction, int pc);
-        vector<int>  output();
-        int output_pc();
 };
 
 //Pipelined register fetch ends
@@ -135,9 +133,10 @@ class Pipfetch
 class Pipdecode
 {
     public:
-        int rs1 = 0, rs2 = 0, rd = 0, pc, imm = 0, immb = 0, imms = 0, immj = 0, immu = 0;
+        string rs1, rs2, rd;
+        int RS1 = 0, OP2 = 0, RD = 0, pc, op2select = 0, branc_adder = 0;
         map<string, int> ex, wb, m;
-        void input(int _rs1, int _rs2, int _rd, int _pc, int _imm, int _immb, int _immj, int _imms, int _immu, map<string, int> _ex, map<string, int> _wb, map<string, int> _m);
+        void input(string _rs1, string _rs2, string _rd, int _RS1, int _OP2, int _RD, int _pc, int _op2select, int _branch_adder, map<string, int> _ex, map<string, int> _m, map<string, int> _wb);
 };
 
 //Pipelined register decode ends
@@ -148,9 +147,11 @@ class Pipdecode
 class Pipexecute
 {
     public:
-        int rs2 = 0, rd = 0, pc, imm = 0, imms = 0, aluout;
+        string rs2, rd;
+        int OP2, RD, pc, aluout;
+        
         map<string, int> wb, m;
-        void input(int _rs2, int _rd, int _pc, int _imm, int _imms, int _aluout, map<string, int> _wb, map<string, int> _m);
+        void input(string _rs2, string _rd, int _OP2, int _RD, int _pc, int _aluout, map<string, int> _m, map<string, int> _wb);
 };
 
 //Pipelined register execute ends
@@ -160,9 +161,10 @@ class Pipexecute
 class Pipmemory
 {
     public:
-        int rd = 0, pc, aluout, memout;
+        string rd;
+        int RD, pc, aluout, memout;
         map<string, int> wb;
-        void input(int _rd, int _pc, int _aluout, map<string, int> _wb);
+        void input(string _rd, int _RD, int _pc, int _aluout, map<string, int> _wb);
 };
 
 //Pipelined register execute ends

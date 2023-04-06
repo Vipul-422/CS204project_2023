@@ -18,6 +18,10 @@ extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
+extern Pipfetch pipfetch;
+extern Pipdecode pipdecode;
+extern Pipexecute pipexecute;
+extern Pipmemory pipmemory;
 extern string inst_type;
 extern int description; 
 
@@ -44,143 +48,7 @@ void run_riscvsim() {
 	fp.open("../output/output.txt", ios::out);
 
 	while(1) {
-
-		//PC
-		if(inst_mem[PC] == "") {break;}
-		fp << "Value of PC is: " << PC << "\n";
-
-		//fetch
-		inst = fetch();
-		fp << "Fetch:- Instruction fetched is - " << inst_mem[PC] << "\n";
-
-		//decode
-		decode(inst);
-		fp << "Decode:- Instruction's mnemonic - "<< inst_type << ", ";
-		if(description==1){
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", "<< regs.rs2 << " = rs2 = " << regs.op2() << "\n";
-		}
-		else if(description==2) {
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", imm = " << imm.output() << "\n";
-		}
-		else if(description==3) {
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", imm = " << imm.output() << "\n";
-		}
-		else if(description==4) {
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", imm = " << imm.output() << "\n";
-		}
-		else if(description==5) {
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", imms = " << immS.output() << "\n";
-		}
-		else if(description==6) {
-			fp << regs.rs1 << " = rs1 = " << regs.op1() << ", " << regs.rs2 << " = rs2 = " << regs.op2() << ", immb = " << immB.output() << "\n";
-		}
-		else if(description==7) {
-			fp << "immu = " << immU.output() << "\n";
-		}
-		else if(description==8) {
-			fp << "immu = " << immU.output() << "\n";
-		}
-		else if(description==9) {
-			fp << "immj = " << immJ.output() << "\n";
-		}
-
-
-		//execute
-		execute();
-		fp << "Execute:- ";
-		if(description==1 || description==2){
-			fp << "ALU output = " << alu.output() << "\n";
-		}
-		else if(description==3){
-			fp << "ALU output = " << alu.output() << " This address will be sent to memory unit to load data\n";
-		}
-		else if(description==4) {
-			fp << "ALU output = " << alu.output() << " Result of rs1 + imm\n";
-		}
-		else if(description==5) {
-			fp << "ALU output = " << alu.output() << " This address will be sent to memory unit to store data\n";
-		}
-		else if(description==6) {
-			if(bcu.output() == 1) {
-				fp << "Branching condition is true. It will go to PC + imm.\n";
-			}
-			else {
-				fp << "Branching condition is false. It will go to PC + 4.\n";
-			}
-		}
-		else if(description==7) {
-			fp << "Nothing changed after execution!\n";
-		}
-		else if(description==8) {
-			fp << "Nothing changed after execution!\n";
-		}
-		else if(description==9) {
-			fp << "Nothing changed after execution!\n";
-		}
-
-
-		//memory_access
-		memory_access();
-		fp << "Memory_access:- ";
-		if(description==1 || description==2){
-			fp << "Nothing changed after memory_access!\n";
-		}
-		else if(description==3){
-			fp << "Accessing data on " << mem.address << " to load in register in next step.\n";
-		}
-		else if(description==4) {
-			fp << "Nothing changed after memory_access!\n";
-		}
-		else if(description==5) {
-			fp << "Storing data from " + regs.rs1 + " " << regs.regs[regs.rs1] << " to store at address " + mem.address << "\n";
-		}
-		else if(description==6) {
-			fp << "Nothing changed after memory_access!\n";
-		}
-		else if(description==7) {
-			fp << "Nothing changed after memory_access!\n";
-		}
-		else if(description==8) {
-			fp << "Nothing changed after memory_access!\n";
-		}
-		else if(description==9) {
-			fp << "Nothing changed after memory_access!\n";
-		}
-	
-
-		//write_back
-		write_back();
-		fp << "Write_back:- ";
-		if(description==1 || description==2){
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << "\n";
-		}
-		else if(description==3){
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << " data sent by memory was stored in former mentioned register\n";
-		}
-		else if(description==4) {
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << "\n";
-		}
-		else if(description==5) {
-			fp << "Nothing changed after write_back!\n";
-		}
-		else if(description==6) {
-			fp << "Nothing changed after write_back!\n";
-		}
-		else if(description==7) {
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << "\n";
-		}
-		else if(description==8) {
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << "\n";
-		}
-		else if(description==9) {
-			fp << "rd = "<< regs.rd << " = " << regs.regs[regs.rd] << "\n";
-		}
-
-		//if PC is changed
-		fp << "PC changed to " << mux_isbranch.output() << "\n";
-		//
-		fp << "\n\n";
-
+		
 	}
 
 	swi_exit();
