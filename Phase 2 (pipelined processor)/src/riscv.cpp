@@ -55,7 +55,7 @@ void run_riscvsim() {
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
-			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout);
+			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
 			pipmemory.input_controls(pipexecute.wb);
 			pipmemory.isEmpty = false;
 		}

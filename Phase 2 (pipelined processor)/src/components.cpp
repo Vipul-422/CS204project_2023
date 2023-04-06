@@ -378,13 +378,13 @@ void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb) {
 Pipmemory::Pipmemory() {
     isEmpty = true;
 }
-void Pipmemory::input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout){
+void Pipmemory::input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout, int _memout){
     rd = _rd;
     pc = _pc;
     isbranchmux_out = _isbranchmux_out;
     resultselectmux_out = _resultselectmux_out;
     aluout = _aluout;
-    memout = mem.output();
+    memout = _memout;
 }
 void Pipmemory::input_controls(map<string, int> _wb) {
     wb = _wb;

@@ -159,7 +159,7 @@ class Pipexecute
         
         map<string, int> wb, m;
         void input_vars(string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out);
-        void Pipexecute::input_controls(map<string, int> _m, map<string, int> _wb);
+        void input_controls(map<string, int> _m, map<string, int> _wb);
 };
 
 //Pipelined register execute ends
@@ -174,8 +174,8 @@ class Pipmemory
         string rd;
         int RD, pc, aluout, memout, isbranchmux_out, resultselectmux_out;
         map<string, int> wb;    
-        void input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout);
-        void Pipmemory::input_controls(map<string, int> _wb);
+        void input_vars(string _rd, int _pc, int _isbranchmux_out, int _resultselectmux_out, int _aluout, int _memout);
+        void input_controls(map<string, int> _wb);
 };
 
 //Pipelined register execute ends
