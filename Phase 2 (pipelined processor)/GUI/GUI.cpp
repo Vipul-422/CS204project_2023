@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "wx/wx.h"
 
 using namespace std;
@@ -15,6 +16,8 @@ wxColour myColor(0, 0, 255);
 string lines[200];
 int pc = 0;
 int countLine = 0;
+int check = 0;
+bool checked0=false, checked1=false, checked2=false, checked3=false, checked4=false;
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) {
 	int memAdd[32];
@@ -63,8 +66,17 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	buttons[5] = new wxButton(panel, wxID_ANY, "Hide", wxPoint(1000, 750), wxSize(60, 30));
 	buttons[6] = new wxButton(panel, wxID_ANY, "Registers", wxPoint(1100, 50), wxSize(100, 40));
 	buttons[7] = new wxButton(panel, wxID_ANY, "Memory", wxPoint(800, 150), wxSize(80, 40));
+	//buttons[8] = new wxButton(panel, wxID_ANY, "Forwarding", wxPoint(1100, 750), wxSize(60, 40));
+	//buttons[9] = new wxButton(panel, wxID_ANY, "Hazard", wxPoint(1200, 150), wxSize(60, 40));
 
-	txtField[0] = new wxTextCtrl(panel, wxID_ANY, "Enter your code here", wxPoint(20, 100), wxSize(1400, 700), wxTE_MULTILINE);
+
+	txtField[0] = new wxTextCtrl(panel, wxID_ANY, "Enter your code here", wxPoint(20, 100), wxSize(1000, 600), wxTE_MULTILINE);
+
+	checked[0]= new wxCheckBox(panel, wxID_ANY, "Pipelining",wxPoint(1100,150),wxSize(200,80));
+	checked[1] = new wxCheckBox(panel, wxID_ANY, "Data Forwarding",wxPoint(1100,250),wxSize(200, 80));
+	checked[2] = new wxCheckBox(panel, wxID_ANY, "Printing Value", wxPoint(1100, 350),wxSize(200, 80));
+	checked[3] = new wxCheckBox(panel, wxID_ANY, "Printing information", wxPoint(1100, 450),wxSize(200, 80));
+	checked[4] = new wxCheckBox(panel, wxID_ANY, "Specific", wxPoint(1100, 550),wxSize(200, 80));
 
 	for (int i = 0; i < 32; i++) {
 		if (i < 16) {
@@ -122,9 +134,14 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 
 	txtField[5] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(300, 85), wxSize(300, 750), wxTE_MULTILINE);
 
+	txtField[0]->SetFont(font1);
 	txtField[3]->SetFont(font1);
 	buttons[0]->SetFont(font1);
 	buttons[1]->SetFont(font1);
+
+	for (int i = 0; i < 5; i++) {
+		checked[i]->SetFont(font1);
+	}
 
 	for (int i = 2; i < 8; i++) {
 		buttons[i]->Hide();
@@ -167,6 +184,11 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	txtField[0]->Bind(wxEVT_TEXT, &MainFrame::onIpChanged, this);
 	buttons[2]->Bind(wxEVT_BUTTON, &MainFrame::runFunc, this);
 	buttons[3]->Bind(wxEVT_BUTTON, &MainFrame::stepClicked, this);
+	Connect(checked[0]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox0Clicked), NULL, this);
+	Connect(checked[1]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox1Clicked), NULL, this);
+	Connect(checked[2]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox2Clicked), NULL, this);
+	Connect(checked[3]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox3Clicked), NULL, this);
+	Connect(checked[4]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox4Clicked), NULL, this);
 }
 
 void MainFrame::onIpChanged(wxCommandEvent& evt) {
@@ -178,12 +200,46 @@ void MainFrame::onIpChanged(wxCommandEvent& evt) {
 	
 }
 
+void MainFrame::OnCheckbox0Clicked(wxCommandEvent& event) {
+	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
+	checked0 = checkbox->GetValue();
+}
+
+void MainFrame::OnCheckbox1Clicked(wxCommandEvent& event) {
+	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
+	checked1 = checkbox->GetValue();
+}
+
+void MainFrame::OnCheckbox2Clicked(wxCommandEvent& event) {
+	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
+	checked2 = checkbox->GetValue();
+}
+
+void MainFrame::OnCheckbox3Clicked(wxCommandEvent& event) {
+	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
+	checked3 = checkbox->GetValue();
+}
+
+void MainFrame::OnCheckbox4Clicked(wxCommandEvent& event) {
+	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
+	checked4 = checkbox->GetValue();
+}
+
+
 void MainFrame::runFunc(wxCommandEvent& evt) {
+	stringstream ss0, ss1, ss2, ss3, ss4;
+	ss0 << boolalpha << checked0;
+	ss1 << boolalpha << checked1;
+	ss2 << boolalpha << checked2;
+	ss3 << boolalpha << checked3;
+	ss4 << boolalpha << checked4;
 	string main = "g++ main.cpp riscv.cpp functions.cpp components.cpp -o result.exe";
 	system(main.c_str());
 
-	main = "result.exe";
-	system(main.c_str());
+	string command = "result.exe " + ss0.str() + " " + ss1.str() + " " + ss2.str() + " " + ss3.str() + " " + ss4.str();
+
+	//main = "result.exe";
+	system(command.c_str());
 
 	extern Memory mem;
 
@@ -200,9 +256,13 @@ void MainFrame::runFunc(wxCommandEvent& evt) {
 
 }
 
-
 void MainFrame::OnButtonClicked1(wxCommandEvent& evt) {
 	txtField[0]->Show();
+
+	for (int i = 0; i < 5; i++) {
+		checked[i]->Show();
+	}
+
 	txtField[2]->Hide();
 	txtField[3]->Hide();
 	txtField[4]->Hide();
@@ -247,6 +307,9 @@ void MainFrame::OnButtonClicked2(wxCommandEvent& evt) {
 	file.close();
 
 	txtField[0]->Hide();
+	for (int i = 0; i < 5; i++) {
+		checked[i]->Hide();
+	}
 	txtField[2]->Show();
 	txtField[3]->Show();
 	txtField[4]->Show();
@@ -273,15 +336,27 @@ void MainFrame::OnButtonClicked2(wxCommandEvent& evt) {
 	}
 	for (int i = 120; i < 157; i++) {
 		txtField[i]->Show();
-		txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
+		//txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
 	}
 	for (int i = 157; i < 194; i++) {
 		txtField[i]->Show();
-		txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
+		//txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
 	}
-	for (int i = 0; i < countLine; i++) {
-		txtField[i + 43]->SetValue(wxString::Format("%d", i));
+	if (check == 0) {
+		for (int i = 120; i < 157; i++) {
+			txtField[i]->Show();
+			txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
+		}
+		for (int i = 157; i < 194; i++) {
+			txtField[i]->Show();
+			txtField[i]->SetValue(wxString::Format("%s", lines[i - 120]));
+		}
+		for (int i = 0; i < countLine; i++) {
+			txtField[i + 43]->SetValue(wxString::Format("0x%d", i*4));
+		}
+		check = 1;
 	}
+	
 }
 
 void MainFrame::OnRegClicked(wxCommandEvent& evt) {
@@ -335,11 +410,19 @@ void MainFrame::stepClicked(wxCommandEvent& evt) {
 
 	pc++;
 
+	stringstream ss0, ss1, ss2, ss3, ss4;
+	ss0 << boolalpha << checked0;
+	ss1 << boolalpha << checked1;
+	ss2 << boolalpha << checked2;
+	ss3 << boolalpha << checked3;
+	ss4 << boolalpha << checked4;
 	string main = "g++ main.cpp riscv.cpp functions.cpp components.cpp -o result.exe";
 	system(main.c_str());
 
-	main = "result.exe";
-	system(main.c_str());
+	string command = "result.exe " + ss0.str() + " " + ss1.str() + " " + ss2.str() + " " + ss3.str() + " " + ss4.str();
+
+	//main = "result.exe";
+	system(command.c_str());
 }
 
 void MainFrame::outputFile(wxCommandEvent& evt) {
