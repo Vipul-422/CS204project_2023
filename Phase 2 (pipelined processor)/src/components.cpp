@@ -358,7 +358,8 @@ void Pipdecode::input_controls(map<string, int> _ex, map<string, int> _m, map<st
 Pipexecute::Pipexecute() {
     isEmpty = true;
 }
-void Pipexecute::input_vars(string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out){
+void Pipexecute::input_vars(string _rs1, string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out){
+    rs1 = _rs1;
     rs2 = _rs2;
     rd = _rd;
     OP2 = _OP2;

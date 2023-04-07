@@ -154,11 +154,11 @@ class Pipexecute
     public:
         bool isEmpty;
         Pipexecute();
-        string rs2, rd;
+        string rs1, rs2, rd;
         int OP2, pc, aluout, immu, wbadder_out;
         
         map<string, int> wb, m;
-        void input_vars(string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out);
+        void input_vars(string _rs1, string _rs2, string _rd, int _OP2, int _pc, int _aluout, int _immu, int _wbadder_out);
         void input_controls(map<string, int> _m, map<string, int> _wb);
 };
 
