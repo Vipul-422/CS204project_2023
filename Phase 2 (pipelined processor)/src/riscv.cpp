@@ -28,6 +28,8 @@ extern int operation;
 
 /* DON'T TOUCH ENDS */
 
+extern map<string, int> util;
+
 /*
 
 description = 1 for arithmetic registers instruction
@@ -90,6 +92,7 @@ void run_riscvsim() {
 			pipdecode.isEmpty = false;
 			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
 			map<string, int> ex, m, wb;
+			ex["op2mux_sel"] = mux_op2select.select_line;
 			ex["AluOperation"] = alu.operation;
 			ex["isBranch"] = mux_isbranch.select_line;
 			ex["func3"] = pipdecode.func3;
@@ -98,6 +101,21 @@ void run_riscvsim() {
 			m["ResultSelect"] = mux_resultselect.select_line;
 			wb["RFWrite"] = regs.rfwrite;
 			pipdecode.input_controls(ex, m, wb);
+
+			if(util["rfwrite"] == 1) {
+				if(util["pipdecode.rs1 == regs.rd"] == 1) {
+					pipdecode.RS1 = util["pipdecode.RS1"];
+				}
+				if(util["pipdecode.rs2 == regs.rd"] == 1) {
+					pipdecode.OP2 = util["pipdecode.OP2"];
+					if(util["op2muxselis0"] == 1) {
+						pipdecode.op2mux_out = util["pipdecode.op2mux_out"];
+					}
+				}
+			}
+
+
+
 			// cout << cycle << " in decode " << cycle << "\n";
 		}
 		// Fetch();
@@ -119,7 +137,7 @@ void run_riscvsim() {
 			pipfetch.isEmpty = true;
 		}
 
-
+		util.clear();
 
 	}
 

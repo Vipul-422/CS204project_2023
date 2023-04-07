@@ -29,6 +29,10 @@ int description = 0;
 /* DON'T TOUCH ENDS */
 
 
+
+map<string, int> util;
+
+
 //reads from the instruction memory and updates the instruction register
 vector<int> fetch() {
     string hex_string=inst_mem[PC];
@@ -392,6 +396,21 @@ void write_back() {
     //start
     if(regs.rfwrite){
         regs.write(pipmemory.resultselectmux_out);
+        util["rfwrite"] = 1;
+
+        if(pipdecode.rs1 == regs.rd && regs.rd!="x0") {
+            util["pipdecode.rs1 == regs.rd"] = 1;
+            util["pipdecode.RS1"] = regs.regs[regs.rd];
+        }
+        if(pipdecode.rs2 == regs.rd && regs.rd!="x0") {
+            util["pipdecode.rs2 == regs.rd"] = 1;
+            util["pipdecode.OP2"] = regs.regs[regs.rd];
+            if(pipdecode.ex["op2mux_sel"]==0){
+                util["op2muxselis0"] = 1;
+                util["pipdecode.op2mux_out"] = regs.regs[regs.rd];
+            }
+        }
+
     }
     //end
 
