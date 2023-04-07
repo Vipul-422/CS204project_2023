@@ -401,7 +401,7 @@ map <int, string> inst_mem;
 ALU alu;
 Regfile regs;
 Memory mem;
-Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux_alu_input1, mux_alu_input2;
+Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
 Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;
 BranchControl bcu;

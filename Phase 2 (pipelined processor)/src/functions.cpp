@@ -335,16 +335,18 @@ void execute() {
     vector<int> _input_lines;
     _input_lines.push_back(pipdecode.RS1);
     _input_lines.push_back(pipexecute.aluout);
-    _input_lines.push_back(mux_resultselect.output());
+    _input_lines.push_back(pipmemory.resultselectmux_out);
     mux1_alu.input(_input_lines);
+    mux1_alu.select_line = 0;
     //updated mux
 
     //updating mux1_alu
     _input_lines.clear();
     _input_lines.push_back(pipdecode.op2mux_out);
     _input_lines.push_back(pipexecute.aluout);
-    _input_lines.push_back(mux_resultselect.output());
-    mux1_alu.input(_input_lines);
+    _input_lines.push_back(pipmemory.resultselectmux_out);
+    mux2_alu.input(_input_lines);
+    mux2_alu.select_line = 0;
     //updated mux
 
     //executing ALU unit
@@ -386,7 +388,6 @@ void execute() {
     }
 
     //populating mux_isbranch
-    vector<int> _input_lines;
     _input_lines.clear();
     _input_lines.push_back(alu.output());
     _input_lines.push_back(pipdecode.branchadder_out);
@@ -432,7 +433,7 @@ void write_back() {
         regs.write(pipmemory.resultselectmux_out);
     }
 
-    
+
 
 
     //end
