@@ -37,7 +37,7 @@ class Regfile {
     public:
         string rd, rs1, rs2;
         map<string, int> regs;
-        bool rfwrite;
+        bool rfwrite;                                                        // rfwrite - whether to write in reg_file or not.
         Regfile();
         void input(vector<int> _rs1, vector<int> _rs2, vector<int> _rd);
         void write(int data);
@@ -181,5 +181,15 @@ class Pipmemory
 //Pipelined register execute ends
 
 
+// Forwarding unit
 
+class Forwarding_unit
+{
+    public:
+        int mux1_aluSelesct, mux2_aluSelect;
+        
+
+};
+
+// Forwarding unit ends
 #endif

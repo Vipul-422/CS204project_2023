@@ -1,10 +1,10 @@
 /* DON'T TOUCH */
 
 
-#include "../include/riscv.h"
-#include "../include/functions.h"
+#include "riscv.h"
+#include "functions.h"
 #include <bitset>
-#include "../include/components.h"
+#include "components.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -15,23 +15,14 @@ extern map <int, string> inst_mem;
 extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
-extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
+extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
-extern Pipfetch pipfetch;
-extern Pipdecode pipdecode;
-extern Pipexecute pipexecute;
-extern Pipmemory pipmemory;
+int isBranchInst = 0;
 string inst_type;
-int description = 0;
-bool is_stall = false;
 
 /* DON'T TOUCH ENDS */
-
-
-
-map<string, int> util;
 
 
 //reads from the instruction memory and updates the instruction register
@@ -44,6 +35,7 @@ vector<int> fetch() {
     for(int i=0;i<32;i++){
         bin_string.push_back(binary_form[i]);
     }
+
     //updating PC adder
     adder_pc.input(PC, 4);
     //done with adder
@@ -55,9 +47,8 @@ vector<int> fetch() {
 
 
 // reads the instruction register, reads operand1, operand2 from register file, decides the operation to be performed in execute stage
-void decode() {
+void decode(vector<int> inst) {
 
-    vector<int> inst = pipfetch.instruction;
 
     alu.operation = 1;
     mux_op2select.select_line = 0;
@@ -68,7 +59,7 @@ void decode() {
     regs.rfwrite = false;
     mem.sltype = 2;
 
-    int isBranchInst = 0;
+    isBranchInst = 0;
     
     
     // Basic setup for decode
@@ -90,8 +81,9 @@ void decode() {
     immj[0] = inst[31];
     for(int i=30, j=0; i>=21; i--) { immj[10+j] = inst[i]; j++; }
     immj[9] = inst[20];
-    for(int i=19, j=1; i>=12; i--) { immj[j] = inst[i]; j++;}
-    immJ.input(immj);  // imxmJ is now live
+    for(int i=19, j=1; i>=12; i--) { immj[j] = inst[i]; j++; }
+    immj[20] = 0;
+    immJ.input(immj);  // immJ is now live
 
     vector<int> immvec;
     for(int i=31; i>=20; i--) { immvec.push_back(inst[i]); }
@@ -122,81 +114,78 @@ void decode() {
     regs.input(rs1vec, rs2vec, rdvec);  // register values are now live
 
 
-
     // func3, func7
     int func3=0, func7=0;
 
     for(int i=14; i>=12; i--) { func3 = func3*2 + inst[i]; }
     for(int i=31; i>=25; i--) { func7 = func7*2 + inst[i]; }
+    bcu.input_func3(func3);
 
 
     // Basic setup end
 
     if (opcode == "0110011") {
         // arithmetic register
-        description = 1;
         regs.rfwrite = true;
         switch(func3) {
             case 0: {
                 if(func7 == 0){
                     alu.operation = 1;
-                    inst_type = "ADD";
+                    inst_type="ADD";
                 }
                 else{
                     alu.operation = 2;
-                    inst_type = "SUB";
+                    inst_type="SUB";
                 }
                 break;
             }
-            case 4: {alu.operation = 9; inst_type = "XOR"; break;}
-            case 6: {alu.operation = 4; inst_type = "OR"; break;}
-            case 7: {alu.operation = 3; inst_type = "AND"; break;}
-            case 1: {alu.operation = 5; inst_type = "SLL"; break;}
+            case 4: {alu.operation = 9; inst_type="XOR"; break;}
+            case 6: {alu.operation = 4; inst_type="OR"; break;}
+            case 7: {alu.operation = 3; inst_type="AND"; break;}
+            case 1: {alu.operation = 5; inst_type="SLL"; break;}
             case 5: {
                 if(func7 == 0){
                     alu.operation = 8;
-                    inst_type = "SRL";
+                    inst_type="SRL";
                 }
                 else{
                     alu.operation = 7;
-                    inst_type = "SRA";
+                    inst_type="SRA";
                 }
                 break;
             }
-            case 2: {alu.operation = 6; inst_type = "SLT"; break;}
+            case 2: {alu.operation = 6; inst_type="SLT"; break;}
         }
         mux_op2select.select_line = 0;
         mux_resultselect.select_line = 3;
     }
     else if (opcode == "0010011") {
         // arithmetic immediate
-        description = 2;
         regs.rfwrite = true;
         switch(func3) {
-            case 0: {alu.operation = 1; inst_type = "ADDI"; break;}
-            case 4: {alu.operation = 9; inst_type = "XORI"; break;}
-            case 6: {alu.operation = 4; inst_type = "ORI"; break;}
-            case 7: {alu.operation = 3; inst_type = "ANDI"; break;}
-            case 1: {alu.operation = 5; inst_type = "SLLI"; break;}
+            case 0: {alu.operation = 1; inst_type="ADDI"; break;}
+            case 4: {alu.operation = 9; inst_type="XORI"; break;}
+            case 6: {alu.operation = 4; inst_type="ORI"; break;}
+            case 7: {alu.operation = 3; inst_type="ANDI"; break;}
+            case 1: {alu.operation = 5; inst_type="SLLI"; break;}
             case 5: {
                 if(func7 == 0){
                     alu.operation = 8;
-                    inst_type = "SRLI";
+                    inst_type="SRLI";
                 }
                 else{
                     alu.operation = 7;
-                    inst_type = "SRAI";
+                    inst_type="SRAI";
                 }
                 break;
             }
-            case 2: {alu.operation = 6; inst_type = "SLTI"; break;}
+            case 2: {alu.operation = 6; inst_type="SLTI"; break;}
         }
         mux_op2select.select_line = 1;
         mux_resultselect.select_line = 3;
     }
     else if (opcode == "0000011") {
         // lb, lh, lw
-        description = 3;
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_op2select.select_line = 1;
@@ -204,47 +193,44 @@ void decode() {
         mux_resultselect.select_line = 2;
         mem.sltype = func3;   // 0 for b, 1 for h, 2 for w 
         if(mem.sltype==0){
-            inst_type = "LB";
+            inst_type="LB";
         }
         else if(mem.sltype==1){
-            inst_type = "LH";
+            inst_type="LH";
         }
         else if(mem.sltype==2){
-            inst_type = "LW";
+            inst_type="LW";
         }
     }
     else if (opcode == "1100111") {
         // jalr
-        description = 4;
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_op2select.select_line = 1;
         alu.operation = 1;
         mux_resultselect.select_line = 3;
         mux_isbranch.select_line = 0;
-        inst_type = "JALR";
+        inst_type="JALR";
     }
     else if (opcode == "0100011") {
         // sb, sh, sw
-        description = 5;
         regs.rfwrite = false;
         mem.iswrite = true;
         alu.operation = 1;
         mux_op2select.select_line = 2;
         mem.sltype = func3;
         if(mem.sltype==0){
-            inst_type = "SB";
+            inst_type="SB";
         }
         else if(mem.sltype==1){
-            inst_type = "SH";
+            inst_type="SH";
         }
         else if(mem.sltype==2){
-            inst_type = "SW";
+            inst_type="SW";
         }
     }
     else if (opcode == "1100011") {
         // branching
-        description = 6;
         isBranchInst = 1;
         regs.rfwrite = false;
         mem.iswrite = false;
@@ -253,49 +239,46 @@ void decode() {
         alu.operation = 2;
         bcu.input_func3(func3);
         if(func3==0) {
-            inst_type = "BEQ";
+            inst_type="BEQ";
         }
         else if(func3==1) {
-            inst_type = "BNE";
+            inst_type="BNE";
         }
         else if(func3==4) {
-            inst_type = "BLT";
+            inst_type="BLT";
         }
         else if(func3==5) {
-            inst_type = "BGE";
+            inst_type="BGE";
         }
     }
     else if (opcode == "0110111") {
         // lui
         // rd = imm << 12
-        description = 7;
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_resultselect.select_line = 1;
-        inst_type = "LUI";
+        inst_type="LUI";
     }
     else if (opcode == "0010111") {
         // auipc
         // rd = pc + imm << 12
-        description = 8;
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_resultselect.select_line = 4;
-        inst_type = "AUIPC";
+        inst_type="AUIPC";
     }
     else if (opcode == "1101111") {
         // jal
-        description = 9;
         regs.rfwrite = true;
         mem.iswrite = false;
         mux_resultselect.select_line = 0;
         mux_branchTargetSel.select_line = 1;
         mux_isbranch.select_line = 1;
-        inst_type = "JAL";
+        inst_type="JAL";
     }
     else {
         //for any wrong instruction
-        cout<<"Wrong instruction!!! instruction: "<<inst_mem[pipfetch.pc]<<" at PC = "<<pipfetch.pc<<"\n";
+        cout<<"Wrong instruction!!! instruction: "<<inst_mem[PC]<<" at PC = "<<PC<<"\n";
         exit(1);
     }
     
@@ -316,71 +299,26 @@ void decode() {
     //done with mux
 
     //updating branch adder
-    adder_branch.input(pipfetch.pc, mux_branchTargetSel.output());
+    adder_branch.input(PC, mux_branchTargetSel.output());
     //updated branch adder
 
     //updating wb adder
-    adder_wb.input(pipfetch.pc, immU.output());
+    adder_wb.input(PC, immU.output());
     //updated wb adder
-
-    pipdecode.isBranchInst = isBranchInst;
-    pipdecode.func3 = func3;
 
 }
 
 //executes the ALU operation based on ALUop
 void execute() {
-    
-    //updating mux1_alu
-    vector<int> _input_lines;
-    _input_lines.push_back(pipdecode.RS1);
-    _input_lines.push_back(pipexecute.aluout);
-    _input_lines.push_back(mux_resultselect.output());
-    mux1_alu.input(_input_lines);
-    //updated mux
-
-    //updating mux1_alu
-    _input_lines.clear();
-    _input_lines.push_back(pipdecode.op2mux_out);
-    _input_lines.push_back(pipexecute.aluout);
-    _input_lines.push_back(mux_resultselect.output());
-    mux1_alu.input(_input_lines);
-    //updated mux
-
     //executing ALU unit
-
-    if((pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
-        if (pipexecute.rd!="x0") {
-            is_stall = true;
-            return;
-        }
-    }
-    else if((pipdecode.rs1 == pipmemory.rd || pipdecode.rs2 == pipmemory.rd)&&!pipmemory.isEmpty){
-        if(pipmemory.rd!="x0") {
-            is_stall = true;
-            return;
-        }
-    }
-    // else if (pipdecode.rs1 == regs.rd || pipdecode.rs2 == regs.rd) {
-    //     is_stall = true;
-    //     return;
-    // }
-
-    alu.operation = pipdecode.ex["AluOperation"];
-    mux_isbranch.select_line = pipdecode.ex["isBranch"];
-
-    alu.input(mux1_alu.output(), mux2_alu.output());
+    alu.input(regs.op1(), mux_op2select.output());
     alu.process();
-
-
     //execution done.
 
-    bcu.input_func3(pipdecode.ex["func3"]);
-
-    if (pipdecode.isBranchInst == 1) {
+    if (isBranchInst == 1) {
         //using BranchControl unit
         bcu.input(alu.output());
-        bcu.input_ops(pipdecode.RS1, pipdecode.op2mux_out);
+        bcu.input_ops(regs.op1(), regs.op2());
         mux_isbranch.select_line = bcu.output();
         //isBranch updated
     }
@@ -389,28 +327,25 @@ void execute() {
     vector<int> _input_lines;
     _input_lines.clear();
     _input_lines.push_back(alu.output());
-    _input_lines.push_back(pipdecode.branchadder_out);
-    _input_lines.push_back(pipdecode.pc);
+    _input_lines.push_back(adder_branch.output());
+    _input_lines.push_back(adder_pc.output());
     mux_isbranch.input(_input_lines);
     //done with mux
 }
 
 //perform the memory operation
 void memory_access() {
-    mem.sltype = pipexecute.m["sltype"];
-    mem.iswrite = pipexecute.m["MemOp"];
-    mux_resultselect.select_line = pipexecute.m["ResultSelect"];
-    mem.mem_addr(pipexecute.aluout);
-    mem.data_write(pipexecute.OP2);
+    mem.mem_addr(alu.output());
+    mem.data_write(regs.op2());
 
 
     //updating mux_resultselect
     vector<int> _input_lines;
-    _input_lines.push_back(pipexecute.pc + 4);
-    _input_lines.push_back(pipexecute.immu);
+    _input_lines.push_back(PC+4);
+    _input_lines.push_back(immU.output());
     _input_lines.push_back(mem.output());
-    _input_lines.push_back(pipexecute.aluout);
-    _input_lines.push_back(pipexecute.wbadder_out);
+    _input_lines.push_back(alu.output());
+    _input_lines.push_back(adder_wb.output());
     mux_resultselect.input(_input_lines);
     //updated mux
 }
@@ -418,26 +353,13 @@ void memory_access() {
 //writes the results back to register file
 void write_back() {
     
-    //taking input from pipeline registers
-
-    int pc = pipmemory.pc;
-    regs.rfwrite = pipmemory.wb["RFWrite"];
-
-    //done taking input from pipeline registers
-
-    regs.rd = pipmemory.rd;
-
     //start
     if(regs.rfwrite){
-        regs.write(pipmemory.resultselectmux_out);
+        regs.write(mux_resultselect.output());
     }
-
-    
-
-
     //end
 
     //updating PC for next cycle
-    // PC = pipmemory.isbranchmux_out;
+    PC=mux_isbranch.output();
     //updated PC.
 }
