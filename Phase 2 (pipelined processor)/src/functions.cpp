@@ -15,7 +15,7 @@ extern map <int, string> inst_mem;
 extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
-extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux_alu_input1, mux_alu_input2;
+extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
 extern BranchControl bcu;
@@ -330,6 +330,23 @@ void decode() {
 
 //executes the ALU operation based on ALUop
 void execute() {
+    
+    //updating mux1_alu
+    vector<int> _input_lines;
+    _input_lines.push_back(pipdecode.RS1);
+    _input_lines.push_back(pipexecute.aluout);
+    _input_lines.push_back(mux_resultselect.output());
+    mux1_alu.input(_input_lines);
+    //updated mux
+
+    //updating mux1_alu
+    _input_lines.clear();
+    _input_lines.push_back(pipdecode.op2mux_out);
+    _input_lines.push_back(pipexecute.aluout);
+    _input_lines.push_back(mux_resultselect.output());
+    mux1_alu.input(_input_lines);
+    //updated mux
+
     //executing ALU unit
 
     if(pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd) {
@@ -344,7 +361,7 @@ void execute() {
     alu.operation = pipdecode.ex["AluOperation"];
     mux_isbranch.select_line = pipdecode.ex["isBranch"];
 
-    alu.input(pipdecode.RS1, pipdecode.op2mux_out);
+    alu.input(mux1_alu.output(), mux2_alu.output());
     alu.process();
 
 
