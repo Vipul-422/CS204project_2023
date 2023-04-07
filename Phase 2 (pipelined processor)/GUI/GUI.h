@@ -20,9 +20,15 @@ private:
 	void outputFile(wxCommandEvent& evt);
 	void hideFile(wxCommandEvent& evt);
 	void stepClicked(wxCommandEvent& evt);
+	void OnCheckbox0Clicked(wxCommandEvent& event);
+	void OnCheckbox1Clicked(wxCommandEvent& event);
+	void OnCheckbox2Clicked(wxCommandEvent& event);
+	void OnCheckbox3Clicked(wxCommandEvent& event);
+	void OnCheckbox4Clicked(wxCommandEvent& event);
 	wxButton* buttons[100];
 	wxTextCtrl* txtField[200];
 	wxStaticText* txt[100];
+	wxCheckBox* checked[10];
 	
 };
 
