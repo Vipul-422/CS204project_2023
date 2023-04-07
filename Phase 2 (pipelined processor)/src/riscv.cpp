@@ -25,10 +25,10 @@ extern Pipmemory pipmemory;
 extern string inst_type;
 extern int description; 
 extern int operation;
-extern bool is_stall;
 
 /* DON'T TOUCH ENDS */
 
+extern bool is_stall;
 extern map<string, int> util;
 
 /*
@@ -49,8 +49,11 @@ void run_riscvsim() {
 
 	int cycle = 0;
 	bool fetchrun = false;
+	int endflag = 0;
+	is_stall = false;
 	while(1) {
 		++cycle;
+		is_stall = false;
 
 		// if(stall_count == 2){
 		// 	pipdecode.isEmpty = true;
@@ -75,13 +78,18 @@ void run_riscvsim() {
 		
 		if(!pipmemory.isEmpty){
 			write_back();
+
+			cout << "wbpc: " << pipmemory.pc << " ";
 					
 			
-			if(pipexecute.isEmpty) {
+			cout << cycle << " in writeback " << " " << regs.regs["x5"] << " " <<regs.regs["x6"] << "\n";
+			if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
 				pipmemory.isEmpty = true;
 				break;
 			}
-			// cout << cycle << " in writeback " << cycle << "\n";
+			else if (pipexecute.isEmpty&&!pipdecode.isEmpty) {
+				pipmemory.isEmpty = true;
+			}
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
@@ -90,32 +98,37 @@ void run_riscvsim() {
 			pipmemory.isEmpty = false;
 			
 			
+			cout << "mempc: " << pipexecute.pc << " ";
 			
-			
-			if(pipdecode.isEmpty)
+			if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
 				pipexecute.isEmpty = true;
-			// cout << cycle << " in memaces " << cycle << "\n";
+			cout << cycle << " in memaces " << " " << regs.regs["x5"] << " " <<regs.regs["x6"] <<"\n";
 		}
-		if(!pipdecode.isEmpty) {
+		if(!pipdecode.isEmpty && !is_stall) {
 			execute();
-			if(is_stall){
-				pipdecode.isEmpty = true;
+			if(is_stall) {
 				pipexecute.isEmpty = true;
-				pipfetch.isEmpty = true;
-				fetchrun = true;
+				pipdecode.isEmpty = true;
+				cout << "stall at " << cycle << "\n";
+				PC = pipdecode.pc;
+				vector<int> temp = fetch();
+				PC = pipfetch.pc;
+				pipfetch.input(temp, pipdecode.pc);
+				pipfetch.isEmpty = false;
+				if(endflag==1)   endflag =0;
 				continue;
 			}
 			pipexecute.input_vars(pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 			pipexecute.isEmpty = false;
+
+			cout << "expc: " << pipdecode.pc << " ";
 			
-			
-			
-			if(pipfetch.isEmpty)
+			if(pipfetch.isEmpty && endflag)
 				pipdecode.isEmpty = true;
-			// cout << cycle << " in exe " << cycle << "\n";
+			cout << cycle << " in exe " << " " <<  regs.regs["x5"] << " " <<regs.regs["x6"]  << "\n";
 		}
-		if(!pipfetch.isEmpty) {
+		if(!pipfetch.isEmpty && !is_stall) {
 			decode();
 			pipdecode.isEmpty = false;
 			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
@@ -129,33 +142,22 @@ void run_riscvsim() {
 			m["ResultSelect"] = mux_resultselect.select_line;
 			wb["RFWrite"] = regs.rfwrite;
 			pipdecode.input_controls(ex, m, wb);
-
-			if(util["rfwrite"] == 1) {
-				if(util["pipdecode.rs1 == regs.rd"] == 1) {
-					pipdecode.RS1 = util["pipdecode.RS1"];
-				}
-				if(util["pipdecode.rs2 == regs.rd"] == 1) {
-					pipdecode.OP2 = util["pipdecode.OP2"];
-					if(util["op2muxselis0"] == 1) {
-						pipdecode.op2mux_out = util["pipdecode.op2mux_out"];
-					}
-				}
-			}
+			cout << "decpc: " << pipfetch.pc << " ";
 
 
 
-			// cout << cycle << " in decode " << cycle << "\n";
+			cout << cycle << " in decode "  << " " << regs.regs["x5"] << " " <<regs.regs["x6"]  << "\n";
 		}
 		// Fetch();
-		if(!fetchrun){
+		if(!endflag && !is_stall){
 			vector<int> temp = fetch();
 			pipfetch.input(temp, PC);
 			pipfetch.isEmpty = false;
 			PC += 4;
-				// cout << "fetched " << cycle << "\n";
+				cout << "fetched " << " "<< regs.regs["x5"] << " " <<regs.regs["x6"]  << "\n";
 			
 			
-			int flag = 0;
+			int flag =0;
 			for(int i=31; i>=0; i--) {
 				if(temp[i]!=0) {
 					flag = 1;
@@ -164,10 +166,11 @@ void run_riscvsim() {
 			}
 			if(flag==0) {
 				pipfetch.isEmpty = true;
+				endflag=1;
 			}
 		}
 
-		util.clear();
+		cout << "\n";
 
 	}
 

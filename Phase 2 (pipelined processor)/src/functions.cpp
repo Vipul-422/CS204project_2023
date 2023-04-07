@@ -332,14 +332,22 @@ void decode() {
 void execute() {
     //executing ALU unit
 
-    if(pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd) {
-        is_stall = true;
-        return;
+    if((pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
+        if (pipexecute.rd!="x0") {
+            is_stall = true;
+            return;
+        }
     }
-    else if(pipdecode.rs1 == pipmemory.rd || pipdecode.rs2 == pipexecute.rd){
-        is_stall = true;
-        return;
+    else if((pipdecode.rs1 == pipmemory.rd || pipdecode.rs2 == pipmemory.rd)&&!pipmemory.isEmpty){
+        if(pipmemory.rd!="x0") {
+            is_stall = true;
+            return;
+        }
     }
+    // else if (pipdecode.rs1 == regs.rd || pipdecode.rs2 == regs.rd) {
+    //     is_stall = true;
+    //     return;
+    // }
 
     alu.operation = pipdecode.ex["AluOperation"];
     mux_isbranch.select_line = pipdecode.ex["isBranch"];
@@ -405,22 +413,11 @@ void write_back() {
     //start
     if(regs.rfwrite){
         regs.write(pipmemory.resultselectmux_out);
-        util["rfwrite"] = 1;
-
-        if(pipdecode.rs1 == regs.rd && regs.rd!="x0") {
-            util["pipdecode.rs1 == regs.rd"] = 1;
-            util["pipdecode.RS1"] = regs.regs[regs.rd];
-        }
-        if(pipdecode.rs2 == regs.rd && regs.rd!="x0") {
-            util["pipdecode.rs2 == regs.rd"] = 1;
-            util["pipdecode.OP2"] = regs.regs[regs.rd];
-            if(pipdecode.ex["op2mux_sel"]==0){
-                util["op2muxselis0"] = 1;
-                util["pipdecode.op2mux_out"] = regs.regs[regs.rd];
-            }
-        }
-
     }
+
+    
+
+
     //end
 
     //updating PC for next cycle
