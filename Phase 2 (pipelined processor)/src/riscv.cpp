@@ -25,6 +25,7 @@ extern Pipmemory pipmemory;
 extern string inst_type;
 extern int description; 
 extern int operation;
+extern bool is_stall;
 
 /* DON'T TOUCH ENDS */
 
@@ -47,8 +48,29 @@ description = 9 for jal instruction
 void run_riscvsim() {
 
 	int cycle = 0;
+	bool fetchrun = false;
 	while(1) {
 		++cycle;
+
+		// if(stall_count == 2){
+		// 	pipdecode.isEmpty = true;
+		// 	pipfetch.isEmpty = true;
+		// 	fetchrun = true;
+		// 	stall_count--;
+		// }
+		// else if(stall_count == 1){
+		// 	pipexecute.isEmpty = true;
+		// 	pipdecode.isEmpty = true;
+		// 	pipfetch.isEmpty = true;
+		// 	fetchrun = true;
+		// 	stall_count--;
+		// }
+		// else{
+		// 	pipdecode.isEmpty = false;
+		// 	pipexecute.isEmpty = false;
+		// 	pipfetch.isEmpty = false;
+		// 	fetchrun = false;
+		// }
 
 		
 		if(!pipmemory.isEmpty){
@@ -76,10 +98,16 @@ void run_riscvsim() {
 		}
 		if(!pipdecode.isEmpty) {
 			execute();
+			if(is_stall){
+				pipdecode.isEmpty = true;
+				pipexecute.isEmpty = true;
+				pipfetch.isEmpty = true;
+				fetchrun = true;
+				continue;
+			}
 			pipexecute.input_vars(pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 			pipexecute.isEmpty = false;
-			
 			
 			
 			
@@ -119,22 +147,24 @@ void run_riscvsim() {
 			// cout << cycle << " in decode " << cycle << "\n";
 		}
 		// Fetch();
-		vector<int> temp = fetch();
-		pipfetch.input(temp, PC);
-		pipfetch.isEmpty = false;
-		PC += 4;
-			// cout << "fetched " << cycle << "\n";
-		
-		
-		int flag = 0;
-		for(int i=31; i>=0; i--) {
-			if(temp[i]!=0) {
-				flag = 1;
-				break;
+		if(!fetchrun){
+			vector<int> temp = fetch();
+			pipfetch.input(temp, PC);
+			pipfetch.isEmpty = false;
+			PC += 4;
+				// cout << "fetched " << cycle << "\n";
+			
+			
+			int flag = 0;
+			for(int i=31; i>=0; i--) {
+				if(temp[i]!=0) {
+					flag = 1;
+					break;
+				}
 			}
-		}
-		if(flag==0) {
-			pipfetch.isEmpty = true;
+			if(flag==0) {
+				pipfetch.isEmpty = true;
+			}
 		}
 
 		util.clear();

@@ -25,6 +25,7 @@ extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
 string inst_type;
 int description = 0;
+bool is_stall = false;
 
 /* DON'T TOUCH ENDS */
 
@@ -90,7 +91,7 @@ void decode() {
     for(int i=30, j=0; i>=21; i--) { immj[10+j] = inst[i]; j++; }
     immj[9] = inst[20];
     for(int i=19, j=1; i>=12; i--) { immj[j] = inst[i]; j++;}
-    immJ.input(immj);  // immJ is now live
+    immJ.input(immj);  // imxmJ is now live
 
     vector<int> immvec;
     for(int i=31; i>=20; i--) { immvec.push_back(inst[i]); }
@@ -331,10 +332,18 @@ void decode() {
 void execute() {
     //executing ALU unit
 
-    
+    if(pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd) {
+        is_stall = true;
+        return;
+    }
+    else if(pipdecode.rs1 == pipmemory.rd || pipdecode.rs2 == pipexecute.rd){
+        is_stall = true;
+        return;
+    }
 
     alu.operation = pipdecode.ex["AluOperation"];
     mux_isbranch.select_line = pipdecode.ex["isBranch"];
+
     alu.input(pipdecode.RS1, pipdecode.op2mux_out);
     alu.process();
 
