@@ -1,0 +1,481 @@
+fetched  0
+
+decpc: 0 2 in decode 
+fetched  4
+
+expc: 0 3 in exe 
+decpc: 4 3 in decode 
+fetched  8
+
+mempc: 0 4 in memaces 
+stall at 4
+
+wbpc: 0 5 in writeback  
+decpc: 4 5 in decode 
+fetched  8
+
+wbpc: 0 6 in writeback  
+expc: 4 6 in exe 
+decpc: 8 6 in decode 
+fetched  12
+
+mempc: 4 7 in memaces 
+expc: 8 7 in exe 
+decpc: 12 7 in decode 
+fetched  16
+
+wbpc: 4 8 in writeback  
+mempc: 8 8 in memaces 
+stall at 8
+
+wbpc: 8 9 in writeback  
+decpc: 12 9 in decode 
+fetched  16
+
+wbpc: 8 10 in writeback  
+expc: 12 10 in exe 
+decpc: 16 10 in decode 
+fetched  20
+
+mempc: 12 11 in memaces 
+expc: 16 11 in exe 
+decpc: 20 11 in decode 
+fetched  24
+
+wbpc: 12 12 in writeback  
+mempc: 16 12 in memaces 
+stall at 12
+
+wbpc: 16 13 in writeback  
+decpc: 20 13 in decode 
+fetched  24
+
+wbpc: 16 14 in writeback  
+expc: 20 14 in exe 
+decpc: 24 14 in decode 
+fetched  28
+
+mempc: 20 15 in memaces 
+expc: 24 15 in exe 
+decpc: 28 15 in decode 
+fetched  32
+
+wbpc: 20 16 in writeback  
+mempc: 24 16 in memaces 
+expc: 28 16 in exe 
+decpc: 32 16 in decode 
+fetched  36
+
+wbpc: 24 17 in writeback  
+mempc: 28 17 in memaces 
+expc: 32 17 in exe 
+decpc: 36 17 in decode 
+fetched  40
+
+wbpc: 28 18 in writeback  
+mempc: 32 18 in memaces 
+expc: 36 18 in exe 
+decpc: 40 18 in decode 
+fetched  44
+
+wbpc: 32 19 in writeback  
+mempc: 36 19 in memaces 
+stall at 19
+
+wbpc: 36 20 in writeback  
+decpc: 40 20 in decode 
+fetched  44
+
+wbpc: 36 21 in writeback  
+branch jump stall at 21 jump to 20
+
+expc: 40 21 in exe 
+
+mempc: 40 22 in memaces 
+fetched  20
+
+wbpc: 40 23 in writeback  
+mempc: 40 23 in memaces 
+decpc: 20 23 in decode 
+fetched  24
+
+wbpc: 40 24 in writeback  
+mempc: 40 24 in memaces 
+expc: 20 24 in exe 
+decpc: 24 24 in decode 
+fetched  28
+
+wbpc: 40 25 in writeback  
+mempc: 20 25 in memaces 
+expc: 24 25 in exe 
+decpc: 28 25 in decode 
+fetched  32
+
+wbpc: 20 26 in writeback  
+mempc: 24 26 in memaces 
+expc: 28 26 in exe 
+decpc: 32 26 in decode 
+fetched  36
+
+wbpc: 24 27 in writeback  
+mempc: 28 27 in memaces 
+expc: 32 27 in exe 
+decpc: 36 27 in decode 
+fetched  40
+
+wbpc: 28 28 in writeback  
+mempc: 32 28 in memaces 
+expc: 36 28 in exe 
+decpc: 40 28 in decode 
+fetched  44
+
+wbpc: 32 29 in writeback  
+mempc: 36 29 in memaces 
+stall at 29
+
+wbpc: 36 30 in writeback  
+decpc: 40 30 in decode 
+fetched  44
+
+wbpc: 36 31 in writeback  
+branch jump stall at 31 jump to 20
+
+expc: 40 31 in exe 
+
+mempc: 40 32 in memaces 
+fetched  20
+
+wbpc: 40 33 in writeback  
+mempc: 40 33 in memaces 
+decpc: 20 33 in decode 
+fetched  24
+
+wbpc: 40 34 in writeback  
+mempc: 40 34 in memaces 
+expc: 20 34 in exe 
+decpc: 24 34 in decode 
+fetched  28
+
+wbpc: 40 35 in writeback  
+mempc: 20 35 in memaces 
+expc: 24 35 in exe 
+decpc: 28 35 in decode 
+fetched  32
+
+wbpc: 20 36 in writeback  
+mempc: 24 36 in memaces 
+expc: 28 36 in exe 
+decpc: 32 36 in decode 
+fetched  36
+
+wbpc: 24 37 in writeback  
+mempc: 28 37 in memaces 
+expc: 32 37 in exe 
+decpc: 36 37 in decode 
+fetched  40
+
+wbpc: 28 38 in writeback  
+mempc: 32 38 in memaces 
+expc: 36 38 in exe 
+decpc: 40 38 in decode 
+fetched  44
+
+wbpc: 32 39 in writeback  
+mempc: 36 39 in memaces 
+stall at 39
+
+wbpc: 36 40 in writeback  
+decpc: 40 40 in decode 
+fetched  44
+
+wbpc: 36 41 in writeback  
+branch jump stall at 41 jump to 20
+
+expc: 40 41 in exe 
+
+mempc: 40 42 in memaces 
+fetched  20
+
+wbpc: 40 43 in writeback  
+mempc: 40 43 in memaces 
+decpc: 20 43 in decode 
+fetched  24
+
+wbpc: 40 44 in writeback  
+mempc: 40 44 in memaces 
+expc: 20 44 in exe 
+decpc: 24 44 in decode 
+fetched  28
+
+wbpc: 40 45 in writeback  
+mempc: 20 45 in memaces 
+expc: 24 45 in exe 
+decpc: 28 45 in decode 
+fetched  32
+
+wbpc: 20 46 in writeback  
+mempc: 24 46 in memaces 
+expc: 28 46 in exe 
+decpc: 32 46 in decode 
+fetched  36
+
+wbpc: 24 47 in writeback  
+mempc: 28 47 in memaces 
+expc: 32 47 in exe 
+decpc: 36 47 in decode 
+fetched  40
+
+wbpc: 28 48 in writeback  
+mempc: 32 48 in memaces 
+expc: 36 48 in exe 
+decpc: 40 48 in decode 
+fetched  44
+
+wbpc: 32 49 in writeback  
+mempc: 36 49 in memaces 
+stall at 49
+
+wbpc: 36 50 in writeback  
+decpc: 40 50 in decode 
+fetched  44
+
+wbpc: 36 51 in writeback  
+branch jump stall at 51 jump to 20
+
+expc: 40 51 in exe 
+
+mempc: 40 52 in memaces 
+fetched  20
+
+wbpc: 40 53 in writeback  
+mempc: 40 53 in memaces 
+decpc: 20 53 in decode 
+fetched  24
+
+wbpc: 40 54 in writeback  
+mempc: 40 54 in memaces 
+expc: 20 54 in exe 
+decpc: 24 54 in decode 
+fetched  28
+
+wbpc: 40 55 in writeback  
+mempc: 20 55 in memaces 
+expc: 24 55 in exe 
+decpc: 28 55 in decode 
+fetched  32
+
+wbpc: 20 56 in writeback  
+mempc: 24 56 in memaces 
+expc: 28 56 in exe 
+decpc: 32 56 in decode 
+fetched  36
+
+wbpc: 24 57 in writeback  
+mempc: 28 57 in memaces 
+expc: 32 57 in exe 
+decpc: 36 57 in decode 
+fetched  40
+
+wbpc: 28 58 in writeback  
+mempc: 32 58 in memaces 
+expc: 36 58 in exe 
+decpc: 40 58 in decode 
+fetched  44
+
+wbpc: 32 59 in writeback  
+mempc: 36 59 in memaces 
+stall at 59
+
+wbpc: 36 60 in writeback  
+decpc: 40 60 in decode 
+fetched  44
+
+wbpc: 36 61 in writeback  
+branch jump stall at 61 jump to 20
+
+expc: 40 61 in exe 
+
+mempc: 40 62 in memaces 
+fetched  20
+
+wbpc: 40 63 in writeback  
+mempc: 40 63 in memaces 
+decpc: 20 63 in decode 
+fetched  24
+
+wbpc: 40 64 in writeback  
+mempc: 40 64 in memaces 
+expc: 20 64 in exe 
+decpc: 24 64 in decode 
+fetched  28
+
+wbpc: 40 65 in writeback  
+mempc: 20 65 in memaces 
+expc: 24 65 in exe 
+decpc: 28 65 in decode 
+fetched  32
+
+wbpc: 20 66 in writeback  
+mempc: 24 66 in memaces 
+expc: 28 66 in exe 
+decpc: 32 66 in decode 
+fetched  36
+
+wbpc: 24 67 in writeback  
+mempc: 28 67 in memaces 
+expc: 32 67 in exe 
+decpc: 36 67 in decode 
+fetched  40
+
+wbpc: 28 68 in writeback  
+mempc: 32 68 in memaces 
+expc: 36 68 in exe 
+decpc: 40 68 in decode 
+fetched  44
+
+wbpc: 32 69 in writeback  
+mempc: 36 69 in memaces 
+stall at 69
+
+wbpc: 36 70 in writeback  
+decpc: 40 70 in decode 
+fetched  44
+
+wbpc: 36 71 in writeback  
+branch jump stall at 71 jump to 20
+
+expc: 40 71 in exe 
+
+mempc: 40 72 in memaces 
+fetched  20
+
+wbpc: 40 73 in writeback  
+mempc: 40 73 in memaces 
+decpc: 20 73 in decode 
+fetched  24
+
+wbpc: 40 74 in writeback  
+mempc: 40 74 in memaces 
+expc: 20 74 in exe 
+decpc: 24 74 in decode 
+fetched  28
+
+wbpc: 40 75 in writeback  
+mempc: 20 75 in memaces 
+expc: 24 75 in exe 
+decpc: 28 75 in decode 
+fetched  32
+
+wbpc: 20 76 in writeback  
+mempc: 24 76 in memaces 
+expc: 28 76 in exe 
+decpc: 32 76 in decode 
+fetched  36
+
+wbpc: 24 77 in writeback  
+mempc: 28 77 in memaces 
+expc: 32 77 in exe 
+decpc: 36 77 in decode 
+fetched  40
+
+wbpc: 28 78 in writeback  
+mempc: 32 78 in memaces 
+expc: 36 78 in exe 
+decpc: 40 78 in decode 
+fetched  44
+
+wbpc: 32 79 in writeback  
+mempc: 36 79 in memaces 
+stall at 79
+
+wbpc: 36 80 in writeback  
+decpc: 40 80 in decode 
+fetched  44
+
+wbpc: 36 81 in writeback  
+branch jump stall at 81 jump to 20
+
+expc: 40 81 in exe 
+
+mempc: 40 82 in memaces 
+fetched  20
+
+wbpc: 40 83 in writeback  
+mempc: 40 83 in memaces 
+decpc: 20 83 in decode 
+fetched  24
+
+wbpc: 40 84 in writeback  
+mempc: 40 84 in memaces 
+expc: 20 84 in exe 
+decpc: 24 84 in decode 
+fetched  28
+
+wbpc: 40 85 in writeback  
+mempc: 20 85 in memaces 
+expc: 24 85 in exe 
+decpc: 28 85 in decode 
+fetched  32
+
+wbpc: 20 86 in writeback  
+mempc: 24 86 in memaces 
+expc: 28 86 in exe 
+decpc: 32 86 in decode 
+fetched  36
+
+wbpc: 24 87 in writeback  
+mempc: 28 87 in memaces 
+expc: 32 87 in exe 
+decpc: 36 87 in decode 
+fetched  40
+
+wbpc: 28 88 in writeback  
+mempc: 32 88 in memaces 
+expc: 36 88 in exe 
+decpc: 40 88 in decode 
+fetched  44
+
+wbpc: 32 89 in writeback  
+mempc: 36 89 in memaces 
+stall at 89
+
+wbpc: 36 90 in writeback  
+decpc: 40 90 in decode 
+fetched  44
+
+wbpc: 36 91 in writeback  
+expc: 40 91 in exe 
+decpc: 44 91 in decode 
+fetched  48
+
+mempc: 40 92 in memaces 
+expc: 44 92 in exe 
+decpc: 48 92 in decode 
+fetched  52
+
+wbpc: 40 93 in writeback  
+mempc: 44 93 in memaces 
+expc: 48 93 in exe 
+decpc: 52 93 in decode 
+fetched  56
+
+wbpc: 44 94 in writeback  
+mempc: 48 94 in memaces 
+expc: 52 94 in exe 
+decpc: 56 94 in decode 
+fetched  60
+
+wbpc: 48 95 in writeback  
+mempc: 52 95 in memaces 
+branch jump stall at 95 jump to 64
+
+expc: 56 95 in exe 
+
+wbpc: 52 96 in writeback  
+mempc: 56 96 in memaces 
+fetched  64
+
+wbpc: 56 97 in writeback  
+mempc: 56 97 in memaces 
+
+wbpc: 56 98 in writeback  

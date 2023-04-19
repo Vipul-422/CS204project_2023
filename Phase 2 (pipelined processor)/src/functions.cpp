@@ -32,7 +32,8 @@ bool branchjump_stall;
 
 
 
-map<string, int> util;
+map<string, string> util;
+map<string, int> utilint;
 
 
 //reads from the instruction memory and updates the instruction register
@@ -360,7 +361,9 @@ void execute() {
             return;
         }
     }
-    else if((pipdecode.rs1 == pipmemory.rd || pipdecode.rs2 == pipmemory.rd)&&!pipmemory.isEmpty){
+    else if((pipdecode.rs1 == util["pipmemrd"] || pipdecode.rs2 == util["pipmemrd"])&&!utilint["pipmemisempty"]) {
+        util.clear();
+        utilint.clear();
         if(pipmemory.rd!="x0") {
             is_stall = true;
             return;
@@ -395,12 +398,16 @@ void execute() {
         bcu.input_ops(pipdecode.RS1, pipdecode.op2mux_out);
         mux_isbranch.select_line = bcu.output();
 
-        if(bcu.output()==1) {
-            branchjump_stall = true;
-        }
-        else if (pipdecode.ex["isBranch"] == 0) {
+        if (pipdecode.ex["isBranch"] == 0) {
             branchjump_stall = true;
             mux_isbranch.select_line = 0;
+        }
+        else if(bcu.output()==1) {
+            branchjump_stall = true;
+        }
+        else if (pipdecode.ex["isBranch"] == 1) {
+            branchjump_stall = true;
+            mux_isbranch.select_line = 1;
         }
 
         //isBranch updated

@@ -30,7 +30,9 @@ extern int operation;
 
 extern bool is_stall;
 extern bool branchjump_stall;
-extern map<string, int> util;
+extern map<string, string> util;
+extern map<string, int> utilint;
+map <int, int> branch_pred;
 
 /*
 
@@ -45,14 +47,17 @@ description = 8 for auipc instruction
 description = 9 for jal instruction
 
 */
+using namespace std;
 
 void run_riscvsim() {
 
+	bool branch_prediction = false;
 	int cycle = 0;
 	int stalls = 0;
 	int endflag = 0;
 	branchjump_stall = false;
 	is_stall = false;
+	// freopen("output.txt", "w", stdout);
 	while(1) {
 		++cycle;
 		is_stall = false;
@@ -75,6 +80,8 @@ void run_riscvsim() {
 		}
 		if(!pipexecute.isEmpty) {
 			memory_access();
+			util["pipmemrd"] = pipmemory.rd;
+			utilint["pipmemisempty"] = pipmemory.isEmpty;
 			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
 			pipmemory.input_controls(pipexecute.wb);
 			pipmemory.isEmpty = false;
@@ -84,7 +91,7 @@ void run_riscvsim() {
 			
 			if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
 				pipexecute.isEmpty = true;
-			cout << cycle << " in memaces " << "\n";
+			cout << cycle << " in memory access " << "\n";
 		}
 		if(!pipdecode.isEmpty && !is_stall) {
 			execute();
@@ -103,13 +110,14 @@ void run_riscvsim() {
 			}
 			else if(branchjump_stall) {
 				if(pipfetch.pc != mux_isbranch.output()) {
+					stalls++;
 					pipdecode.isEmpty=true;
 					pipfetch.isEmpty = true;
 					PC = mux_isbranch.output();
 					endflag=0;
-					cout << "branch jump stall at " << cycle << " jump to " << mux_isbranch.output() << "\n\n";
-				}
+					cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
 
+				}
 			}
 			pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
@@ -119,9 +127,9 @@ void run_riscvsim() {
 			
 			if(pipfetch.isEmpty && endflag)
 				pipdecode.isEmpty = true;
-			cout << cycle << " in exe " <<  "\n";
+			cout << cycle << " in execution " <<  "\n";
 		}
-		if(!pipfetch.isEmpty && !is_stall) {
+		if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
 			decode();
 			pipdecode.isEmpty = false;
 			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
