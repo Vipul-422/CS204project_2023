@@ -118,6 +118,9 @@ void run_riscvsim() {
 					cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
 
 				}
+				else {
+					branchjump_stall = false;
+				}
 			}
 			pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
