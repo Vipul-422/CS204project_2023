@@ -256,11 +256,14 @@ void run_riscvsim() {
 						endflag=0;
 						cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
 
-					}
 				}
-				pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
-				pipexecute.input_controls(pipdecode.m, pipdecode.wb);
-				pipexecute.isEmpty = false;
+				else {
+					branchjump_stall = false;
+				}
+			}
+			pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
+			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
+			pipexecute.isEmpty = false;
 
 				cout << "expc: " << pipdecode.pc << " ";
 				
