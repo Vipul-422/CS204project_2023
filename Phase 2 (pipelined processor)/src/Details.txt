@@ -1,0 +1,4 @@
+Cycles: 517
+Number of instructions: 0
+CPI: inf
+stalls: 65

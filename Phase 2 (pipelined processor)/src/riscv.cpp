@@ -52,13 +52,18 @@ description = 9 for jal instruction
 using namespace std;
 
 void run_riscvsim() {
-	cout<<"Press 1 for forwarding\nPress 0 for without forwading\n";
-	cin >> forwarding;
-	cout<<"\n\n";
-	freopen("output.txt", "w", stdout);
-	bool branch_prediction = false;
+	
 	int cycle = 0;
 	int stalls = 0;
+	int instructions = 0;
+	
+	bool branch_prediction = false;
+	cout<<"Press 1 for forwarding\nPress 0 for without forwarding\n";
+	cin >> forwarding;
+	cout<<"Press 1 for branch prediction\nPress 0 for without branch prediction\n";
+	cin >> branch_prediction;
+
+	FILE* fp1 = freopen("output.txt", "w", stdout);
 	int endflag = 0;
 	branchjump_stall = false;
 	is_stall = false;
@@ -72,10 +77,10 @@ void run_riscvsim() {
 			if(!pipmemory.isEmpty){
 				write_back();
 
-				cout << "wbpc: " << pipmemory.pc << " ";
+				cout << "WB pc: " << pipmemory.pc;
 						
 				
-				cout << cycle << " in writeback " << " " "\n";
+				cout << " in writeback " << "\n";
 				if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
 					pipmemory.isEmpty = true;
 					break;
@@ -96,11 +101,11 @@ void run_riscvsim() {
 				pipmemory.isEmpty = false;
 				
 				
-				cout << "mempc: " << pipexecute.pc << " ";
+				cout << "MEM pc: " << pipexecute.pc;
 				
 				if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
 					pipexecute.isEmpty = true;
-				cout << cycle << " in memory access " << "\n";
+				cout << " in memory access " << "\n";
 			}
 			if(!pipdecode.isEmpty && !is_stall) {
 				execute();
@@ -108,7 +113,7 @@ void run_riscvsim() {
 					stalls++;
 					pipexecute.isEmpty = true;
 					pipdecode.isEmpty = true;
-					cout << "stall at " << cycle << "\n\n";
+					cout << "Stall at " << "pc =" << pipdecode.pc << "\n\n";
 					PC = pipdecode.pc;
 					vector<int> temp = fetch();
 					PC = pipfetch.pc;
@@ -118,27 +123,40 @@ void run_riscvsim() {
 					continue;
 				}
 				if(branchjump_stall) {
+					// cout << "mux is branch: " << mux_isbranch.output() << endl;
 					if(pipfetch.pc != mux_isbranch.output()) {
 						stalls++;
 						pipdecode.isEmpty=true;
 						pipfetch.isEmpty = true;
 						PC = mux_isbranch.output();
 						endflag=0;
-						cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
+						cout << "Branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n";
+
+						if(branch_prediction && mux_isbranch.select_line!=0) {
+							branch_pred[pipdecode.pc] =  mux_isbranch.output();
+						}
 
 					}
+					else {
+						if(branch_prediction && mux_isbranch.select_line!=0) {
+							branch_pred[pipdecode.pc] =  mux_isbranch.output();
+						}
+						branchjump_stall = false;
+					}
 				}
+
 				// cout<<"pipdecode.op2 = "<<pipdecode.OP2<<"\n";
 				pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 				pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 				pipexecute.isEmpty = false;
 
-				cout << "expc: " << pipdecode.pc << " ";
+				cout << "EX pc: " << pipdecode.pc << " ";
 				
 				if(pipfetch.isEmpty && endflag)
 					pipdecode.isEmpty = true;
-				cout << cycle << " in execution " <<  "\n";
+				cout << " in execution " <<  "\n";
 				// cout<<"aluout: "<<alu.output()<<"\n";
+
 			}
 			if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
 				decode();
@@ -154,19 +172,38 @@ void run_riscvsim() {
 				m["ResultSelect"] = mux_resultselect.select_line;
 				wb["RFWrite"] = regs.rfwrite;
 				pipdecode.input_controls(ex, m, wb);
-				cout << "decpc: " << pipfetch.pc << " ";
+				cout << "DEC pc: " << pipfetch.pc << " ";
 
 
 
-				cout << cycle << " in decode "   << "\n";
+				cout << " in decode "   << "\n";
 			}
 			// Fetch();
 			if(!endflag && !is_stall && !branchjump_stall){
 				vector<int> temp = fetch();
 				pipfetch.input(temp, PC);
 				pipfetch.isEmpty = false;
-					cout << "fetched " << " "<< PC  << "\n";
-				PC += 4;
+				cout << "Fetched " << " "<< PC  << "\n";
+				
+				
+				
+				if(branch_prediction) {
+					string opcode="";
+					for(int i=6; i>=0; i--) {
+						opcode += to_string(temp[i]);
+					}
+					if(opcode=="1101111" && branch_pred[PC]!=0) {
+						PC = branch_pred[PC];
+					}
+					else if(opcode=="1100011" && branch_pred[PC]!=0) {
+						PC = branch_pred[PC];
+					}
+					else {
+						PC += 4;
+					}
+				}
+				else
+					PC += 4;
 				
 				
 				int flag =0;
@@ -181,16 +218,7 @@ void run_riscvsim() {
 					endflag=1;
 				}
 			}
-			// cout<<"x1 = "<<regs.regs["x1"]<<"\n";
-			// cout<<"t4 = x29 = "<<regs.regs["x29"]<<"\n";
-			// cout<<"t5 = x30 = "<<regs.regs["x30"]<<"\n";
-			// for(int i=0; i<32; i++) {
-			// 	string temp = "x"+to_string(i);
-			// 	cout << temp << "\t: " << regs.regs[temp] << "\n";
-			// }
-			// cout<<"x20\t: " << regs.regs["x20"] <<"\n";
 			cout << "\n";
-			// cout << "\n\nended\n\n";
 
 		}
 	}
@@ -204,10 +232,10 @@ void run_riscvsim() {
 			if(!pipmemory.isEmpty){
 				write_back();
 
-				cout << "wbpc: " << pipmemory.pc << " ";
+				cout << "WB pc: " << pipmemory.pc << " ";
 						
 				
-				cout << cycle << " in writeback " << " " "\n";
+				cout << " in writeback " << " " "\n";
 				if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
 					pipmemory.isEmpty = true;
 					break;
@@ -226,11 +254,11 @@ void run_riscvsim() {
 				pipmemory.isEmpty = false;
 				
 				
-				cout << "mempc: " << pipexecute.pc << " ";
+				cout << "MEM pc: " << pipexecute.pc << " ";
 				
 				if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
 					pipexecute.isEmpty = true;
-				cout << cycle << " in memory access " << "\n";
+				cout << " in memory access " << "\n";
 			}
 			if(!pipdecode.isEmpty && !is_stall) {
 				execute();
@@ -238,7 +266,7 @@ void run_riscvsim() {
 					stalls++;
 					pipexecute.isEmpty = true;
 					pipdecode.isEmpty = true;
-					cout << "stall at " << cycle << "\n\n";
+					cout << "Stall at " << cycle << "\n\n";
 					PC = pipdecode.pc;
 					vector<int> temp = fetch();
 					PC = pipfetch.pc;
@@ -254,22 +282,27 @@ void run_riscvsim() {
 						pipfetch.isEmpty = true;
 						PC = mux_isbranch.output();
 						endflag=0;
-						cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
+						cout << "Branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n";
 
-				}
-				else {
-					branchjump_stall = false;
-				}
+						if(branch_prediction && mux_isbranch.select_line!=0) {
+							branch_pred[pipdecode.pc] =  mux_isbranch.output();
+						}
+
+					}
+					else {
+						branchjump_stall = false;
+					}
 			}
 			pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
 			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
 			pipexecute.isEmpty = false;
 
-				cout << "expc: " << pipdecode.pc << " ";
+				cout << "EX pc: " << pipdecode.pc << " ";
 				
 				if(pipfetch.isEmpty && endflag)
 					pipdecode.isEmpty = true;
-				cout << cycle << " in execution " <<  "\n";
+				cout << " in execution " <<  "\n";
+			
 			}
 			if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
 				decode();
@@ -285,19 +318,38 @@ void run_riscvsim() {
 				m["ResultSelect"] = mux_resultselect.select_line;
 				wb["RFWrite"] = regs.rfwrite;
 				pipdecode.input_controls(ex, m, wb);
-				cout << "decpc: " << pipfetch.pc << " ";
+				cout << "DEC pc: " << pipfetch.pc << " ";
 
 
 
-				cout << cycle << " in decode "   << "\n";
+				cout << " in decode "   << "\n";
 			}
 			// Fetch();
 			if(!endflag && !is_stall && !branchjump_stall){
 				vector<int> temp = fetch();
 				pipfetch.input(temp, PC);
 				pipfetch.isEmpty = false;
-					cout << "fetched " << " "<< PC  << "\n";
-				PC += 4;
+					cout << "Fetched " << " "<< PC  << "\n";
+				
+
+
+				if(branch_prediction) {
+					string opcode="";
+					for(int i=6; i>=0; i--) {
+						opcode += to_string(temp[i]);
+					}
+					if(opcode=="1101111" && branch_pred[PC]!=0) {
+						PC = branch_pred[PC];
+					}
+					else if(opcode=="1100011" && branch_pred[PC]!=0) {
+						PC = branch_pred[PC];
+					}
+					else {
+						PC += 4;
+					}
+				}
+				else
+					PC += 4;
 				
 				
 				int flag =0;
@@ -319,13 +371,16 @@ void run_riscvsim() {
 		cout<<"Please enter valid option!!\n";
 	}
 
-	
-	// for(int i=0; i<32; i++) {
-	// 	string temp = "x"+to_string(i);
-	// 	cout << temp << "\t: " << regs.regs[temp] << "\n";
-	// }
-	// cout << "\n";
-	// cout << "\n\nended\n\n";
+
+	fclose(fp1);
+
+
+	freopen("Details.txt", "w", stdout);
+
+	cout << "Cycles: " << cycle << endl;
+	cout << "Number of instructions: " << instructions << endl;
+	cout << "CPI: " << (float)cycle/instructions << endl;
+	cout << "stalls: " << stalls << endl;
 
 	
 	swi_exit();

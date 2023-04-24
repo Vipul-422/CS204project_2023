@@ -232,7 +232,7 @@ void decode() {
         mux_resultselect.select_line = 3;
         mux_isbranch.select_line = 0;
         inst_type = "JALR";
-        isBranchInst = 1;
+        isBranchInst = 3;
     }
     else if (opcode == "0100011") {
         // sb, sh, sw
@@ -302,7 +302,7 @@ void decode() {
         mux_branchTargetSel.select_line = 1;
         mux_isbranch.select_line = 1;
         inst_type = "JAL";
-        isBranchInst = 1;
+        isBranchInst = 2;
     }
     else {
         //for any wrong instruction
@@ -470,7 +470,7 @@ void execute() {
     _input_lines.clear();
     _input_lines.push_back(alu.output());
     _input_lines.push_back(pipdecode.branchadder_out);
-    _input_lines.push_back(pipdecode.pc);
+    _input_lines.push_back(pipdecode.pc+4);
     mux_isbranch.input(_input_lines);
     //done with mux
 
@@ -478,25 +478,19 @@ void execute() {
 
     bcu.input_func3(pipdecode.ex["func3"]);
 
-    if (pipdecode.isBranchInst == 1) {
-        //using BranchControl unit
+    if(pipdecode.isBranchInst == 3) {
+        branchjump_stall = true;
+        mux_isbranch.select_line = 0;
+    }
+    else if(pipdecode.isBranchInst == 2) {
+        branchjump_stall = true;
+        mux_isbranch.select_line = 1;
+    }
+    else if(pipdecode.isBranchInst == 1) {
         bcu.input(alu.output());
         bcu.input_ops(pipdecode.RS1, pipdecode.op2mux_out);
         mux_isbranch.select_line = bcu.output();
-
-        if (pipdecode.ex["isBranch"] == 0) {
-            branchjump_stall = true;
-            mux_isbranch.select_line = 0;
-        }
-        else if(bcu.output()==1) {
-            branchjump_stall = true;
-        }
-        else if (pipdecode.ex["isBranch"] == 1) {
-            branchjump_stall = true;
-            mux_isbranch.select_line = 1;
-        }
-
-        //isBranch updated
+        branchjump_stall = true;
     }
 
    
