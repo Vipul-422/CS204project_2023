@@ -6,6 +6,8 @@
 #include <bitset>
 #include "../include/components.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
 
@@ -23,10 +25,14 @@ extern Pipfetch pipfetch;
 extern Pipdecode pipdecode;
 extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
+extern int forwarding;
+extern int temp_pc;
 string inst_type;
 int description = 0;
 bool is_stall;
 bool branchjump_stall;
+// fstream file_ptr;
+// file_ptr.open("temp.txt", ios::out);
 
 /* DON'T TOUCH ENDS */
 
@@ -34,6 +40,7 @@ bool branchjump_stall;
 
 map<string, string> util;
 map<string, int> utilint;
+
 
 
 //reads from the instruction memory and updates the instruction register
@@ -338,48 +345,127 @@ void execute() {
     //updating mux1_alu
     vector<int> _input_lines;
     _input_lines.push_back(pipdecode.RS1);
-    _input_lines.push_back(pipexecute.aluout);
+    // _input_lines.push_back(pipexecute.aluout);
     _input_lines.push_back(pipmemory.resultselectmux_out);
+    _input_lines.push_back(utilint["pipmemrd"]);
     mux1_alu.input(_input_lines);
     mux1_alu.select_line = 0;
     //updated mux
 
-    //updating mux1_alu
+    //updating mux2_alu
     _input_lines.clear();
     _input_lines.push_back(pipdecode.op2mux_out);
-    _input_lines.push_back(pipexecute.aluout);
+    // _input_lines.push_back(pipexecute.aluout);
     _input_lines.push_back(pipmemory.resultselectmux_out);
+    mux2_alu.input_lines.push_back(utilint["pipmemrd"]);
     mux2_alu.input(_input_lines);
     mux2_alu.select_line = 0;
     //updated mux
 
     //executing ALU unit
-
-    if((pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
-        if (pipexecute.rd!="x0") {
-            is_stall = true;
-            return;
+    if(forwarding == 1) {
+        int temp = PC;
+        PC = pipdecode.pc;
+        vector<int> temp_inst = fetch();
+        PC = temp;
+        string opcode="";
+        for(int i=6; i>=0; i--) {
+            opcode += to_string(temp_inst[i]);
         }
-    }
-    else if((pipdecode.rs1 == util["pipmemrd"] || pipdecode.rs2 == util["pipmemrd"])&&!utilint["pipmemisempty"]) {
+        temp = PC;
+        PC = pipexecute.pc;
+        temp_inst = fetch();
+        PC = temp;
+        string opcode1="";
+        for(int i=6; i>=0; i--) {
+            opcode1 += to_string(temp_inst[i]);
+        }
+        temp = PC;
+        PC = temp_pc;
+        temp_inst = fetch();
+        PC = temp;
+        string opcode2="";
+        for(int i=6; i>=0; i--) {
+            opcode2 += to_string(temp_inst[i]);
+        }
+        // cout<<"opcode2 = "<<opcode2<<"\n";
+        if((pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
+            if (pipexecute.rd!="x0" && opcode1 == "0000011") {
+                is_stall = true;
+                return;
+            }
+        }
+        if((pipdecode.rs1 == util["pipmemrd"])&&!utilint["pipmemisempty"]) {
+            // cout<<"here1\n";
+            // cout<<util["pipmemrd"]<<" = "<<utilint["pipmemrd"]<<"\n";
+            // mux1_alu.input_lines.pop_back();
+            // int opcode = pipdecode.pc;
+            mux1_alu.select_line = 2;
+            if(opcode == "0110111" || opcode == "0010111" || opcode == "1101111") {
+                mux1_alu.select_line = 0;
+            }
+            if(opcode2 == "0100011" || opcode2 == "1100011") {
+                mux1_alu.select_line = 0;
+            }
+        }
+        if((pipdecode.rs2 == util["pipmemrd"])&&!utilint["pipmemisempty"]) {
+            // cout<<"here2\n";
+            // mux2_alu.input_lines.pop_back();
+            mux2_alu.select_line = 2;
+            if(opcode == "0100011" || opcode == "0010011" || opcode == "0000011" || opcode == "0110111" || opcode == "0010111" || opcode == "1101111") {
+                // cout<<"in if\n";
+                mux2_alu.select_line = 0;
+            }
+            if(opcode == "1100111") {
+                mux2_alu.select_line = 0;
+            }
+        }
+        if((pipdecode.rs1 == pipexecute.rd)&&!pipexecute.isEmpty) {
+            // cout<<"herere1\n";
+            mux1_alu.select_line = 1;
+            if(opcode == "0110111" || opcode == "0010111" || opcode == "1101111") {
+                mux1_alu.select_line = 0;
+            }
+            if(opcode1 == "0100011" || opcode1 == "1100011") {
+                mux1_alu.select_line = 0;
+            }
+            // mux2_alu.select_line = 0;
+        }
+        if((pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
+            // cout<<"hererere2\n";
+            // cout<<pipdecode.rs2<<" = "<<mux_resultselect.output()<<"\n";
+            mux2_alu.select_line = 1;
+            if(opcode == "0100011" || opcode == "0010011" || opcode == "0000011" || opcode == "0110111" || opcode == "0010111" || opcode == "1101111") {
+                // cout<<"in if\n";
+                mux2_alu.select_line = 0;
+            }
+        }   
         util.clear();
         utilint.clear();
-        if(pipmemory.rd!="x0") {
-            is_stall = true;
-            return;
+    }
+    else if(forwarding == 0) {
+        if((pipdecode.rs1 == pipexecute.rd || pipdecode.rs2 == pipexecute.rd)&&!pipexecute.isEmpty) {
+            if (pipexecute.rd!="x0") {
+                is_stall = true;
+                return;
+            }
+        }
+        else if((pipdecode.rs1 == util["pipmemrd"] || pipdecode.rs2 == util["pipmemrd"])&&!utilint["pipmemisempty"]) {
+            util.clear();
+            utilint.clear();
+            if(pipmemory.rd!="x0") {
+                is_stall = true;
+                return;
+            }
         }
     }
-    // else if (pipdecode.rs1 == regs.rd || pipdecode.rs2 == regs.rd) {
-    //     is_stall = true;
-    //     return;
-    // }
-
     alu.operation = pipdecode.ex["AluOperation"];
     mux_isbranch.select_line = pipdecode.ex["isBranch"];
-
+    // cout<<"mux1_selectline: "<<mux1_alu.select_line<<" mux2_selectline: "<<mux2_alu.select_line<<"\n";
+    // cout<<"mux1_aluout: "<<mux1_alu.output()<<" mux2_aluout: "<<mux2_alu.output()<<"\n";
     alu.input(mux1_alu.output(), mux2_alu.output());
     alu.process();
-
+    // cout<<"aluout: "<<alu.output()<<"\n";
     //populating mux_isbranch
     _input_lines.clear();
     _input_lines.push_back(alu.output());
@@ -418,10 +504,13 @@ void execute() {
 
 //perform the memory operation
 void memory_access() {
+
     mem.sltype = pipexecute.m["sltype"];
     mem.iswrite = pipexecute.m["MemOp"];
     mux_resultselect.select_line = pipexecute.m["ResultSelect"];
+    // cout<<"pipexecute.aluout = "<<pipexecute.aluout<<"\n";
     mem.mem_addr(pipexecute.aluout);
+    // cout<<"pipexecute.OP2 = "<<pipexecute.OP2<<"\n";
     mem.data_write(pipexecute.OP2);
 
 

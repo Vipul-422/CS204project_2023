@@ -66,8 +66,8 @@ class Memory
 //mux starts
 class Mux
 {
-    vector<int> input_lines; //this vector will store values of all input values coming in the mux
     public:
+        vector<int> input_lines; //this vector will store values of all input values coming in the mux
         int select_line; //use to select which input_line will be selected
         void input(vector<int> _input_lines); //update vector<int> input_lines with the help of select_line
         int output(); //mux_name.output() will directly give us value of input

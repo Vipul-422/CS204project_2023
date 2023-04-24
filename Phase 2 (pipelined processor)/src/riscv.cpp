@@ -33,6 +33,8 @@ extern bool branchjump_stall;
 extern map<string, string> util;
 extern map<string, int> utilint;
 map <int, int> branch_pred;
+int forwarding;
+int temp_pc;
 
 /*
 
@@ -50,7 +52,10 @@ description = 9 for jal instruction
 using namespace std;
 
 void run_riscvsim() {
-
+	cout<<"Press 1 for forwarding\nPress 0 for without forwading\n";
+	cin >> forwarding;
+	cout<<"\n\n";
+	freopen("output.txt", "w", stdout);
 	bool branch_prediction = false;
 	int cycle = 0;
 	int stalls = 0;
@@ -58,126 +63,259 @@ void run_riscvsim() {
 	branchjump_stall = false;
 	is_stall = false;
 	// freopen("output.txt", "w", stdout);
-	while(1) {
-		++cycle;
-		is_stall = false;
-		branchjump_stall = false;
-		
-		if(!pipmemory.isEmpty){
-			write_back();
+	if(forwarding == 1){
+		while(1) {
+			++cycle;
+			is_stall = false;
+			branchjump_stall = false;
+			
+			if(!pipmemory.isEmpty){
+				write_back();
 
-			cout << "wbpc: " << pipmemory.pc << " ";
-					
-			
-			cout << cycle << " in writeback " << " " "\n";
-			if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
-				pipmemory.isEmpty = true;
-				break;
-			}
-			else if (pipexecute.isEmpty&&!pipdecode.isEmpty) {
-				pipmemory.isEmpty = true;
-			}
-		}
-		if(!pipexecute.isEmpty) {
-			memory_access();
-			util["pipmemrd"] = pipmemory.rd;
-			utilint["pipmemisempty"] = pipmemory.isEmpty;
-			pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
-			pipmemory.input_controls(pipexecute.wb);
-			pipmemory.isEmpty = false;
-			
-			
-			cout << "mempc: " << pipexecute.pc << " ";
-			
-			if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
-				pipexecute.isEmpty = true;
-			cout << cycle << " in memory access " << "\n";
-		}
-		if(!pipdecode.isEmpty && !is_stall) {
-			execute();
-			if(is_stall) {
-				stalls++;
-				pipexecute.isEmpty = true;
-				pipdecode.isEmpty = true;
-				cout << "stall at " << cycle << "\n\n";
-				PC = pipdecode.pc;
-				vector<int> temp = fetch();
-				PC = pipfetch.pc;
-				pipfetch.input(temp, pipdecode.pc);
-				pipfetch.isEmpty = false;
-				if(endflag==1)   endflag =0;
-				continue;
-			}
-			else if(branchjump_stall) {
-				if(pipfetch.pc != mux_isbranch.output()) {
-					stalls++;
-					pipdecode.isEmpty=true;
-					pipfetch.isEmpty = true;
-					PC = mux_isbranch.output();
-					endflag=0;
-					cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
-
-				}
-			}
-			pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
-			pipexecute.input_controls(pipdecode.m, pipdecode.wb);
-			pipexecute.isEmpty = false;
-
-			cout << "expc: " << pipdecode.pc << " ";
-			
-			if(pipfetch.isEmpty && endflag)
-				pipdecode.isEmpty = true;
-			cout << cycle << " in execution " <<  "\n";
-		}
-		if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
-			decode();
-			pipdecode.isEmpty = false;
-			pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
-			map<string, int> ex, m, wb;
-			ex["op2mux_sel"] = mux_op2select.select_line;
-			ex["AluOperation"] = alu.operation;
-			ex["isBranch"] = mux_isbranch.select_line;
-			ex["func3"] = pipdecode.func3;
-			m["MemOp"] = mem.iswrite;
-			m["sltype"] = mem.sltype;
-			m["ResultSelect"] = mux_resultselect.select_line;
-			wb["RFWrite"] = regs.rfwrite;
-			pipdecode.input_controls(ex, m, wb);
-			cout << "decpc: " << pipfetch.pc << " ";
-
-
-
-			cout << cycle << " in decode "   << "\n";
-		}
-		// Fetch();
-		if(!endflag && !is_stall && !branchjump_stall){
-			vector<int> temp = fetch();
-			pipfetch.input(temp, PC);
-			pipfetch.isEmpty = false;
-				cout << "fetched " << " "<< PC  << "\n";
-			PC += 4;
-			
-			
-			int flag =0;
-			for(int i=31; i>=0; i--) {
-				if(temp[i]!=0) {
-					flag = 1;
+				cout << "wbpc: " << pipmemory.pc << " ";
+						
+				
+				cout << cycle << " in writeback " << " " "\n";
+				if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
+					pipmemory.isEmpty = true;
 					break;
 				}
+				else if (pipexecute.isEmpty&&!pipdecode.isEmpty) {
+					pipmemory.isEmpty = true;
+				}
 			}
-			if(flag==0) {
-				pipfetch.isEmpty = true;
-				endflag=1;
+			if(!pipexecute.isEmpty) {
+				utilint["pipmemrd"] = pipmemory.resultselectmux_out;
+				// cout<<pipmemory.RD<<"\n";
+				// cout<<"addrress: "<<pipexecute.aluout<<"\n";
+				memory_access();
+				util["pipmemrd"] = pipmemory.rd;
+				utilint["pipmemisempty"] = pipmemory.isEmpty;
+				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
+				pipmemory.input_controls(pipexecute.wb);
+				pipmemory.isEmpty = false;
+				
+				
+				cout << "mempc: " << pipexecute.pc << " ";
+				
+				if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
+					pipexecute.isEmpty = true;
+				cout << cycle << " in memory access " << "\n";
 			}
+			if(!pipdecode.isEmpty && !is_stall) {
+				execute();
+				if(is_stall) {
+					stalls++;
+					pipexecute.isEmpty = true;
+					pipdecode.isEmpty = true;
+					cout << "stall at " << cycle << "\n\n";
+					PC = pipdecode.pc;
+					vector<int> temp = fetch();
+					PC = pipfetch.pc;
+					pipfetch.input(temp, pipdecode.pc);
+					pipfetch.isEmpty = false;
+					if(endflag==1)   endflag =0;
+					continue;
+				}
+				if(branchjump_stall) {
+					if(pipfetch.pc != mux_isbranch.output()) {
+						stalls++;
+						pipdecode.isEmpty=true;
+						pipfetch.isEmpty = true;
+						PC = mux_isbranch.output();
+						endflag=0;
+						cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
+
+					}
+				}
+				// cout<<"pipdecode.op2 = "<<pipdecode.OP2<<"\n";
+				pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
+				pipexecute.input_controls(pipdecode.m, pipdecode.wb);
+				pipexecute.isEmpty = false;
+
+				cout << "expc: " << pipdecode.pc << " ";
+				
+				if(pipfetch.isEmpty && endflag)
+					pipdecode.isEmpty = true;
+				cout << cycle << " in execution " <<  "\n";
+				// cout<<"aluout: "<<alu.output()<<"\n";
+			}
+			if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
+				decode();
+				pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
+				pipdecode.isEmpty = false;
+				map<string, int> ex, m, wb;
+				ex["op2mux_sel"] = mux_op2select.select_line;
+				ex["AluOperation"] = alu.operation;
+				ex["isBranch"] = mux_isbranch.select_line;
+				ex["func3"] = pipdecode.func3;
+				m["MemOp"] = mem.iswrite;
+				m["sltype"] = mem.sltype;
+				m["ResultSelect"] = mux_resultselect.select_line;
+				wb["RFWrite"] = regs.rfwrite;
+				pipdecode.input_controls(ex, m, wb);
+				cout << "decpc: " << pipfetch.pc << " ";
+
+
+
+				cout << cycle << " in decode "   << "\n";
+			}
+			// Fetch();
+			if(!endflag && !is_stall && !branchjump_stall){
+				vector<int> temp = fetch();
+				pipfetch.input(temp, PC);
+				pipfetch.isEmpty = false;
+					cout << "fetched " << " "<< PC  << "\n";
+				PC += 4;
+				
+				
+				int flag =0;
+				for(int i=31; i>=0; i--) {
+					if(temp[i]!=0) {
+						flag = 1;
+						break;
+					}
+				}
+				if(flag==0) {
+					pipfetch.isEmpty = true;
+					endflag=1;
+				}
+			}
+			// cout<<"x1 = "<<regs.regs["x1"]<<"\n";
+			// cout<<"t4 = x29 = "<<regs.regs["x29"]<<"\n";
+			// cout<<"t5 = x30 = "<<regs.regs["x30"]<<"\n";
+			// for(int i=0; i<32; i++) {
+			// 	string temp = "x"+to_string(i);
+			// 	cout << temp << "\t: " << regs.regs[temp] << "\n";
+			// }
+			// cout<<"x20\t: " << regs.regs["x20"] <<"\n";
+			cout << "\n";
+			// cout << "\n\nended\n\n";
+
 		}
-
-		cout << "\n";
-
 	}
 
-	
-	
-	
+	else if (forwarding == 0) {
+		while(1) {
+			++cycle;
+			is_stall = false;
+			branchjump_stall = false;
+			
+			if(!pipmemory.isEmpty){
+				write_back();
+
+				cout << "wbpc: " << pipmemory.pc << " ";
+						
+				
+				cout << cycle << " in writeback " << " " "\n";
+				if(pipexecute.isEmpty && pipdecode.isEmpty && pipfetch.isEmpty && endflag) {
+					pipmemory.isEmpty = true;
+					break;
+				}
+				else if (pipexecute.isEmpty&&!pipdecode.isEmpty) {
+					pipmemory.isEmpty = true;
+				}
+			}
+			if(!pipexecute.isEmpty) {
+				temp_pc = pipmemory.pc;
+				memory_access();
+				util["pipmemrd"] = pipmemory.rd;
+				utilint["pipmemisempty"] = pipmemory.isEmpty;
+				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
+				pipmemory.input_controls(pipexecute.wb);
+				pipmemory.isEmpty = false;
+				
+				
+				cout << "mempc: " << pipexecute.pc << " ";
+				
+				if(pipdecode.isEmpty && pipfetch.isEmpty && endflag)
+					pipexecute.isEmpty = true;
+				cout << cycle << " in memory access " << "\n";
+			}
+			if(!pipdecode.isEmpty && !is_stall) {
+				execute();
+				if(is_stall) {
+					stalls++;
+					pipexecute.isEmpty = true;
+					pipdecode.isEmpty = true;
+					cout << "stall at " << cycle << "\n\n";
+					PC = pipdecode.pc;
+					vector<int> temp = fetch();
+					PC = pipfetch.pc;
+					pipfetch.input(temp, pipdecode.pc);
+					pipfetch.isEmpty = false;
+					if(endflag==1)   endflag =0;
+					continue;
+				}
+				else if(branchjump_stall) {
+					if(pipfetch.pc != mux_isbranch.output()) {
+						stalls++;
+						pipdecode.isEmpty=true;
+						pipfetch.isEmpty = true;
+						PC = mux_isbranch.output();
+						endflag=0;
+						cout << "branch jump stall at " << pipdecode.pc << " jump to " << mux_isbranch.output() << "\n\n";
+
+					}
+				}
+				pipexecute.input_vars(pipdecode.rs1, pipdecode.rs2, pipdecode.rd, pipdecode.OP2, pipdecode.pc, alu.output(), pipdecode.immu, pipdecode.wbadder_out);
+				pipexecute.input_controls(pipdecode.m, pipdecode.wb);
+				pipexecute.isEmpty = false;
+
+				cout << "expc: " << pipdecode.pc << " ";
+				
+				if(pipfetch.isEmpty && endflag)
+					pipdecode.isEmpty = true;
+				cout << cycle << " in execution " <<  "\n";
+			}
+			if(!pipfetch.isEmpty && !is_stall && !branchjump_stall) {
+				decode();
+				pipdecode.isEmpty = false;
+				pipdecode.input_vars(regs.rs1, regs.rs2, regs.rd, regs.op1(), regs.op2(), pipfetch.pc, mux_op2select.output(), adder_branch.output(), immU.output());
+				map<string, int> ex, m, wb;
+				ex["op2mux_sel"] = mux_op2select.select_line;
+				ex["AluOperation"] = alu.operation;
+				ex["isBranch"] = mux_isbranch.select_line;
+				ex["func3"] = pipdecode.func3;
+				m["MemOp"] = mem.iswrite;
+				m["sltype"] = mem.sltype;
+				m["ResultSelect"] = mux_resultselect.select_line;
+				wb["RFWrite"] = regs.rfwrite;
+				pipdecode.input_controls(ex, m, wb);
+				cout << "decpc: " << pipfetch.pc << " ";
+
+
+
+				cout << cycle << " in decode "   << "\n";
+			}
+			// Fetch();
+			if(!endflag && !is_stall && !branchjump_stall){
+				vector<int> temp = fetch();
+				pipfetch.input(temp, PC);
+				pipfetch.isEmpty = false;
+					cout << "fetched " << " "<< PC  << "\n";
+				PC += 4;
+				
+				
+				int flag =0;
+				for(int i=31; i>=0; i--) {
+					if(temp[i]!=0) {
+						flag = 1;
+						break;
+					}
+				}
+				if(flag==0) {
+					pipfetch.isEmpty = true;
+					endflag=1;
+				}
+			}
+			cout << "\n";
+		}
+	}
+	else {
+		cout<<"Please enter valid option!!\n";
+	}
+
 	
 	// for(int i=0; i<32; i++) {
 	// 	string temp = "x"+to_string(i);
@@ -186,9 +324,6 @@ void run_riscvsim() {
 	// cout << "\n";
 	// cout << "\n\nended\n\n";
 
-	
-	
-	
 	
 	swi_exit();
 
