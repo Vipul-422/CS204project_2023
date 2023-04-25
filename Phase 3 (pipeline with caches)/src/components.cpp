@@ -141,41 +141,12 @@ Memory::Memory() {
 void Memory::mem_addr(int _address) {
     address = _address-4096;
 }
-void Memory::data_write(int _op2) {
-    op2 = _op2;
+void Memory::data_write(int b1, int b2, int b3, int b4) {
     
-
-    if (iswrite) {
-
-        bitset<32> b_op2(op2);
-
-        bitset<8> b1, b2, b3, b4;    // b1 contains least significant part, b4 contains most significant part
-        // for ex: if number is 0x12345678 then
-        // b1: 78
-        // b2: 56
-        // b3: 34
-        // b4: 12
-        
-        if (sltype == 0) {
-            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
-        }
-        else if (sltype == 1) {
-            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
-            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
-        }
-        else {
-            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
-            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
-            for(int i=16; i<24; i++) {b3[i-16] = b_op2[i];}
-            for(int i=24; i<32; i++) {b4[i-24] = b_op2[i];}
-        }
-
-        mem[address] = (char)b1.to_ulong();
-        mem[address+1] = (char)b2.to_ulong();
-        mem[address+2] = (char)b3.to_ulong();
-        mem[address+3] = (char)b4.to_ulong();
-
-    }
+    mem[address] = b1;
+    mem[address+1] = b2;
+    mem[address+2] = b3;
+    mem[address+3] = b4;
 
 }
 int Memory::output() {
@@ -211,9 +182,45 @@ int Memory::output() {
     }
 
 }
+Memory mem;
 //memory end
 
 //cache start
+
+void Cache::initialise(int cachesize, int blocksize, string _type, string _policy="", int saways=1) {
+    cache_size = cachesize;
+    block_size = blocksize;
+    type = _type;
+    sa_ways = saways;
+    policy = _policy;
+
+    lines = cache_size/(block_size*sa_ways);
+
+    if(type == "DM") {
+        for(int i=0; i<lines; i++) {
+            vector<char> temp;
+            for(int j=0; j<block_size; j++) {
+                temp.push_back('0');
+            }
+            dm.push_back(make_pair(-1, temp));
+        }
+    }
+    else if(type == "SA") {
+        for(int i=0; i<lines; i++) {
+            vector<pair<int,vector<char>>> tempout;
+            for(int j=0; j<sa_ways; j++) {
+                vector<char> temp;
+                for(int k=0; k<block_size; k++) {
+                    temp.push_back('0');
+                }
+                tempout.push_back(make_pair(-1, temp));
+            }
+            sa.push_back(tempout);
+        }
+    }
+
+
+}
 
 void Cache::cache_addr(int _address) {
     address = _address - 4096;
@@ -221,7 +228,77 @@ void Cache::cache_addr(int _address) {
 
 void Cache::cache_write(int _op2) {
     op2 = _op2;
+
+    if (iswrite) {
+
+        bitset<32> b_op2(op2);
+
+        bitset<8> b1, b2, b3, b4;    // b1 contains least significant part, b4 contains most significant part
+        // for ex: if number is 0x12345678 then
+        // b1: 78
+        // b2: 56
+        // b3: 34
+        // b4: 12
+        
+        if (sltype == 0) {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+        }
+        else if (sltype == 1) {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
+        }
+        else {
+            for(int i=0; i<8; i++) {b1[i] = b_op2[i];}
+            for(int i=8; i<16; i++) {b2[i-8] = b_op2[i];}
+            for(int i=16; i<24; i++) {b3[i-16] = b_op2[i];}
+            for(int i=24; i<32; i++) {b4[i-24] = b_op2[i];}
+        }
+
+        int bit1 = (char)b1.to_ulong();
+        int bit2 = (char)b2.to_ulong();
+        int bit3 = (char)b3.to_ulong();
+        int bit4 = (char)b4.to_ulong();
+
+        mem.data_write(bit1, bit2, bit3, bit4);
+
+        int tag = address - (address%block_size);
+
+        if(type == "DM") {
+            int index = (address/block_size)%lines;
+            if(dm[index].first == tag) {
+                int diff = address-tag;
+                dm[index].second[diff] = bit1;
+                dm[index].second[diff+1] = bit2;
+                dm[index].second[diff+2] = bit3;
+                dm[index].second[diff+3] = bit4;
+            }
+        }
+        else if(type == "SA") {
+            int index = (address/block_size)%lines;
+            for(int i=0; i<sa_ways; i++) {
+                if (sa[index][i].first == tag) {
+                    int diff = address-tag;
+                    sa[index][i].second[diff] = bit1;
+                    sa[index][i].second[diff+1] = bit2;
+                    sa[index][i].second[diff+2] = bit3;
+                    sa[index][i].second[diff+3] = bit4;
+                }
+            }
+        }
+        else if(type == "FA") {
+            if(fa[tag].first==1) {
+                int diff = address-tag;
+                fa[tag].second[diff] = bit1;
+                fa[tag].second[diff+1] = bit2;
+                fa[tag].second[diff+2] = bit3;
+                fa[tag].second[diff+3] = bit4;
+            }
+        }
+
+    }
+
 }
+
 
 //cache end
 
@@ -412,7 +489,6 @@ int PC; //global PC(program counter)
 map <int, string> inst_mem;
 ALU alu;
 Regfile regs;
-Memory mem;
 Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
 Adder adder_pc, adder_branch, adder_wb;
 Sign_ext immB, immJ, imm, immS, immU;

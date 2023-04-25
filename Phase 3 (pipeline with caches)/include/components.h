@@ -58,7 +58,7 @@ class Memory
         int sltype; //0 for b, 1 for h, 2 for w
         Memory();
         void mem_addr(int _address);
-        void data_write(int _op2);
+        void data_write(int b1, int b2, int b3, int b4);
         int output();
 };
 // Data memory ends
@@ -78,8 +78,13 @@ class Cache
         string type, policy;
         int sa_ways; 
         int address, op2;
+        int iswrite, sltype;
+        int lines;
+        vector<pair<int, vector<char>>> dm;
+        vector<vector<pair<int,vector<char>>>> sa;
+        map<int, pair<bool, vector<char>>> fa;             
 
-        void initialise(int cachesize, int blocksize, string _type, int saways=0, string _policy="");
+        void initialise(int cachesize, int blocksize, string _type, string _policy="", int saways=0);
 
         void cache_addr(int _address);
         void cache_write(int _op2);
