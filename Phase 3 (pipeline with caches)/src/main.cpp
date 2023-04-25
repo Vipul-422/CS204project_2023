@@ -9,6 +9,8 @@
 
 int main(int argc, char** argv) {
 
+	srand(time(NULL));
+
 	int isPipelined;
 	std::cout << "Enter 0 for single cycle\n";
 	std::cout << "Enter 1 for pipelined\n";

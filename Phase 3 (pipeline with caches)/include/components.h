@@ -58,6 +58,7 @@ class Memory
         int sltype; //0 for b, 1 for h, 2 for w
         Memory();
         void mem_addr(int _address);
+        vector<char> Memory::reqBlock(int tag, int blocksize);
         void data_write(int b1, int b2, int b3, int b4);
         int output();
 };
@@ -68,12 +69,8 @@ class Memory
 class Cache
 {
     public:
-        // map <int, vector<int> > tag_data;
-        // map <int, pair<int, int> > time_frequency;
-        // void time_frequency_update (int _tag);
-        // void tag+(int _tag);
-        // int output();
 
+        int out;
         int cache_size, block_size;   // in bytes
         string type, policy;
         int sa_ways; 
@@ -82,7 +79,7 @@ class Cache
         int lines;
         vector<pair<int, vector<char>>> dm;
         vector<vector<pair<int,vector<char>>>> sa;
-        map<int, pair<bool, vector<char>>> fa;             
+        map<int, pair<bool, vector<char>>> fa;   int fasize;    vector<int> fatags;          
 
         void initialise(int cachesize, int blocksize, string _type, string _policy="", int saways=0);
 
