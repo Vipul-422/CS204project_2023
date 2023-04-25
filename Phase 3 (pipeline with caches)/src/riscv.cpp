@@ -22,6 +22,7 @@ extern Pipfetch pipfetch;
 extern Pipdecode pipdecode;
 extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
+extern Cache inst_cache, cache;
 extern string inst_type;
 extern int description; 
 extern int operation;
@@ -34,7 +35,6 @@ extern map<string, string> util;
 extern map<string, int> utilint;
 map <int, int> branch_pred;
 int forwarding;
-int cache_type;
 int temp_pc;
 
 /*
@@ -62,8 +62,46 @@ void run_riscvsim() {
 	int chstalls = 0;      // stalls due to control hazards
 	
 	bool branch_prediction = false;
-	cout<<"Press 1 for Fully Associative mapping\nPress 2 for Direct mapping\nPress 3 for Set Associative mapping\n";
-	cin >> cache_type;
+
+	//Instruction cache user interactions
+	cout<<"For Instruction cache please follow these instruction\n";
+	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n(case sensitive)\n";
+	//cache type is case sensitive
+	cin >> inst_cache.type;
+	cout<<"Give size of Cache in Bytes\n";
+	cin >> inst_cache.cache_size;
+	cout<<"Give size of Block in Bytes\n";
+	cin >> inst_cache.block_size;
+	if(inst_cache.type == "SA") {
+		cout<<"Give number of ways for set associative mapping\n";
+		cin >> inst_cache.sa_ways;
+	}
+	if(inst_cache.type == "SA" || inst_cache.type == "FA") {
+		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive";
+		cin >> inst_cache.policy;
+	}
+
+
+	//Data cache user interactions
+	cout<<"For Data cache please follow these instruction\n";
+	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n";
+	//cache type is case sensitive
+	cin >> cache.type;
+	cout<<"Give size of Cache in Bytes\n";
+	cin >> cache.cache_size;
+	cout<<"Give size of Block in Bytes\n";
+	cin >> cache.block_size;
+	if(cache.type == "SA") {
+		cout<<"Give number of ways for set associative mapping\n";
+		cin >> cache.sa_ways;
+	}
+	if(cache.type == "SA" || cache.type == "FA") {
+		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive";
+		cin >> cache.policy;
+	}
+
+
+	//Forwarding and Branch Prediction user interactions
 	cout<<"Press 1 for forwarding\nPress 0 for without forwarding\n";
 	cin >> forwarding;
 	cout<<"Press 1 for branch prediction\nPress 0 for without branch prediction\n";
@@ -427,6 +465,7 @@ void load_program_memory(char* filename) {
 	}
 	fileptr.close();
 	//conversion done
+
 }
 
 //writes the data memory in "data_out.mem" file
