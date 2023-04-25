@@ -216,13 +216,13 @@ void Cache::initialise(int cachesize, int blocksize, string _type, string _polic
     }
     else if(type == "SA") {
         for(int i=0; i<lines; i++) {
-            vector<pair<int,vector<char>>> tempout;
+            vector<pair<pair<int, int>,vector<char>>> tempout;
             for(int j=0; j<sa_ways; j++) {
                 vector<char> temp;
                 for(int k=0; k<block_size; k++) {
                     temp.push_back('0');
                 }
-                tempout.push_back(make_pair(-1, temp));
+                tempout.push_back(make_pair(make_pair(-1,0), temp));
             }
             sa.push_back(tempout);
         }
@@ -286,7 +286,7 @@ void Cache::cache_write(int _op2) {
         else if(type == "SA") {
             int index = (address/block_size)%lines;
             for(int i=0; i<sa_ways; i++) {
-                if (sa[index][i].first == tag) {
+                if (sa[index][i].first.first == tag) {
                     int diff = address-tag;
                     sa[index][i].second[diff] = bit1;
                     sa[index][i].second[diff+1] = bit2;
@@ -358,9 +358,9 @@ int Cache::output() {
             int index = (address/block_size)%lines;
             int f = 1;
             for(int i=0; i<sa_ways; i++) {
-                if (sa[index][i].first == -1) {
+                if (sa[index][i].first.first == -1) {
                     f=0;
-                    sa[index][i].first = tag;
+                    sa[index][i].first.first = tag;
                     sa[index][i].second = mem.reqBlock(tag, block_size);
 
                     int diff = address-tag;
@@ -371,7 +371,7 @@ int Cache::output() {
 
                     break;
                 }
-                else if (sa[index][i].first == tag) {
+                else if (sa[index][i].first.first == tag) {
                     // case when block is present
                     f=0;
                     int diff = address-tag;
@@ -389,7 +389,7 @@ int Cache::output() {
                 if(policy == "Random") {
                     int replaceon = rand()%sa_ways;
 
-                    sa[index][replaceon].first = tag;
+                    sa[index][replaceon].first.first = tag;
                     sa[index][replaceon].second = mem.reqBlock(tag, block_size);
 
                     int diff = address-tag;
@@ -426,7 +426,9 @@ int Cache::output() {
                 fa[tag].first = 1;
                 fa[tag].second = mem.reqBlock(tag, block_size);
                 fasize++;
-                fatags.push_back(tag);
+                
+                if(policy == "random")      fatags.push_back(tag);
+                else if(policy == "FIFO")   fifo.push(tag);
                 
                 int diff = address-tag;
                 bit1 = fa[tag].second[diff];
@@ -458,10 +460,21 @@ int Cache::output() {
 
                 }
                 else if (policy == "FIFO") {
+                    int replacedtag = fifo.front();
+                    fifo.pop();
+                    fifo.push(tag);
+                    fa[replacedtag].first = 0;
+                    fa[tag].first = 1;
+                    fa[tag].second = mem.reqBlock(tag, block_size);
 
+                    int diff = address-tag;
+                    bit1 = fa[tag].second[diff];
+                    bit2 = fa[tag].second[diff+1];
+                    bit3 = fa[tag].second[diff+2];
+                    bit4 = fa[tag].second[diff+3]; 
                 }
                 else if (policy == "LFU") {
-                    
+
                 }
 
             }
