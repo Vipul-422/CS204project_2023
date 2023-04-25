@@ -17,6 +17,7 @@ extern map <int, string> inst_mem;
 extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
+extern Cache cache;
 extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
@@ -75,9 +76,9 @@ void decode() {
     mux_branchTargetSel.select_line = 0;
     mux_isbranch.select_line = 2;
     mux_resultselect.select_line = 0;
-    mem.iswrite = false;
+    cache.iswrite = false;
     regs.rfwrite = false;
-    mem.sltype = 2;
+    cache.sltype = 2;
 
     int isBranchInst = 0;
     
@@ -209,18 +210,18 @@ void decode() {
         // lb, lh, lw
         description = 3;
         regs.rfwrite = true;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_op2select.select_line = 1;
         alu.operation = 1;
         mux_resultselect.select_line = 2;
-        mem.sltype = func3;   // 0 for b, 1 for h, 2 for w 
-        if(mem.sltype==0){
+        cache.sltype = func3;   // 0 for b, 1 for h, 2 for w 
+        if(cache.sltype==0){
             inst_type = "LB";
         }
-        else if(mem.sltype==1){
+        else if(cache.sltype==1){
             inst_type = "LH";
         }
-        else if(mem.sltype==2){
+        else if(cache.sltype==2){
             inst_type = "LW";
         }
     }
@@ -228,7 +229,7 @@ void decode() {
         // jalr
         description = 4;
         regs.rfwrite = true;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_op2select.select_line = 1;
         alu.operation = 1;
         mux_resultselect.select_line = 3;
@@ -240,17 +241,17 @@ void decode() {
         // sb, sh, sw
         description = 5;
         regs.rfwrite = false;
-        mem.iswrite = true;
+        cache.iswrite = true;
         alu.operation = 1;
         mux_op2select.select_line = 2;
-        mem.sltype = func3;
-        if(mem.sltype==0){
+        cache.sltype = func3;
+        if(cache.sltype==0){
             inst_type = "SB";
         }
-        else if(mem.sltype==1){
+        else if(cache.sltype==1){
             inst_type = "SH";
         }
-        else if(mem.sltype==2){
+        else if(cache.sltype==2){
             inst_type = "SW";
         }
     }
@@ -259,7 +260,7 @@ void decode() {
         description = 6;
         isBranchInst = 1;
         regs.rfwrite = false;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_op2select.select_line = 0;
         mux_branchTargetSel.select_line = 0;
         alu.operation = 2;
@@ -282,7 +283,7 @@ void decode() {
         // rd = imm << 12
         description = 7;
         regs.rfwrite = true;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_resultselect.select_line = 1;
         inst_type = "LUI";
     }
@@ -291,7 +292,7 @@ void decode() {
         // rd = pc + imm << 12
         description = 8;
         regs.rfwrite = true;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_resultselect.select_line = 4;
         inst_type = "AUIPC";
     }
@@ -299,7 +300,7 @@ void decode() {
         // jal
         description = 9;
         regs.rfwrite = true;
-        mem.iswrite = false;
+        cache.iswrite = false;
         mux_resultselect.select_line = 0;
         mux_branchTargetSel.select_line = 1;
         mux_isbranch.select_line = 1;
@@ -501,11 +502,11 @@ void execute() {
 //perform the memory operation
 void memory_access() {
 
-    mem.sltype = pipexecute.m["sltype"];
-    mem.iswrite = pipexecute.m["MemOp"];
+    cache.sltype = pipexecute.m["sltype"];
+    cache.iswrite = pipexecute.m["MemOp"];
     mux_resultselect.select_line = pipexecute.m["ResultSelect"];
     // cout<<"pipexecute.aluout = "<<pipexecute.aluout<<"\n";
-    mem.mem_addr(pipexecute.aluout);
+    cache.cache_addr(pipexecute.aluout);
     // cout<<"pipexecute.OP2 = "<<pipexecute.OP2<<"\n";
     // mem.data_write(pipexecute.OP2);
 
@@ -514,7 +515,7 @@ void memory_access() {
     vector<int> _input_lines;
     _input_lines.push_back(pipexecute.pc + 4);
     _input_lines.push_back(pipexecute.immu);
-    _input_lines.push_back(mem.output());
+    _input_lines.push_back(cache.output());
     _input_lines.push_back(pipexecute.aluout);
     _input_lines.push_back(pipexecute.wbadder_out);
     mux_resultselect.input(_input_lines);
