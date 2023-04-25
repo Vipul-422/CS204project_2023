@@ -65,15 +65,27 @@ class Memory
 
 //Cache 
 
-// class Cache
-// {
-//     public:
-//         map <int, vector<int> > tag_data;
-//         map <int, pair<int, int> > time_frequency;
-//         void time_frequency_update (int _tag);
-//         void tag+(int _tag);
-//         int output();
-// };
+class Cache
+{
+    public:
+        // map <int, vector<int> > tag_data;
+        // map <int, pair<int, int> > time_frequency;
+        // void time_frequency_update (int _tag);
+        // void tag+(int _tag);
+        // int output();
+
+        int cache_size, block_size;   // in bytes
+        string type, policy;
+        int sa_ways; 
+        int address, op2;
+
+        void initialise(int cachesize, int blocksize, string _type, int saways=0, string _policy="");
+
+        void cache_addr(int _address);
+        void cache_write(int _op2);
+        int output();
+
+};
 
 //Cache ends
 

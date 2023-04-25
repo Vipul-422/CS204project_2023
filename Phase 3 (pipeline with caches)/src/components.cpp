@@ -215,7 +215,13 @@ int Memory::output() {
 
 //cache start
 
+void Cache::cache_addr(int _address) {
+    address = _address - 4096;
+}
 
+void Cache::cache_write(int _op2) {
+    op2 = _op2;
+}
 
 //cache end
 
@@ -415,5 +421,6 @@ Pipfetch pipfetch;
 Pipdecode pipdecode;
 Pipexecute pipexecute;
 Pipmemory pipmemory;
+Cache cache;
 
 /* DON'T TOUCH ENDS */
