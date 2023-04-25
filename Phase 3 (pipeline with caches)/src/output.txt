@@ -1,0 +1,22 @@
+Fetched  0
+
+DEC pc: 0  in decode 
+Fetched  4
+
+EX pc: 0  in execution 
+DEC pc: 4  in decode 
+Fetched  8
+
+MEM pc: 0  in memory access 
+Stall at 4
+
+WB pc: 0  in writeback  
+DEC pc: 4  in decode 
+Fetched  8
+
+WB pc: 0  in writeback  
+EX pc: 4  in execution 
+
+MEM pc: 4  in memory access 
+
+WB pc: 4  in writeback  

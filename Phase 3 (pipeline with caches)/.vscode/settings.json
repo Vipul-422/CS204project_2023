@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "vector": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "xlocale": "cpp",
+        "xlocnum": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "bitset": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "exception": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "system_error": "cpp",
+        "typeinfo": "cpp"
+    }
+}
