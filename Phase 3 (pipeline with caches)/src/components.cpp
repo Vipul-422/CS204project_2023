@@ -399,6 +399,15 @@ int Cache::output() {
                     bit4 = sa[index][replaceon].second[diff+3];
 
                 }
+                else if (policy == "LRU") {
+
+                }
+                else if (policy == "FIFO") {
+
+                }
+                else if (policy == "LFU") {
+
+                }
 
 
 
@@ -444,6 +453,15 @@ int Cache::output() {
                     bit4 = fa[tag].second[diff+3];
                     
 
+                }
+                else if (policy == "LRU") {
+
+                }
+                else if (policy == "FIFO") {
+
+                }
+                else if (policy == "LFU") {
+                    
                 }
 
             }

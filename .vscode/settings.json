@@ -13,6 +13,7 @@
         "bitset": "cpp",
         "vector": "cpp",
         "iosfwd": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "utility": "cpp"
     }
 }
