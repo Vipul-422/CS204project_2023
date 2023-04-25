@@ -211,16 +211,4 @@ class Pipmemory
 
 //Pipelined register execute ends
 
-
-// Forwarding unit
-
-class Forwarding_unit
-{
-    public:
-        int mux1_aluSelesct, mux2_aluSelect;
-        
-
-};
-
-// Forwarding unit ends
 #endif

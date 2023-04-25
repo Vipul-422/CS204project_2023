@@ -25,6 +25,7 @@ extern Pipfetch pipfetch;
 extern Pipdecode pipdecode;
 extern Pipexecute pipexecute;
 extern Pipmemory pipmemory;
+extern Cache inst_cache, cache;
 extern int forwarding;
 extern int temp_pc;
 string inst_type;
@@ -45,11 +46,12 @@ map<string, int> utilint;
 
 //reads from the instruction memory and updates the instruction register
 vector<int> fetch() {
-    string hex_string=inst_mem[PC];
     vector<int> bin_string; //lsb at bin_string[0]
-    char *p;
-    long n = strtoul( hex_string.c_str(), & p, 16 );
-    bitset<32> binary_form(n);
+    inst_cache.iswrite = 0;
+    inst_cache.sltype = 2;
+    inst_cache.cache_addr(PC);
+    int inst = inst_cache.output();
+    bitset<32> binary_form(inst);
     for(int i=0;i<32;i++){
         bin_string.push_back(binary_form[i]);
     }
@@ -505,7 +507,7 @@ void memory_access() {
     // cout<<"pipexecute.aluout = "<<pipexecute.aluout<<"\n";
     mem.mem_addr(pipexecute.aluout);
     // cout<<"pipexecute.OP2 = "<<pipexecute.OP2<<"\n";
-    mem.data_write(pipexecute.OP2);
+    // mem.data_write(pipexecute.OP2);
 
 
     //updating mux_resultselect

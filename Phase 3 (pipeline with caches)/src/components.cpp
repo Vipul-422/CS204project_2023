@@ -497,6 +497,6 @@ Pipfetch pipfetch;
 Pipdecode pipdecode;
 Pipexecute pipexecute;
 Pipmemory pipmemory;
-Cache cache;
+Cache inst_cache, cache;
 
 /* DON'T TOUCH ENDS */
