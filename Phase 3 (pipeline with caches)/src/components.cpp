@@ -149,6 +149,15 @@ void Memory::data_write(int b1, int b2, int b3, int b4) {
     mem[address+3] = b4;
 
 }
+
+vector<char> Memory::reqBlock(int tag, int blocksize) {
+    vector<char> temp;
+    for(int i=0; i<blocksize; i++) {
+        temp.push_back(mem[tag+i]);
+    }
+    return temp;
+}
+
 int Memory::output() {
 
     if(address < 0) {
@@ -217,13 +226,14 @@ void Cache::initialise(int cachesize, int blocksize, string _type, string _polic
             }
             sa.push_back(tempout);
         }
+        fasize = 0;
     }
 
 
 }
 
 void Cache::cache_addr(int _address) {
-    address = _address - 4096;
+    address = _address;
 }
 
 void Cache::cache_write(int _op2) {
@@ -297,6 +307,170 @@ void Cache::cache_write(int _op2) {
 
     }
 
+}
+
+int Cache::output() {
+    
+    if(address < 0) {
+        return -1;
+    }
+    else if (address >= 100000) {
+        return -1;
+    }
+    else {
+
+        int tag = address - (address%block_size);
+        int bit1, bit2, bit3, bit4;
+
+        if(type == "DM") {
+            int index = (address/block_size)%lines;
+            if(dm[index].first == -1) {
+                dm[index].first = tag;
+                dm[index].second = mem.reqBlock(tag, block_size);
+
+                int diff = address-tag;
+                bit1 = dm[index].second[diff];
+                bit2 = dm[index].second[diff+1];
+                bit3 = dm[index].second[diff+2];
+                bit4 = dm[index].second[diff+3];
+            }
+            else if(dm[index].first == tag) {
+                // case when block is present
+                int diff = address-tag;
+                bit1 = dm[index].second[diff];
+                bit2 = dm[index].second[diff+1];
+                bit3 = dm[index].second[diff+2];
+                bit4 = dm[index].second[diff+3];
+                
+            }
+            else {
+                dm[index].first = tag;
+                dm[index].second = mem.reqBlock(tag, block_size);
+
+                int diff = address-tag;
+                bit1 = dm[index].second[diff];
+                bit2 = dm[index].second[diff+1];
+                bit3 = dm[index].second[diff+2];
+                bit4 = dm[index].second[diff+3];
+            }
+        }
+        else if(type == "SA") {
+            int index = (address/block_size)%lines;
+            int f = 1;
+            for(int i=0; i<sa_ways; i++) {
+                if (sa[index][i].first == -1) {
+                    f=0;
+                    sa[index][i].first = tag;
+                    sa[index][i].second = mem.reqBlock(tag, block_size);
+
+                    int diff = address-tag;
+                    bit1 = sa[index][i].second[diff];
+                    bit2 = sa[index][i].second[diff+1];
+                    bit3 = sa[index][i].second[diff+2];
+                    bit4 = sa[index][i].second[diff+3];
+
+                    break;
+                }
+                else if (sa[index][i].first == tag) {
+                    // case when block is present
+                    f=0;
+                    int diff = address-tag;
+                    bit1 = sa[index][i].second[diff];
+                    bit2 = sa[index][i].second[diff+1];
+                    bit3 = sa[index][i].second[diff+2];
+                    bit4 = sa[index][i].second[diff+3];
+                    break;
+                    
+                }
+            }
+            if(f) {
+                // replacement
+
+                if(policy == "Random") {
+                    int replaceon = rand()%sa_ways;
+
+                    sa[index][replaceon].first = tag;
+                    sa[index][replaceon].second = mem.reqBlock(tag, block_size);
+
+                    int diff = address-tag;
+                    bit1 = sa[index][replaceon].second[diff];
+                    bit2 = sa[index][replaceon].second[diff+1];
+                    bit3 = sa[index][replaceon].second[diff+2];
+                    bit4 = sa[index][replaceon].second[diff+3];
+
+                }
+
+
+
+            }
+        }
+        else if(type == "FA") {
+            if(fa[tag].first==1) {
+                // case when block is present
+                int diff = address-tag;
+                bit1 = fa[tag].second[diff];
+                bit2 = fa[tag].second[diff+1];
+                bit3 = fa[tag].second[diff+2];
+                bit4 = fa[tag].second[diff+3];
+            }
+            else if(fasize<lines) {
+                fa[tag].first = 1;
+                fa[tag].second = mem.reqBlock(tag, block_size);
+                fasize++;
+                fatags.push_back(tag);
+                
+                int diff = address-tag;
+                bit1 = fa[tag].second[diff];
+                bit2 = fa[tag].second[diff+1];
+                bit3 = fa[tag].second[diff+2];
+                bit4 = fa[tag].second[diff+3];
+            }
+            else {
+                // write replacement here
+
+                if(policy == "Random") {
+                    int replaceon = rand()%sa_ways;
+                    
+                    int replacedtag = fatags[replaceon];
+                    fatags[replaceon] = tag;
+                    fa[replacedtag].first = 0;
+                    fa[tag].first = 1;
+                    fa[tag].second = mem.reqBlock(tag, block_size);
+
+                    int diff = address-tag;
+                    bit1 = fa[tag].second[diff];
+                    bit2 = fa[tag].second[diff+1];
+                    bit3 = fa[tag].second[diff+2];
+                    bit4 = fa[tag].second[diff+3];
+                    
+
+                }
+
+            }
+        }
+
+
+        bitset<32> output;
+
+        bitset<8> b1((int)bit1), b2((int)bit2), b3((int)bit3), b4((int)bit4);
+
+        if (sltype == 0) {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+        }
+        else if (sltype == 1) {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+            for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+        }
+        else {
+            for(int i=0; i<8; i++) {output[i] = b1[i];}
+            for(int i=8; i<16; i++) {output[i] = b2[i-8];}
+            for(int i=16; i<24; i++) {output[i] = b3[i-16];}
+            for(int i=24; i<32; i++) {output[i] = b4[i-24];}
+        }
+
+        out = (int)output.to_ulong();
+        return out;
+    }    
 }
 
 
