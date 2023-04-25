@@ -508,7 +508,7 @@ void memory_access() {
     // cout<<"pipexecute.aluout = "<<pipexecute.aluout<<"\n";
     cache.cache_addr(pipexecute.aluout);
     // cout<<"pipexecute.OP2 = "<<pipexecute.OP2<<"\n";
-    // mem.data_write(pipexecute.OP2);
+    cache.cache_write(pipexecute.OP2);
 
 
     //updating mux_resultselect

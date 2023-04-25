@@ -139,7 +139,7 @@ Memory::Memory() {
     }
 }
 void Memory::mem_addr(int _address) {
-    address = _address-4096;
+    address = _address;
 }
 void Memory::data_write(int b1, int b2, int b3, int b4) {
     
@@ -196,7 +196,7 @@ Memory mem;
 
 //cache start
 
-void Cache::initialise(int cachesize, int blocksize, string _type, string _policy="", int saways=1) {
+void Cache::initialise(int cachesize, int blocksize, string _type, string _policy, int saways) {
     cache_size = cachesize;
     block_size = blocksize;
     type = _type;
@@ -269,11 +269,18 @@ void Cache::cache_write(int _op2) {
         int bit3 = (char)b3.to_ulong();
         int bit4 = (char)b4.to_ulong();
 
+        // cout << bit1 << " " << bit2<< " " <<bit3 << " " <<bit4<< "\n";
+
+        mem.iswrite = 1;
+        // cout << "address " << address <<"\n";
+        mem.mem_addr(address);
         mem.data_write(bit1, bit2, bit3, bit4);
+        
 
         int tag = address - (address%block_size);
 
         if(type == "DM") {
+
             int index = (address/block_size)%lines;
             if(dm[index].first == tag) {
                 int diff = address-tag;

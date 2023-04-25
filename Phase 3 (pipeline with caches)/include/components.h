@@ -59,7 +59,7 @@ class Memory
         int sltype; //0 for b, 1 for h, 2 for w
         Memory();
         void mem_addr(int _address);
-        vector<char> Memory::reqBlock(int tag, int blocksize);
+        vector<char> reqBlock(int tag, int blocksize);
         void data_write(int b1, int b2, int b3, int b4);
         int output();
 };
@@ -84,7 +84,7 @@ class Cache
 
         queue<int> fifo;     
 
-        void initialise(int cachesize, int blocksize, string _type, string _policy="", int saways=0);
+        void initialise(int cachesize, int blocksize, string _type, string _policy, int saways);
 
         void cache_addr(int _address);
         void cache_write(int _op2);

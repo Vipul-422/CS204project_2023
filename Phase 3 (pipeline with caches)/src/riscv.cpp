@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <sstream>
+#include <bitset>
 
 
 extern int PC; //global PC(program counter)
@@ -64,41 +65,43 @@ void run_riscvsim() {
 	bool branch_prediction = false;
 
 	//Instruction cache user interactions
-	cout<<"For Instruction cache please follow these instruction\n";
-	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n(case sensitive)\n";
-	//cache type is case sensitive
-	cin >> inst_cache.type;
-	cout<<"Give size of Cache in Bytes\n";
-	cin >> inst_cache.cache_size;
-	cout<<"Give size of Block in Bytes\n";
-	cin >> inst_cache.block_size;
-	if(inst_cache.type == "SA") {
-		cout<<"Give number of ways for set associative mapping\n";
-		cin >> inst_cache.sa_ways;
-	}
-	if(inst_cache.type == "SA" || inst_cache.type == "FA") {
-		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive";
-		cin >> inst_cache.policy;
-	}
+	// cout<<"For Instruction cache please follow these instruction\n";
+	// cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n(case sensitive)\n";
+	// //cache type is case sensitive
+	// cin >> inst_cache.type;
+	// cout<<"Give size of Cache in Bytes\n";
+	// cin >> inst_cache.cache_size;
+	// cout<<"Give size of Block in Bytes\n";
+	// cin >> inst_cache.block_size;
+	// if(inst_cache.type == "SA") {
+	// 	cout<<"Give number of ways for set associative mapping\n";
+	// 	cin >> inst_cache.sa_ways;
+	// }
+	// if(inst_cache.type == "SA" || inst_cache.type == "FA") {
+	// 	cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
+	// 	cin >> inst_cache.policy;
+	// }
+	// inst_cache.initialise(64, 8, "DM", "Random", 1);
 
 
 	//Data cache user interactions
-	cout<<"For Data cache please follow these instruction\n";
-	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n";
-	//cache type is case sensitive
-	cin >> cache.type;
-	cout<<"Give size of Cache in Bytes\n";
-	cin >> cache.cache_size;
-	cout<<"Give size of Block in Bytes\n";
-	cin >> cache.block_size;
-	if(cache.type == "SA") {
-		cout<<"Give number of ways for set associative mapping\n";
-		cin >> cache.sa_ways;
-	}
-	if(cache.type == "SA" || cache.type == "FA") {
-		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive";
-		cin >> cache.policy;
-	}
+	// cout<<"For Data cache please follow these instruction\n";
+	// cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n";
+	// //cache type is case sensitive
+	// cin >> cache.type;
+	// cout<<"Give size of Cache in Bytes\n";
+	// cin >> cache.cache_size;
+	// cout<<"Give size of Block in Bytes\n";
+	// cin >> cache.block_size;
+	// if(cache.type == "SA") {
+	// 	cout<<"Give number of ways for set associative mapping\n";
+	// 	cin >> cache.sa_ways;
+	// }
+	// if(cache.type == "SA" || cache.type == "FA") {
+	// 	cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
+	// 	cin >> cache.policy;
+	// }
+	// cache.initialise(64, 8, "DM", "Random", 1);
 
 
 	//Forwarding and Branch Prediction user interactions
@@ -112,6 +115,7 @@ void run_riscvsim() {
 	branchjump_stall = false;
 	is_stall = false;
 	// freopen("output.txt", "w", stdout);
+	
 	if(forwarding == 1){
 		while(1) {
 			++cycle;
@@ -141,7 +145,7 @@ void run_riscvsim() {
 				memory_access();
 				util["pipmemrd"] = pipmemory.rd;
 				utilint["pipmemisempty"] = pipmemory.isEmpty;
-				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
+				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, cache.output());
 				pipmemory.input_controls(pipexecute.wb);
 				pipmemory.isEmpty = false;
 				
@@ -215,8 +219,8 @@ void run_riscvsim() {
 				ex["AluOperation"] = alu.operation;
 				ex["isBranch"] = mux_isbranch.select_line;
 				ex["func3"] = pipdecode.func3;
-				m["MemOp"] = mem.iswrite;
-				m["sltype"] = mem.sltype;
+				m["MemOp"] = cache.iswrite;
+				m["sltype"] = cache.sltype;
 				m["ResultSelect"] = mux_resultselect.select_line;
 				wb["RFWrite"] = regs.rfwrite;
 				pipdecode.input_controls(ex, m, wb);
@@ -298,7 +302,7 @@ void run_riscvsim() {
 				memory_access();
 				util["pipmemrd"] = pipmemory.rd;
 				utilint["pipmemisempty"] = pipmemory.isEmpty;
-				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, mem.output());
+				pipmemory.input_vars(pipexecute.rd, pipexecute.pc, mux_isbranch.output(), mux_resultselect.output(), pipexecute.aluout, cache.output());
 				pipmemory.input_controls(pipexecute.wb);
 				pipmemory.isEmpty = false;
 				
@@ -364,8 +368,8 @@ void run_riscvsim() {
 				ex["AluOperation"] = alu.operation;
 				ex["isBranch"] = mux_isbranch.select_line;
 				ex["func3"] = pipdecode.func3;
-				m["MemOp"] = mem.iswrite;
-				m["sltype"] = mem.sltype;
+				m["MemOp"] = cache.iswrite;
+				m["sltype"] = cache.sltype;
 				m["ResultSelect"] = mux_resultselect.select_line;
 				wb["RFWrite"] = regs.rfwrite;
 				pipdecode.input_controls(ex, m, wb);
@@ -457,10 +461,22 @@ void load_program_memory(char* filename) {
 	fstream fileptr;
 	fileptr.open(filename, ios::in);
 	int count=0; //temporary PC.
+	inst_cache.iswrite = 1;
+	inst_cache.sltype = 2;
 	while(!fileptr.eof()){
 		string s;
 		getline(fileptr, s);
 		inst_mem[count]=s;
+
+		vector<int> bin_string; //lsb at bin_string[0]
+		char *p;
+		long n = strtoul( s.c_str(), & p, 16 );
+
+
+		inst_cache.cache_addr(count);
+		inst_cache.cache_write(n);
+
+
 		count+=4;
 	}
 	fileptr.close();
@@ -482,8 +498,8 @@ void write_data_memory() {
 
 	memoryfile.open("../Registers and Memory/memory.txt", ios::out);
 
-	for(int i=4096; i<104096; i+=4) {
-		int temp = i - 4096;
+	for(int i=0; i<100000; i+=4) {
+		int temp = i;
 
 		memoryfile << i << "\t: ";
 
