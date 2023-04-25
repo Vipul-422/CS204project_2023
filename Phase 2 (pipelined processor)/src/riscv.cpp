@@ -56,6 +56,9 @@ void run_riscvsim() {
 	int cycle = 0;
 	int stalls = 0;
 	int instructions = 0;
+	int branc_mispreds = 0;
+	int dhstalls = 0;      // stalls due to data hazards
+	int chstalls = 0;      // stalls due to control hazards
 	
 	bool branch_prediction = false;
 	cout<<"Press 1 for forwarding\nPress 0 for without forwarding\n";
@@ -76,6 +79,7 @@ void run_riscvsim() {
 			
 			if(!pipmemory.isEmpty){
 				write_back();
+				instructions++;
 
 				cout << "WB pc: " << pipmemory.pc;
 						
@@ -111,6 +115,7 @@ void run_riscvsim() {
 				execute();
 				if(is_stall) {
 					stalls++;
+					dhstalls++;
 					pipexecute.isEmpty = true;
 					pipdecode.isEmpty = true;
 					cout << "Stall at " << "pc =" << pipdecode.pc << "\n\n";
@@ -126,6 +131,7 @@ void run_riscvsim() {
 					// cout << "mux is branch: " << mux_isbranch.output() << endl;
 					if(pipfetch.pc != mux_isbranch.output()) {
 						stalls++;
+						chstalls++;
 						pipdecode.isEmpty=true;
 						pipfetch.isEmpty = true;
 						PC = mux_isbranch.output();
@@ -134,6 +140,7 @@ void run_riscvsim() {
 
 						if(branch_prediction && mux_isbranch.select_line!=0) {
 							branch_pred[pipdecode.pc] =  mux_isbranch.output();
+							branc_mispreds++;
 						}
 
 					}
@@ -231,6 +238,7 @@ void run_riscvsim() {
 			
 			if(!pipmemory.isEmpty){
 				write_back();
+				instructions++;
 
 				cout << "WB pc: " << pipmemory.pc << " ";
 						
@@ -264,6 +272,7 @@ void run_riscvsim() {
 				execute();
 				if(is_stall) {
 					stalls++;
+					dhstalls++;
 					pipexecute.isEmpty = true;
 					pipdecode.isEmpty = true;
 					cout << "Stall at " << cycle << "\n\n";
@@ -278,6 +287,7 @@ void run_riscvsim() {
 				else if(branchjump_stall) {
 					if(pipfetch.pc != mux_isbranch.output()) {
 						stalls++;
+						chstalls++;
 						pipdecode.isEmpty=true;
 						pipfetch.isEmpty = true;
 						PC = mux_isbranch.output();
@@ -380,7 +390,9 @@ void run_riscvsim() {
 	cout << "Cycles: " << cycle << endl;
 	cout << "Number of instructions: " << instructions << endl;
 	cout << "CPI: " << (float)cycle/instructions << endl;
-	cout << "stalls: " << stalls << endl;
+	cout << "Total stalls: " << stalls << endl;
+	cout << "Stalls due to data hazards: " << dhstalls << endl;
+	cout << "Stalls due to control hazards: " << chstalls << endl;
 
 	
 	swi_exit();
