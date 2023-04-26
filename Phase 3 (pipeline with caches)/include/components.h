@@ -81,7 +81,7 @@ class Cache
         vector<pair<int, vector<char>>> dm;
         vector<vector<pair<pair<int, int>,vector<char>>>> sa;
         map<int, pair<bool, vector<char>>> fa;   int fasize;    vector<int> fatags;
-
+        
         queue<int> fifo;     
 
         void initialise(int cachesize, int blocksize, string _type, string _policy, int saways);

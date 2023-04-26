@@ -229,6 +229,9 @@ void Cache::initialise(int cachesize, int blocksize, string _type, string _polic
     }
     else if(type == "FA") {
         fasize=0;
+        if(policy!="Random") {
+            policy = "FIFO";
+        }
     }
 
 
@@ -368,6 +371,7 @@ int Cache::output() {
         else if(type == "SA") {
             int index = (address/block_size)%lines;
             int f = 1;
+            int ind = -1, prev_val = -1;
             for(int i=0; i<sa_ways; i++) {
                 if (sa[index][i].first.first == -1) {
                     f=0;
@@ -375,14 +379,16 @@ int Cache::output() {
                     sa[index][i].second = mem.reqBlock(tag, block_size);
                     
                     if(policy=="FIFO") sa[index][i].first.second = sa_ways-i-1;
-                    else if(policy=="LFU") sa[index][i].first.second = 1;
-                    else if (policy == "LRU") {sa[index][i].first.second = sa_ways - 1;}
+                    else if (policy == "LRU") {
+                        prev_val = sa[index][i].first.second;
+                        sa[index][i].first.second = sa_ways - 1;
+                        ind = i;
+                    }
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
                     bit2 = sa[index][i].second[diff+1];
                     bit3 = sa[index][i].second[diff+2];
                     bit4 = sa[index][i].second[diff+3];
-
                     break;
                 }
                 else if (sa[index][i].first.first == tag) {
@@ -390,7 +396,11 @@ int Cache::output() {
                     if(policy == "LFU"){
                         sa[index][i].first.second ++;
                     }
-                    else if(policy=="LRU") {sa[index][i].first.second--;}
+                    else if (policy == "LRU") {
+                        prev_val = sa[index][i].first.second;
+                        sa[index][i].first.second = sa_ways - 1;
+                        ind = i;
+                    }
                     f=0;
 
                     int diff = address-tag;
@@ -402,6 +412,15 @@ int Cache::output() {
                     
                 }
                 
+            }
+            if(ind>=0) {
+                for (int i=0;i<sa_ways;i++) {
+                    if(i != ind) {
+                        if (policy == "LRU" && sa[index][i].first.second > prev_val) {
+                            sa[index][i].first.second--;
+                        }
+                    }
+                }
             }
             if(f) {
                 // replacement
@@ -420,14 +439,11 @@ int Cache::output() {
 
                 }
                 else if (policy == "LRU") {
-                    int replaceon;
+                    int replaceon = 0;
 
                     for(int i=0;i<sa_ways;i++) {
                         if(sa[index][i].first.second == 0) {
                             replaceon = i;
-                        }
-                        else{
-                            sa[index][i].first.second--;
                         }
                     }
 
@@ -528,7 +544,21 @@ int Cache::output() {
 
                 }
                 else if (policy == "LRU") {
+                    int replaceon = 0;
+                    vector <char> v(lines);
+                    for(int i=0;i<lines;i++) {
+                        if(fa[i] == make_pair(true, v)) {
+                            replaceon = i;
+                        }
+                    }
+                    fa[replaceon] = make_pair(tag, v);
+                    fa[replaceon].second = mem.reqBlock(tag, block_size);
 
+                    int diff = address-tag;
+                    bit1 = fa[replaceon].second[diff];
+                    bit2 = fa[replaceon].second[diff+1];
+                    bit3 = fa[replaceon].second[diff+2];
+                    bit4 = fa[replaceon].second[diff+3];
                 }
                 else if (policy == "FIFO") {
                     int replacedtag = fifo.front();
@@ -545,7 +575,21 @@ int Cache::output() {
                     bit4 = fa[tag].second[diff+3]; 
                 }
                 else if (policy == "LFU") {
+                    int replaceon = 0;
+                    vector <char> v(lines);
+                    for(int i=0;i<sa_ways;i++) {
+                        if(fa[i] == make_pair(true, v)) {
+                            replaceon = i;
+                        }
+                    }
+                    fa[replaceon] = make_pair(tag, v);
+                    fa[replaceon].second = mem.reqBlock(tag, block_size);
 
+                    int diff = address-tag;
+                    bit1 = fa[replaceon].second[diff];
+                    bit2 = fa[replaceon].second[diff+1];
+                    bit3 = fa[replaceon].second[diff+2];
+                    bit4 = fa[replaceon].second[diff+3];
                 }
 
             }

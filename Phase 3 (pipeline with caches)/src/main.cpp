@@ -21,13 +21,49 @@ int main(int argc, char** argv) {
 	std::cin >> isPipelined;
 
 	
+	// Instruction cache user interactions
+	cout<<"For Instruction cache please follow these instruction\n";
+	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n(case sensitive)\n";
+	//cache type is case sensitive
+	cin >> inst_cache.type;
+	cout<<"Give size of Cache in Bytes\n";
+	cin >> inst_cache.cache_size;
+	cout<<"Give size of Block in Bytes\n";
+	cin >> inst_cache.block_size;
+	if(inst_cache.type == "SA") {
+		cout<<"Give number of ways for set associative mapping\n";
+		cin >> inst_cache.sa_ways;
+	}
+	if(inst_cache.type == "SA" || inst_cache.type == "FA") {
+		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
+		cin >> inst_cache.policy;
+	}
+	inst_cache.initialise(inst_cache.cache_size, inst_cache.block_size, inst_cache.type, inst_cache.policy, inst_cache.sa_ways);
+
+	//Data cache user interactions
+	cout<<"For Data cache please follow these instruction\n";
+	cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n";
+	//cache type is case sensitive
+	cin >> cache.type;
+	cout<<"Give size of Cache in Bytes\n";
+	cin >> cache.cache_size;
+	cout<<"Give size of Block in Bytes\n";
+	cin >> cache.block_size;
+	if(cache.type == "SA") {
+		cout<<"Give number of ways for set associative mapping\n";
+		cin >> cache.sa_ways;
+	}
+	if(cache.type == "SA" || cache.type == "FA") {
+		cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
+		cin >> cache.policy;
+	}
+	cache.initialise(cache.cache_size, cache.block_size, cache.type, cache.policy, cache.sa_ways);
 	
-	
-	inst_cache.initialise(128, 8, "DM", "FIFO", 1);
+	// inst_cache.initialise(cache.cache_size, cache.block_size, cache.type, cache.policy, cache.sa_ways);
+	// inst_cache.initialise(cache.cache_size, cache.block_size, cache.type, cache.policy, cache.sa_ways);
 
 
-	cache.initialise(64, 8, "FA", "Random", 1);
-	cache.initialise(128, 8, "DM", "FIFO", 1);
+	// cache.initialise(128, 8, "SA", "LRU", 4);
 	
   	//reset the processor
 	reset_proc();
@@ -41,23 +77,6 @@ int main(int argc, char** argv) {
 
 
 
-	//Instruction cache user interactions
-	// cout<<"For Instruction cache please follow these instruction\n";
-	// cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n(case sensitive)\n";
-	// //cache type is case sensitive
-	// cin >> inst_cache.type;
-	// cout<<"Give size of Cache in Bytes\n";
-	// cin >> inst_cache.cache_size;
-	// cout<<"Give size of Block in Bytes\n";
-	// cin >> inst_cache.block_size;
-	// if(inst_cache.type == "SA") {
-	// 	cout<<"Give number of ways for set associative mapping\n";
-	// 	cin >> inst_cache.sa_ways;
-	// }
-	// if(inst_cache.type == "SA" || inst_cache.type == "FA") {
-	// 	cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
-	// 	cin >> inst_cache.policy;
-	// }
 
 
 
@@ -71,22 +90,3 @@ int main(int argc, char** argv) {
 
 
 
-
-	//Data cache user interactions
-	// cout<<"For Data cache please follow these instruction\n";
-	// cout<<"Type FA for Fully Associative mapping\nType DM for Direct mapping\nType SA for Set Associative mapping\n";
-	// //cache type is case sensitive
-	// cin >> cache.type;
-	// cout<<"Give size of Cache in Bytes\n";
-	// cin >> cache.cache_size;
-	// cout<<"Give size of Block in Bytes\n";
-	// cin >> cache.block_size;
-	// if(cache.type == "SA") {
-	// 	cout<<"Give number of ways for set associative mapping\n";
-	// 	cin >> cache.sa_ways;
-	// }
-	// if(cache.type == "SA" || cache.type == "FA") {
-	// 	cout<<"Give the policy for set associative mapping and fully associative mapping\nFIFO/LRU/Random/LFU all are case sensitive\n";
-	// 	cin >> cache.policy;
-	// }
-	// cache.initialise(cache.cache_size, cache.block_size, cache.type, cache.policy, cache.sa_ways);
