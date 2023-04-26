@@ -390,10 +390,8 @@ int Cache::output() {
                     if(policy == "LFU"){
                         sa[index][i].first.second ++;
                     }
+                    else if(policy=="LRU") {sa[index][i].first.second--;}
                     f=0;
-
-                    if(policy=="LFU") {sa[index][i].first.second++;}
-                    else if(policy=="LFU") {sa[index][i].first.second--;}
 
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
