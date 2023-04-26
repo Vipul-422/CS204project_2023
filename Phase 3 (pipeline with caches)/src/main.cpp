@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 	inst_cache.initialise(64, 8, "SA", "Random", 2);
 
 
-	cache.initialise(64, 8, "FA", "FIFO", 1);
+	cache.initialise(64, 8, "FA", "Random", 1);
 	
   	//reset the processor
 	reset_proc();

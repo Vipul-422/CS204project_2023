@@ -27,8 +27,402 @@ Fetched  20
 WB pc: 8 in writeback 
 MEM pc: 12 in memory access 
 EX pc: 16  in execution 
+DEC pc: 20  in decode 
+Fetched  24
 
 WB pc: 12 in writeback 
 MEM pc: 16 in memory access 
+EX pc: 20  in execution 
+DEC pc: 24  in decode 
+Fetched  28
 
 WB pc: 16 in writeback 
+MEM pc: 20 in memory access 
+EX pc: 24  in execution 
+DEC pc: 28  in decode 
+Fetched  32
+
+WB pc: 20 in writeback 
+MEM pc: 24 in memory access 
+EX pc: 28  in execution 
+DEC pc: 32  in decode 
+Fetched  36
+
+WB pc: 24 in writeback 
+MEM pc: 28 in memory access 
+EX pc: 32  in execution 
+DEC pc: 36  in decode 
+Fetched  40
+
+WB pc: 28 in writeback 
+MEM pc: 32 in memory access 
+Branch jump stall at 36 jump to 84
+EX pc: 36  in execution 
+
+WB pc: 32 in writeback 
+MEM pc: 36 in memory access 
+Fetched  84
+
+WB pc: 36 in writeback 
+MEM pc: 36 in memory access 
+DEC pc: 84  in decode 
+Fetched  88
+
+WB pc: 36 in writeback 
+MEM pc: 36 in memory access 
+EX pc: 84  in execution 
+DEC pc: 88  in decode 
+Fetched  92
+
+WB pc: 36 in writeback 
+MEM pc: 84 in memory access 
+EX pc: 88  in execution 
+DEC pc: 92  in decode 
+Fetched  96
+
+WB pc: 84 in writeback 
+MEM pc: 88 in memory access 
+EX pc: 92  in execution 
+DEC pc: 96  in decode 
+Fetched  100
+
+WB pc: 88 in writeback 
+MEM pc: 92 in memory access 
+EX pc: 96  in execution 
+DEC pc: 100  in decode 
+Fetched  104
+
+WB pc: 92 in writeback 
+MEM pc: 96 in memory access 
+EX pc: 100  in execution 
+DEC pc: 104  in decode 
+Fetched  108
+
+WB pc: 96 in writeback 
+MEM pc: 100 in memory access 
+EX pc: 104  in execution 
+DEC pc: 108  in decode 
+Fetched  112
+
+WB pc: 100 in writeback 
+MEM pc: 104 in memory access 
+EX pc: 108  in execution 
+DEC pc: 112  in decode 
+Fetched  116
+
+WB pc: 104 in writeback 
+MEM pc: 108 in memory access 
+EX pc: 112  in execution 
+DEC pc: 116  in decode 
+Fetched  120
+
+WB pc: 108 in writeback 
+MEM pc: 112 in memory access 
+EX pc: 116  in execution 
+DEC pc: 120  in decode 
+Fetched  124
+
+WB pc: 112 in writeback 
+MEM pc: 116 in memory access 
+EX pc: 120  in execution 
+DEC pc: 124  in decode 
+Fetched  128
+
+WB pc: 116 in writeback 
+MEM pc: 120 in memory access 
+Branch jump stall at 124 jump to 40
+EX pc: 124  in execution 
+
+WB pc: 120 in writeback 
+MEM pc: 124 in memory access 
+Fetched  40
+
+WB pc: 124 in writeback 
+MEM pc: 124 in memory access 
+DEC pc: 40  in decode 
+Fetched  44
+
+WB pc: 124 in writeback 
+MEM pc: 124 in memory access 
+EX pc: 40  in execution 
+DEC pc: 44  in decode 
+Fetched  48
+
+WB pc: 124 in writeback 
+MEM pc: 40 in memory access 
+EX pc: 44  in execution 
+DEC pc: 48  in decode 
+Fetched  52
+
+WB pc: 40 in writeback 
+MEM pc: 44 in memory access 
+EX pc: 48  in execution 
+DEC pc: 52  in decode 
+Fetched  56
+
+WB pc: 44 in writeback 
+MEM pc: 48 in memory access 
+EX pc: 52  in execution 
+DEC pc: 56  in decode 
+Fetched  60
+
+WB pc: 48 in writeback 
+MEM pc: 52 in memory access 
+EX pc: 56  in execution 
+DEC pc: 60  in decode 
+Fetched  64
+
+WB pc: 52 in writeback 
+MEM pc: 56 in memory access 
+EX pc: 60  in execution 
+DEC pc: 64  in decode 
+Fetched  68
+
+WB pc: 56 in writeback 
+MEM pc: 60 in memory access 
+EX pc: 64  in execution 
+DEC pc: 68  in decode 
+Fetched  72
+
+WB pc: 60 in writeback 
+MEM pc: 64 in memory access 
+EX pc: 68  in execution 
+DEC pc: 72  in decode 
+Fetched  76
+
+WB pc: 64 in writeback 
+MEM pc: 68 in memory access 
+Branch jump stall at 72 jump to 32
+EX pc: 72  in execution 
+
+WB pc: 68 in writeback 
+MEM pc: 72 in memory access 
+Fetched  32
+
+WB pc: 72 in writeback 
+MEM pc: 72 in memory access 
+DEC pc: 32  in decode 
+Fetched  36
+
+WB pc: 72 in writeback 
+MEM pc: 72 in memory access 
+EX pc: 32  in execution 
+DEC pc: 36  in decode 
+Fetched  84
+
+WB pc: 72 in writeback 
+MEM pc: 32 in memory access 
+EX pc: 36  in execution 
+DEC pc: 84  in decode 
+Fetched  88
+
+WB pc: 32 in writeback 
+MEM pc: 36 in memory access 
+EX pc: 84  in execution 
+DEC pc: 88  in decode 
+Fetched  92
+
+WB pc: 36 in writeback 
+MEM pc: 84 in memory access 
+EX pc: 88  in execution 
+DEC pc: 92  in decode 
+Fetched  96
+
+WB pc: 84 in writeback 
+MEM pc: 88 in memory access 
+EX pc: 92  in execution 
+DEC pc: 96  in decode 
+Fetched  100
+
+WB pc: 88 in writeback 
+MEM pc: 92 in memory access 
+EX pc: 96  in execution 
+DEC pc: 100  in decode 
+Fetched  104
+
+WB pc: 92 in writeback 
+MEM pc: 96 in memory access 
+EX pc: 100  in execution 
+DEC pc: 104  in decode 
+Fetched  108
+
+WB pc: 96 in writeback 
+MEM pc: 100 in memory access 
+EX pc: 104  in execution 
+DEC pc: 108  in decode 
+Fetched  112
+
+WB pc: 100 in writeback 
+MEM pc: 104 in memory access 
+EX pc: 108  in execution 
+DEC pc: 112  in decode 
+Fetched  116
+
+WB pc: 104 in writeback 
+MEM pc: 108 in memory access 
+EX pc: 112  in execution 
+DEC pc: 116  in decode 
+Fetched  120
+
+WB pc: 108 in writeback 
+MEM pc: 112 in memory access 
+EX pc: 116  in execution 
+DEC pc: 120  in decode 
+Fetched  124
+
+WB pc: 112 in writeback 
+MEM pc: 116 in memory access 
+EX pc: 120  in execution 
+DEC pc: 124  in decode 
+Fetched  128
+
+WB pc: 116 in writeback 
+MEM pc: 120 in memory access 
+Branch jump stall at 124 jump to 40
+EX pc: 124  in execution 
+
+WB pc: 120 in writeback 
+MEM pc: 124 in memory access 
+Fetched  40
+
+WB pc: 124 in writeback 
+MEM pc: 124 in memory access 
+DEC pc: 40  in decode 
+Fetched  44
+
+WB pc: 124 in writeback 
+MEM pc: 124 in memory access 
+EX pc: 40  in execution 
+DEC pc: 44  in decode 
+Fetched  48
+
+WB pc: 124 in writeback 
+MEM pc: 40 in memory access 
+EX pc: 44  in execution 
+DEC pc: 48  in decode 
+Fetched  52
+
+WB pc: 40 in writeback 
+MEM pc: 44 in memory access 
+EX pc: 48  in execution 
+DEC pc: 52  in decode 
+Fetched  56
+
+WB pc: 44 in writeback 
+MEM pc: 48 in memory access 
+EX pc: 52  in execution 
+DEC pc: 56  in decode 
+Fetched  60
+
+WB pc: 48 in writeback 
+MEM pc: 52 in memory access 
+EX pc: 56  in execution 
+DEC pc: 60  in decode 
+Fetched  64
+
+WB pc: 52 in writeback 
+MEM pc: 56 in memory access 
+EX pc: 60  in execution 
+DEC pc: 64  in decode 
+Fetched  68
+
+WB pc: 56 in writeback 
+MEM pc: 60 in memory access 
+EX pc: 64  in execution 
+DEC pc: 68  in decode 
+Fetched  72
+
+WB pc: 60 in writeback 
+MEM pc: 64 in memory access 
+EX pc: 68  in execution 
+DEC pc: 72  in decode 
+Fetched  32
+
+WB pc: 64 in writeback 
+MEM pc: 68 in memory access 
+EX pc: 72  in execution 
+DEC pc: 32  in decode 
+Fetched  36
+
+WB pc: 68 in writeback 
+MEM pc: 72 in memory access 
+EX pc: 32  in execution 
+DEC pc: 36  in decode 
+Fetched  84
+
+WB pc: 72 in writeback 
+MEM pc: 32 in memory access 
+EX pc: 36  in execution 
+DEC pc: 84  in decode 
+Fetched  88
+
+WB pc: 32 in writeback 
+MEM pc: 36 in memory access 
+EX pc: 84  in execution 
+DEC pc: 88  in decode 
+Fetched  92
+
+WB pc: 36 in writeback 
+MEM pc: 84 in memory access 
+EX pc: 88  in execution 
+DEC pc: 92  in decode 
+Fetched  96
+
+WB pc: 84 in writeback 
+MEM pc: 88 in memory access 
+EX pc: 92  in execution 
+DEC pc: 96  in decode 
+Fetched  100
+
+WB pc: 88 in writeback 
+MEM pc: 92 in memory access 
+EX pc: 96  in execution 
+DEC pc: 100  in decode 
+Fetched  104
+
+WB pc: 92 in writeback 
+MEM pc: 96 in memory access 
+EX pc: 100  in execution 
+DEC pc: 104  in decode 
+Fetched  108
+
+WB pc: 96 in writeback 
+MEM pc: 100 in memory access 
+EX pc: 104  in execution 
+DEC pc: 108  in decode 
+Fetched  112
+
+WB pc: 100 in writeback 
+MEM pc: 104 in memory access 
+EX pc: 108  in execution 
+DEC pc: 112  in decode 
+Fetched  116
+
+WB pc: 104 in writeback 
+MEM pc: 108 in memory access 
+EX pc: 112  in execution 
+DEC pc: 116  in decode 
+Fetched  120
+
+WB pc: 108 in writeback 
+MEM pc: 112 in memory access 
+EX pc: 116  in execution 
+DEC pc: 120  in decode 
+Fetched  124
+
+WB pc: 112 in writeback 
+MEM pc: 116 in memory access 
+EX pc: 120  in execution 
+DEC pc: 124  in decode 
+Fetched  128
+
+WB pc: 116 in writeback 
+MEM pc: 120 in memory access 
+Branch jump stall at 124 jump to 40
+EX pc: 124  in execution 
+
+WB pc: 120 in writeback 
+MEM pc: 124 in memory access 
+Fetched  40
+
+WB pc: 124 in writeba

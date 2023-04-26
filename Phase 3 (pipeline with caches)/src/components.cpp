@@ -369,7 +369,7 @@ int Cache::output() {
                     f=0;
                     sa[index][i].first.first = tag;
                     sa[index][i].second = mem.reqBlock(tag, block_size);
-
+                    if (policy == "LRU") {sa[index][i].first.second = sa_ways - 1;}
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
                     bit2 = sa[index][i].second[diff+1];
@@ -380,6 +380,7 @@ int Cache::output() {
                 }
                 else if (sa[index][i].first.first == tag) {
                     // case when block is present
+                    sa[index][i].first.second--;
                     f=0;
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
@@ -407,7 +408,26 @@ int Cache::output() {
 
                 }
                 else if (policy == "LRU") {
+                    int replaceon;
 
+                    for(int i=0;i<sa_ways;i++) {
+                        if(sa[index][i].first.second == 0) {
+                            replaceon = i;
+                        }
+                        else{
+                            sa[index][i].first.second--;
+                        }
+                    }
+
+                    sa[index][replaceon].first.first = tag;
+                    sa[index][replaceon].first.second = sa_ways - 1;
+                    sa[index][replaceon].second = mem.reqBlock(tag, block_size);
+
+                    int diff = address-tag;
+                    bit1 = sa[index][replaceon].second[diff];
+                    bit2 = sa[index][replaceon].second[diff+1];
+                    bit3 = sa[index][replaceon].second[diff+2];
+                    bit4 = sa[index][replaceon].second[diff+3];
                 }
                 else if (policy == "FIFO") {
 

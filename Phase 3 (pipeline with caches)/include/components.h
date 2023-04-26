@@ -79,7 +79,7 @@ class Cache
         int iswrite, sltype;
         int lines;
         vector<pair<int, vector<char>>> dm;
-        vector<vector<pair<pair<int, int>,vector<char>>>> sa;
+        vector<vector<pair<pair<int, int>, vector<char>>>> sa;
         map<int, pair<bool, vector<char>>> fa;   int fasize;    vector<int> fatags;
 
         queue<int> fifo;     
@@ -195,7 +195,7 @@ class Pipexecute
 
 //Pipelined register execute ends
 
-//Pipelined register execute starts
+//Pipelined register memory starts
 
 class Pipmemory
 {
@@ -209,6 +209,6 @@ class Pipmemory
         void input_controls(map<string, int> _wb);
 };
 
-//Pipelined register execute ends
+//Pipelined register memory ends
 
 #endif
