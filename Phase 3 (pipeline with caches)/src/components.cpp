@@ -463,9 +463,9 @@ int Cache::output() {
 
                 }
                 else if (policy == "LFU") {
-                    int low = INT_MAX, low_id = 0;
+                    int low = INT32_MAX, low_id = 0;
                     for(int i=0; i<sa_ways; i++){
-                         if(low < sa[index][i].first.second){
+                         if(low > sa[index][i].first.second){
                             low = sa[index][i].first.second;
                             low_id = i;
                         }
