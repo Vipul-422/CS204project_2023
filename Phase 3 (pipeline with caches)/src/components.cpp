@@ -376,7 +376,7 @@ int Cache::output() {
                     
                     if(policy=="FIFO") sa[index][i].first.second = sa_ways-i-1;
                     else if(policy=="LFU") sa[index][i].first.second = 1;
-                    if (policy == "LRU") {sa[index][i].first.second = sa_ways - 1;}
+                    else if (policy == "LRU") {sa[index][i].first.second = sa_ways - 1;}
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
                     bit2 = sa[index][i].second[diff+1];
@@ -387,10 +387,10 @@ int Cache::output() {
                 }
                 else if (sa[index][i].first.first == tag) {
                     // case when block is present
-                    sa[index][i].first.second--;
                     f=0;
 
                     if(policy=="LFU") {sa[index][i].first.second++;}
+                    else if(policy=="LFU") {sa[index][i].first.second--;}
 
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
