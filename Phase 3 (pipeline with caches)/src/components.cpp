@@ -410,22 +410,7 @@ int Cache::output() {
 
                 }
                 else if (policy == "LRU") {
-                    int low = INT_MAX, low_id = 0;
-                    for(int i=0; i<sa_ways; i++){
-                         if(low < sa[index][i].first.second){
-                            low = sa[index][i].first.second;
-                            low_id = i;
-                        }
-                    }
-                    sa[index][low_id].first.first = tag;
-                    sa[index][low_id].first.second = 0;
-                    sa[index][low_id].second = mem.reqBlock(tag, block_size);
-
-                    int diff = address-tag;
-                    bit1 = sa[index][low_id].second[diff];
-                    bit2 = sa[index][low_id].second[diff+1];
-                    bit3 = sa[index][low_id].second[diff+2];
-                    bit4 = sa[index][low_id].second[diff+3];
+                    
                 }
                 else if (policy == "FIFO") {
 
