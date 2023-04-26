@@ -368,6 +368,9 @@ int Cache::output() {
                 if (sa[index][i].first.first == -1) {
                     f=0;
                     sa[index][i].first.first = tag;
+                    if(policy == "LFU"){
+                        sa[index][i].first.second ++;
+                    }
                     sa[index][i].second = mem.reqBlock(tag, block_size);
 
                     int diff = address-tag;
@@ -413,7 +416,24 @@ int Cache::output() {
 
                 }
                 else if (policy == "LFU") {
+                    int low = INT_MAX, low_id = 0;
+                    for(int i=0; i<sa_ways; i++){
+                         if(low < sa[index][i].first.second){
+                            low = sa[index][i].first.second;
+                            low_id = i;
+                        }
+                    }
+                    sa[index][low_id].first.first = tag;
+                    if(policy == "LFU"){
+                        sa[index][low_id].first.second ++;
+                    }
+                    sa[index][low_id].second = mem.reqBlock(tag, block_size);
 
+                    int diff = address-tag;
+                    bit1 = sa[index][low_id].second[diff];
+                    bit2 = sa[index][low_id].second[diff+1];
+                    bit3 = sa[index][low_id].second[diff+2];
+                    bit4 = sa[index][low_id].second[diff+3];
                 }
 
 

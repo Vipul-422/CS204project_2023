@@ -17,7 +17,6 @@ extern map <int, string> inst_mem;
 extern ALU alu;
 extern Regfile regs;
 extern Memory mem;
-extern Cache cache;
 extern Mux mux_op2select, mux_resultselect, mux_branchTargetSel, mux_isbranch, mux1_alu, mux2_alu;
 extern Adder adder_pc, adder_branch, adder_wb;
 extern Sign_ext immB, immJ, imm, immS, immU;
