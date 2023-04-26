@@ -368,9 +368,6 @@ int Cache::output() {
                 if (sa[index][i].first.first == -1) {
                     f=0;
                     sa[index][i].first.first = tag;
-                    if(policy == "LFU"){
-                        sa[index][i].first.second ++;
-                    }
                     sa[index][i].second = mem.reqBlock(tag, block_size);
 
                     int diff = address-tag;
@@ -383,6 +380,9 @@ int Cache::output() {
                 }
                 else if (sa[index][i].first.first == tag) {
                     // case when block is present
+                    if(policy == "LFU"){
+                        sa[index][i].first.second ++;
+                    }
                     f=0;
                     int diff = address-tag;
                     bit1 = sa[index][i].second[diff];
