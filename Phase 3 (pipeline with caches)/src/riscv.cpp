@@ -110,14 +110,43 @@ void run_riscvsim() {
 	cout<<"Press 1 for branch prediction\nPress 0 for without branch prediction\n";
 	cin >> branch_prediction;
 
-	FILE* fp1 = freopen("output.txt", "w", stdout);
+	// FILE* fp1 = freopen("output.txt", "w", stdout);
 	int endflag = 0;
 	branchjump_stall = false;
 	is_stall = false;
 	// freopen("output.txt", "w", stdout);
+
+	
+	// for(int i=0; i<240; i+=4) {
+	// 	int temp = i;
+
+	// 	cout << i << "\t: ";
+
+	// 	cout << (int)mem.mem[temp] << " " << (int)mem.mem[temp+1] << " " << (int)mem.mem[temp+2] << " " << (int)mem.mem[temp+3] << "\n";
+
+	// }
+
+			// cout << "\n\n";
+			// for(int i=0; i<inst_cache.lines; i++) {
+            // for(int j=0; j<inst_cache.sa_ways; j++) {
+			// 	cout << inst_cache.sa[i][j].first.first << " ";
+            //     for(int k=0; k<inst_cache.block_size; k++) {
+            //         cout   <<(int)inst_cache.sa[i][j].second[k] << " ";
+            //     }
+			// 	cout << "  |  ";
+			// 	}
+			// 	cout << "\n";
+			// }
+
 	
 	if(forwarding == 1){
 		while(1) {
+
+
+
+
+
+
 			++cycle;
 			is_stall = false;
 			branchjump_stall = false;
@@ -427,7 +456,7 @@ void run_riscvsim() {
 	}
 
 
-	fclose(fp1);
+	// fclose(fp1);
 
 
 	freopen("Details.txt", "w", stdout);

@@ -23,10 +23,10 @@ int main(int argc, char** argv) {
 	
 	
 	
-	inst_cache.initialise(64, 8, "SA", "Random", 2);
+	inst_cache.initialise(128, 8, "DM", "FIFO", 1);
 
 
-	cache.initialise(64, 8, "FA", "FIFO", 1);
+	cache.initialise(128, 8, "DM", "FIFO", 1);
 	
   	//reset the processor
 	reset_proc();
