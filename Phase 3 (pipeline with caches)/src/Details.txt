@@ -1,6 +1,6 @@
-Cycles: 9
-Number of instructions: 5
-CPI: 1.8
-Total stalls: 0
+Cycles: 261
+Number of instructions: 257
+CPI: 1.01556
+Total stalls: 14
 Stalls due to data hazards: 0
-Stalls due to control hazards: 0
+Stalls due to control hazards: 14

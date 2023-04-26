@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Fetched  0
 
 DEC pc: 0  in decode 
@@ -426,3 +427,5 @@ MEM pc: 124 in memory access
 Fetched  40
 
 WB pc: 124 in writeba
+=======
+>>>>>>> d271197b27da10d7837fcd398180fb81850540ec
