@@ -1,7 +1,7 @@
 #include "GUI.h"
-#include "components.h"
-#include "riscv.h"
-#include "functions.h"
+#include "../include/components.h"
+#include "../include/riscv.h"
+#include "../include/functions.h"
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -17,7 +17,9 @@ string lines[200];
 int pc = 0;
 int countLine = 0;
 int check = 0;
-bool checked0=false, checked1=false, checked2=false, checked3=false, checked4=false;
+bool c0 = false, c1 = false, c2 = false;
+string pipeline, forwarding, branch_prediction;
+
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) {
 	int memAdd[32];
@@ -74,9 +76,9 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 
 	checked[0]= new wxCheckBox(panel, wxID_ANY, "Pipelining",wxPoint(1100,150),wxSize(200,80));
 	checked[1] = new wxCheckBox(panel, wxID_ANY, "Data Forwarding",wxPoint(1100,250),wxSize(200, 80));
-	checked[2] = new wxCheckBox(panel, wxID_ANY, "Printing Value", wxPoint(1100, 350),wxSize(200, 80));
-	checked[3] = new wxCheckBox(panel, wxID_ANY, "Printing information", wxPoint(1100, 450),wxSize(200, 80));
-	checked[4] = new wxCheckBox(panel, wxID_ANY, "Specific", wxPoint(1100, 550),wxSize(200, 80));
+	checked[2] = new wxCheckBox(panel, wxID_ANY, "Branch Prediction", wxPoint(1100, 350),wxSize(200, 80));
+	//checked[3] = new wxCheckBox(panel, wxID_ANY, "Printing information", wxPoint(1100, 450),wxSize(200, 80));
+	//checked[4] = new wxCheckBox(panel, wxID_ANY, "Specific", wxPoint(1100, 550),wxSize(200, 80));
 
 	for (int i = 0; i < 32; i++) {
 		if (i < 16) {
@@ -89,6 +91,9 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	}
 	txt[40] = new wxStaticText(panel, wxID_ANY, "PC", wxPoint(100, 60));
 	txt[41] = new wxStaticText(panel, wxID_ANY, "Machine Code", wxPoint(400, 60));
+	txt[50] = new wxStaticText(panel, wxID_ANY, "Output", wxPoint(400, 60));
+	txt[50]->SetFont(font1);
+	txt[50]->Hide();
 
 	string outRegs[32];
 	for (int i = 0; i < 32; i++) {
@@ -139,7 +144,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	buttons[0]->SetFont(font1);
 	buttons[1]->SetFont(font1);
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 		checked[i]->SetFont(font1);
 	}
 
@@ -187,14 +192,15 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	Connect(checked[0]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox0Clicked), NULL, this);
 	Connect(checked[1]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox1Clicked), NULL, this);
 	Connect(checked[2]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox2Clicked), NULL, this);
-	Connect(checked[3]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox3Clicked), NULL, this);
-	Connect(checked[4]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox4Clicked), NULL, this);
+	//Connect(checked[3]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox3Clicked), NULL, this);
+	//Connect(checked[4]->GetId(), wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler(MainFrame::OnCheckbox4Clicked), NULL, this);
 }
 
 void MainFrame::onIpChanged(wxCommandEvent& evt) {
 	wxString newText = txtField[0]->GetValue();
 	evt.Skip();
-	ofstream fout("student.mc");
+	ofstream fout;
+	fout.open("input.mc");
 	fout << newText;
 	fout.close();
 	
@@ -202,20 +208,38 @@ void MainFrame::onIpChanged(wxCommandEvent& evt) {
 
 void MainFrame::OnCheckbox0Clicked(wxCommandEvent& event) {
 	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
-	checked0 = checkbox->GetValue();
+	c0 = checkbox->GetValue();
+	if (c0 == true) {
+		pipeline = "1";
+	}
+	else {
+		pipeline = "0";
+	}
 }
 
 void MainFrame::OnCheckbox1Clicked(wxCommandEvent& event) {
 	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
-	checked1 = checkbox->GetValue();
+	c1 = checkbox->GetValue();
+	if (c1 == true) {
+		forwarding = "1";
+	}
+	else {
+		forwarding = "0";
+	}
 }
 
 void MainFrame::OnCheckbox2Clicked(wxCommandEvent& event) {
 	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
-	checked2 = checkbox->GetValue();
+	c2 = checkbox->GetValue();
+	if (c2 == true) {
+		branch_prediction = "1";
+	}
+	else {
+		branch_prediction = "0";
+	}
 }
 
-void MainFrame::OnCheckbox3Clicked(wxCommandEvent& event) {
+/*void MainFrame::OnCheckbox3Clicked(wxCommandEvent& event) {
 	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
 	checked3 = checkbox->GetValue();
 }
@@ -223,20 +247,21 @@ void MainFrame::OnCheckbox3Clicked(wxCommandEvent& event) {
 void MainFrame::OnCheckbox4Clicked(wxCommandEvent& event) {
 	wxCheckBox* checkbox = static_cast<wxCheckBox*>(event.GetEventObject());
 	checked4 = checkbox->GetValue();
-}
+}*/
 
 
 void MainFrame::runFunc(wxCommandEvent& evt) {
 	stringstream ss0, ss1, ss2, ss3, ss4;
-	ss0 << boolalpha << checked0;
-	ss1 << boolalpha << checked1;
-	ss2 << boolalpha << checked2;
+	/*ss0 << boolalpha << checked0;
+	ss1 << boolalpha << forwarding;
+	ss2 << boolalpha << branch_prediction;
 	ss3 << boolalpha << checked3;
-	ss4 << boolalpha << checked4;
-	string main = "g++ main.cpp riscv.cpp functions.cpp components.cpp -o result.exe";
+	ss4 << boolalpha << checked4;*/
+
+	string main = "g++ ../src/main.cpp ../src/riscv.cpp ../src/functions.cpp ../src/components.cpp -o result.exe";
 	system(main.c_str());
 
-	string command = "result.exe " + ss0.str() + " " + ss1.str() + " " + ss2.str() + " " + ss3.str() + " " + ss4.str();
+	string command = "result.exe ./input.mc "+pipeline+ " " +forwarding+ " " +branch_prediction;
 
 	//main = "result.exe";
 	system(command.c_str());
@@ -245,7 +270,7 @@ void MainFrame::runFunc(wxCommandEvent& evt) {
 
 	string outRegs[32];
 	ifstream fin;
-	fin.open("Registers.txt");
+	fin.open("../Registers and Memory/registers.txt");
 	for (int i = 0; i < 32; i++) {
 		getline(fin, outRegs[i]);
 	}
@@ -259,7 +284,7 @@ void MainFrame::runFunc(wxCommandEvent& evt) {
 void MainFrame::OnButtonClicked1(wxCommandEvent& evt) {
 	txtField[0]->Show();
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 		checked[i]->Show();
 	}
 
@@ -296,8 +321,15 @@ void MainFrame::OnButtonClicked1(wxCommandEvent& evt) {
 }
 
 void MainFrame::OnButtonClicked2(wxCommandEvent& evt) {
+	/*
+	ofstream fout;
+	fout.open("input_nob.mc");
+	fout << forwarding;
+	fout << branch_prediction;
+	fout.close();*/
 
-	ifstream file("student.mc");
+	ifstream file;
+	file.open("input.mc");
 	
 	string line;
 	while (getline(file, line)) {
@@ -307,7 +339,7 @@ void MainFrame::OnButtonClicked2(wxCommandEvent& evt) {
 	file.close();
 
 	txtField[0]->Hide();
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 		checked[i]->Hide();
 	}
 	txtField[2]->Show();
@@ -356,6 +388,7 @@ void MainFrame::OnButtonClicked2(wxCommandEvent& evt) {
 		}
 		check = 1;
 	}
+
 	
 }
 
@@ -363,7 +396,7 @@ void MainFrame::OnRegClicked(wxCommandEvent& evt) {
 
 	string outRegs[32];
 	ifstream fin;
-	fin.open("Registers.txt");
+	fin.open("../Registers and Memory/registers.txt");
 	for (int i = 0; i < 32; i++) {
 		getline(fin, outRegs[i]);
 	}
@@ -379,7 +412,7 @@ void MainFrame::OnRegClicked(wxCommandEvent& evt) {
 void MainFrame::OnMemClicked(wxCommandEvent& evt) {
 	ifstream fin;
 	string finalValue;
-	fin.open("Memory.txt");
+	fin.open("../Registers and Memory/memory.txt");
 	string value[25000];
 	string stmp;
 	for (int i = 0; i < 25000; i++) {
@@ -398,7 +431,7 @@ void MainFrame::stepClicked(wxCommandEvent& evt) {
 	txtField[43 + pc]->Refresh();
 	txtField[120 + pc]->Refresh();
 
-	ofstream file("student.mc", ios::trunc);
+	ofstream file("input.mc", ios::trunc);
 	int i = 0;
 	while (i <= pc) {
 		file << lines[i];
@@ -411,15 +444,15 @@ void MainFrame::stepClicked(wxCommandEvent& evt) {
 	pc++;
 
 	stringstream ss0, ss1, ss2, ss3, ss4;
-	ss0 << boolalpha << checked0;
-	ss1 << boolalpha << checked1;
-	ss2 << boolalpha << checked2;
+	/*ss0 << boolalpha << checked0;
+	ss1 << boolalpha << forwarding;
+	ss2 << boolalpha << branch_prediction;
 	ss3 << boolalpha << checked3;
 	ss4 << boolalpha << checked4;
-	string main = "g++ main.cpp riscv.cpp functions.cpp components.cpp -o result.exe";
+	*/string main = "g++ ../src/main.cpp ../src/riscv.cpp ../src/functions.cpp ../src/components.cpp -o result.exe";
 	system(main.c_str());
 
-	string command = "result.exe " + ss0.str() + " " + ss1.str() + " " + ss2.str() + " " + ss3.str() + " " + ss4.str();
+	string command = "result.exe ./input.mc " +pipeline+ " " +forwarding+ " " +branch_prediction; /*+ " " + ss1.str() + " " + ss2.str() + " " + ss3.str() + " " + ss4.str()*/;
 
 	//main = "result.exe";
 	system(command.c_str());
@@ -427,8 +460,23 @@ void MainFrame::stepClicked(wxCommandEvent& evt) {
 
 void MainFrame::outputFile(wxCommandEvent& evt) {
 	txtField[5]->Show();
+	ifstream fin;
+	string finalValue;
+	fin.open("../src/output.txt");
+	string value[25000];
+	string stmp;
+	for (int i = 0; i < 25000; i++) {
+		getline(fin, value[i]);
+		finalValue.append(value[i]);
+		finalValue.append("\n");
+	}
+	txt[41]->Hide();
+	txt[50]->Show();
+	txtField[5]->SetValue(finalValue);
 }
 
 void MainFrame::hideFile(wxCommandEvent& evt) {
+	txt[41]->Show();
+	txt[50]->Hide();
 	txtField[5]->Hide();
 }

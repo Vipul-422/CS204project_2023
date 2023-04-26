@@ -51,7 +51,7 @@ description = 9 for jal instruction
 */
 using namespace std;
 
-void run_riscvsim() {
+void run_riscvsim(char* forwardd,char* branch_pred) {
 	
 	int cycle = 0;
 	int stalls = 0;
@@ -61,10 +61,24 @@ void run_riscvsim() {
 	int chstalls = 0;      // stalls due to control hazards
 	
 	bool branch_prediction = false;
-	cout<<"Press 1 for forwarding\nPress 0 for without forwarding\n";
+	/*cout<<"Press 1 for forwarding\nPress 0 for without forwarding\n";
 	cin >> forwarding;
 	cout<<"Press 1 for branch prediction\nPress 0 for without branch prediction\n";
 	cin >> branch_prediction;
+	*/
+	if (forwardd == "1") {
+		forwarding = 1;
+	}
+	else {
+		forwarding = 0;
+	}
+
+	if (branch_pred == "1") {
+		branch_prediction = true;
+	}
+	else {
+		branch_prediction = false;
+	}
 
 	FILE* fp1 = freopen("output.txt", "w", stdout);
 	int endflag = 0;
