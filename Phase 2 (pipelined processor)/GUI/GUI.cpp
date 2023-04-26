@@ -118,7 +118,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 	*/
 	//txtField[2] = new wxTextCtrl(panel, wxID_ANY, finalOut, wxPoint(380, 220), wxSize(150, 500), wxTE_MULTILINE);
 	txtField[2] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(50, 85), wxSize(200, 750), wxTE_MULTILINE);
-	txtField[3] = new wxTextCtrl(panel, wxID_ANY, finalValue[0], wxPoint(700, 220), wxSize(250, 500), wxTE_MULTILINE);
+	txtField[3] = new wxTextCtrl(panel, wxID_ANY, finalValue[0], wxPoint(650, 220), wxSize(320, 500), wxTE_MULTILINE);
 	txtField[4] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(300, 85), wxSize(300, 750), wxTE_MULTILINE);
 	
 	for (int i = 43; i < 80; i++) {
@@ -137,7 +137,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) 
 		txtField[i] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(440, 85 + (i - 157) * 20), wxSize(130, 20));
 	}
 
-	txtField[5] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(300, 85), wxSize(300, 750), wxTE_MULTILINE);
+	txtField[5] = new wxTextCtrl(panel, wxID_ANY, " ", wxPoint(300, 85), wxSize(320, 750), wxTE_MULTILINE);
 
 	txtField[0]->SetFont(font1);
 	txtField[3]->SetFont(font1);
